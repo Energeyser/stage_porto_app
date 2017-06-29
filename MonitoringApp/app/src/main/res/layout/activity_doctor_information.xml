@@ -4,10 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="393dp"
+        android:layout_weight="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
             <TextView
                 android:id="@+id/name_doctor_initials"
                 android:layout_width="100dp"
@@ -26,17 +30,11 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="2.5dp"
                 android:layout_marginBottom="2.5dp"
-                android:text="John DOE"
+                android:text="Carla MARTINS"
                 android:textAppearance="@style/DoctorName"/>
-        </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="393dp"
-        android:layout_weight="1">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+
+
+
             <TextView
                 android:id="@+id/phone_number_doctor"
                 android:layout_width="match_parent"
@@ -58,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_margin="5dp"
-                android:paddingLeft="50dp"
+                android:paddingLeft="35dp"
                 android:text="Email address:"
                 android:textAppearance="@style/DoctorInformations"/>
             <TextView
@@ -167,7 +165,6 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:clickable="true"
-            android:onClick="openDoctorInformation"
             android:background="#E0E0E0">
             <ImageView
                 android:id="@+id/img_doctor_month_summary"
