@@ -37,4 +37,9 @@ public class WeekCalendarActivity extends AppCompatActivity {
         Intent i = new Intent(this, WeekCalendarActivity.class);
         startActivity(i);
     }
+
+    public void openDayCalendar(View view){
+        Intent i = new Intent(this, DayCalendarActivity.class);
+        startActivity(i);
+    }
 }

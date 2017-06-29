@@ -737,7 +737,6 @@
                      android:layout_weight="1"
                      android:orientation="vertical"
                      android:clickable="true"
-                     android:onClick="openMonthSummary"
                      android:layout_marginRight="1dp"
                      android:background="#E0E0E0">
                     <ImageView

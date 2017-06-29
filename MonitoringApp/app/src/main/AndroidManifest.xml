@@ -19,7 +19,8 @@
         <activity android:name=".CalendarActivity" />
         <activity android:name=".ExportActivity" />
         <activity android:name=".DoctorInformationActivity" />
-        <activity android:name=".WeekCalendarActivity"></activity>
+        <activity android:name=".WeekCalendarActivity" />
+        <activity android:name=".DayCalendarActivity"></activity>
     </application>
 
 </manifest>
