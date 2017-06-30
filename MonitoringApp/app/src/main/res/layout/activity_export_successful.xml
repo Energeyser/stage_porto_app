@@ -21,68 +21,23 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:orientation="vertical">
+            <ImageView
+                android:id="@+id/img_export_successful"
+                android:layout_marginTop="7dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="1dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_export_successful"/>
             <TextView
                 android:id="@+id/period_data_export"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:paddingLeft="35dp"
                 android:layout_marginTop="25dp"
+                android:gravity="center"
                 android:textAppearance="@style/ExportData"
-                android:text="Period for the exported data:"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/from_export"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="2.5dp"
-                    android:layout_marginBottom="2.5dp"
-                    android:text="From:"
-                    android:textAppearance="@style/DateExportData"/>
-
-             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/to_export"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="2.5dp"
-                    android:layout_marginBottom="2.5dp"
-                    android:text="To:"
-                    android:textAppearance="@style/DateExportData"/>
-            </LinearLayout>
-            <TextView
-                android:id="@+id/destination_export_data"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingLeft="35dp"
-                android:layout_marginTop="25dp"
-                android:textAppearance="@style/ExportData"
-                android:text="Destination:"/>
-            <Spinner
-                android:id="@+id/spinner_destination_export"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:padding="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:text="Export"
-                android:onClick="openExportSuccessful"
-                android:textAllCaps="true"/>
-        </LinearLayout>
+                android:text="Export Successful"/>
+           </LinearLayout>
     </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"

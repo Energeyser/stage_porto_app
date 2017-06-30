@@ -4,86 +4,104 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
-    <TextView
-        android:id="@+id/title_export_data"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="Export the data"
-        android:textAllCaps="true"
-        android:gravity="center"
-        android:textAppearance="@style/TitleExportData"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="393dp"
         android:layout_weight="1">
         <LinearLayout
-            android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/period_data_export"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingLeft="35dp"
-                android:layout_marginTop="25dp"
-                android:textAppearance="@style/ExportData"
-                android:text="Period for the exported data:"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/from_export"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="2.5dp"
-                    android:layout_marginBottom="2.5dp"
-                    android:text="From:"
-                    android:textAppearance="@style/DateExportData"/>
-
-             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/to_export"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="2.5dp"
-                    android:layout_marginBottom="2.5dp"
-                    android:text="To:"
-                    android:textAppearance="@style/DateExportData"/>
-            </LinearLayout>
-            <TextView
-                android:id="@+id/destination_export_data"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingLeft="35dp"
-                android:layout_marginTop="25dp"
-                android:textAppearance="@style/ExportData"
-                android:text="Destination:"/>
-            <Spinner
-                android:id="@+id/spinner_destination_export"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:padding="15dp"
-                android:layout_marginTop="20dp"
+                android:id="@+id/name_doctor_initials"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:text="Export"
-                android:onClick="openExportSuccessful"
-                android:textAllCaps="true"/>
+                android:gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/oval"
+                android:textAppearance="@style/DoctorInitial"
+                android:text="CM"/>
+            <TextView
+                android:id="@+id/name_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:text="Carla MARTINS"
+                android:textAppearance="@style/DoctorName"/>
+
+
+
+            <TextView
+                android:id="@+id/phone_number_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:paddingLeft="35dp"
+                android:text="Phone number:"
+                android:textAppearance="@style/DoctorInformations"/>
+            <EditText
+                android:id="@+id/phone_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:textAppearance="@style/DoctorInformations"/>
+            <TextView
+                android:id="@+id/mail_address_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:paddingLeft="35dp"
+                android:text="Email address:"
+                android:textAppearance="@style/DoctorInformations"/>
+            <EditText
+                android:id="@+id/mail_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:textAppearance="@style/DoctorInformations"/>
+            <TextView
+                android:id="@+id/txt_username_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:paddingLeft="35dp"
+                android:text="Username:"
+                android:textAppearance="@style/DoctorInformations"/>
+            <EditText
+                android:id="@+id/username_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:textAppearance="@style/DoctorInformations"/>
+            <TextView
+                android:id="@+id/txt_password_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:paddingLeft="35dp"
+                android:text="Password:"
+                android:textAppearance="@style/DoctorInformations"/>
+            <EditText
+                android:id="@+id/password_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:textAppearance="@style/DoctorInformations"/>
         </LinearLayout>
     </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Validate the changes"
+        android:textAllCaps="true"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -148,6 +166,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
+            android:clickable="true"
+            android:onClick="openExport"
             android:layout_marginRight="1dp"
             android:background="#E0E0E0">
             <ImageView
@@ -172,8 +192,6 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:clickable="true"
-            android:onClick="openDoctorInformation"
             android:background="#E0E0E0">
             <ImageView
                 android:id="@+id/img_doctor_month_summary"

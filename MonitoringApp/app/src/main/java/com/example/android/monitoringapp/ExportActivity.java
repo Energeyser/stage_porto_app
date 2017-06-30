@@ -61,4 +61,10 @@ public class ExportActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void openExportSuccessful(View view){
+        Intent i = new Intent(this, ExportSuccessfulActivity.class);
+        startActivity(i);
+    }
+
+
 }

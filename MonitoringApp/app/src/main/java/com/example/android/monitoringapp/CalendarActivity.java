@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.CalendarView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -20,7 +22,8 @@ public class CalendarActivity extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth){
-                Toast.makeText(getBaseContext(), "Selected date"+ dayOfMonth+"/"+month+"/"+year, Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Selected date"+dayOfMonth+"/"+month+"/"+year , Toast.LENGTH_LONG).show();
+                String DayDate = dayOfMonth+"/"+month+"/"+year;
             }
         });
     }

@@ -14,7 +14,7 @@
             android:id="@+id/title_day_calendar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Monday 10th June 2017"
+            android:text=""
             android:textAllCaps="true"
             android:gravity="center"
             android:background="#E0E0E0"

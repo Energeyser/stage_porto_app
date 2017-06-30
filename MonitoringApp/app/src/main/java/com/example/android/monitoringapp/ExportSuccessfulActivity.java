@@ -5,14 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class DoctorInformationActivity extends AppCompatActivity {
+public class ExportSuccessfulActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_information);
+        setContentView(R.layout.activity_export_successful);
     }
-
 
     public void openMonthSummary(View view){
         Intent i = new Intent(this, MonthSummaryActivity.class);
@@ -31,11 +30,6 @@ public class DoctorInformationActivity extends AppCompatActivity {
 
     public void openDoctorInformation(View view){
         Intent i = new Intent(this, DoctorInformationActivity.class);
-        startActivity(i);
-    }
-
-    public void openDoctorModify(View view){
-        Intent i = new Intent(this, DoctorModifyActivity.class);
         startActivity(i);
     }
 }
