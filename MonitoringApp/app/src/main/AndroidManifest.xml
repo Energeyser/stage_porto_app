@@ -22,7 +22,9 @@
         <activity android:name=".WeekCalendarActivity" />
         <activity android:name=".DayCalendarActivity" />
         <activity android:name=".DoctorModifyActivity" />
-        <activity android:name=".ExportSuccessfulActivity"></activity>
+        <activity android:name=".ExportSuccessfulActivity" />
+        <activity android:name=".PatientInformationsActivity" />
+        <activity android:name=".PatientModifyActivity"></activity>
     </application>
 
 </manifest>

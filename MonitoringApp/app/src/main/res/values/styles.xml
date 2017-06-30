@@ -130,8 +130,21 @@
     <style name="TitleDayCalendar">
         <!-- Customize your theme here. -->
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">#424242</item>
+        <item name="android:textColor">#757575</item>
     </style>
 
+<!-- STYLE FOR THE PATIENT INFORMATIONS VIEW  -->
+
+    <style name="PatientInformations">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#757575</item>
+    </style>
+
+    <style name="PatientInformationsTrust">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#757575</item>
+    </style>
 
 </resources>

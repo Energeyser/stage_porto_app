@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MonthSummaryActivity extends AppCompatActivity {
+public class PatientInformationsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_month_summary);
+        setContentView(R.layout.activity_patient_informations);
     }
 
     public void openMonthSummary(View view){
@@ -33,8 +33,8 @@ public class MonthSummaryActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void openPatientInformation(View view){
-        Intent i = new Intent(this, PatientInformationsActivity.class);
+    public void openPatientModify(View view){
+        Intent i = new Intent(this, PatientModifyActivity.class);
         startActivity(i);
     }
 }
