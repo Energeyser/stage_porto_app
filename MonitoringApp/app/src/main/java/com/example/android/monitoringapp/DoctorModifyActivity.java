@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class DoctorModifyActivity extends AppCompatActivity {
@@ -13,6 +14,7 @@ public class DoctorModifyActivity extends AppCompatActivity {
     EditText usernameDoctor;
     EditText passwordDoctor;
 
+    private Button Click;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class DoctorModifyActivity extends AppCompatActivity {
 
         passwordDoctor=(EditText)findViewById(R.id.password_doctor);
         passwordDoctor.setText("blablablablabla");
+
+        Click = (Button)findViewById(R.id.button_validate_info_doctor);
+        //Click.setOnClickListener(this);
     }
 
     public void openMonthSummary(View view){
@@ -51,5 +56,12 @@ public class DoctorModifyActivity extends AppCompatActivity {
     public void openDoctorInformation(View view){
         Intent i = new Intent(this, DoctorInformationActivity.class);
         startActivity(i);
+    }
+
+    //verify if EditTexts are not empty
+    public void onClick(View v) {
+        if ((v == Click) &&  (phoneDoctor.getText().toString().equals("") || emailDoctor.getText().toString().equals("") || usernameDoctor.getText().toString().equals("") || passwordDoctor.getText().toString().equals("")) ){
+                //problem
+        }
     }
 }

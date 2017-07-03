@@ -43,7 +43,17 @@
                     android:layout_marginBottom="2.5dp"
                     android:text="From:"
                     android:textAppearance="@style/DateExportData"/>
-
+                <TextView
+                    android:id="@+id/date_from_export_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="2.5dp"
+                    android:layout_marginBottom="2.5dp"
+                    android:text="Select a date from"
+                    android:onClick="openDateFrom"
+                    android:textAppearance="@style/DateExportData"/>
              </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,6 +68,17 @@
                     android:layout_marginTop="2.5dp"
                     android:layout_marginBottom="2.5dp"
                     android:text="To:"
+                    android:textAppearance="@style/DateExportData"/>
+                <TextView
+                    android:id="@+id/date_to_export_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="2.5dp"
+                    android:layout_marginBottom="2.5dp"
+                    android:onClick="openDateTo"
+                    android:text="Select a date to"
                     android:textAppearance="@style/DateExportData"/>
             </LinearLayout>
             <TextView
@@ -74,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
             <Button
+                android:id="@+id/button_destination_export"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:padding="15dp"

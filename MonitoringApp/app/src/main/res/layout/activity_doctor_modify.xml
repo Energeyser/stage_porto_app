@@ -98,6 +98,7 @@
         </LinearLayout>
     </ScrollView>
     <Button
+        android:id="@+id/button_validate_info_doctor"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Validate the changes"

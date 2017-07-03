@@ -1,24 +1,47 @@
 package com.example.android.monitoringapp;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import android.view.View.OnClickListener;
+import android.view.View.OnClickListener;
+
+import static com.example.android.monitoringapp.R.id.date_from_export_calendar;
+
 public class ExportActivity extends AppCompatActivity {
 
     Spinner spinner;
     ArrayAdapter<CharSequence> adapter;
+
+    private DatePicker dpResult;
+    private Button validateChangesExport;
+
+    private int year = 2017;
+    private int month = 07;
+    private int day = 03;
+
+    private int datePickerCheck = 0;
+
+
+    static final int DATE_DIALOG_ID = 999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,5 +89,45 @@ public class ExportActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void openDateFrom(View view){
+        showDialog(999);
+        datePickerCheck = 1;
 
+    }
+
+    public void openDateTo(View view){
+        showDialog(999);
+        datePickerCheck = 2 ;
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+              year = arg1;
+              month = arg2;
+              day = arg3 ;
+            TextView dateFrom;
+            String newDateFrom;
+
+            if(datePickerCheck==1) {
+                dateFrom = (TextView) findViewById(R.id.date_from_export_calendar);
+                newDateFrom = day + "/" +  month + "/" + year;
+                dateFrom.setText(newDateFrom);
+            }
+            else if(datePickerCheck==2) {
+                dateFrom = (TextView) findViewById(R.id.date_to_export_calendar);
+                newDateFrom = day + "/" +  month + "/" + year;
+                dateFrom.setText(newDateFrom);
+            }
+        }
+    };
 }
