@@ -13,6 +13,7 @@ import android.widget.Toast;
 public class CalendarActivity extends AppCompatActivity {
 
     CalendarView calendar;
+    public static String DayDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +23,19 @@ public class CalendarActivity extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth){
+                month = month + 1; //probleme qd on récupère la mois sinon
                 Toast.makeText(getBaseContext(), "Selected date"+dayOfMonth+"/"+month+"/"+year , Toast.LENGTH_LONG).show();
-                String DayDate = dayOfMonth+"/"+month+"/"+year;
+                DayDate = dayOfMonth+"/"+month+"/"+year;
+                openDayCalendar(view);
             }
         });
+
     }
+
+    //passer une variable d'une classe a une autre via une méthode
+    public static String returnDayDate(){
+        return DayDate;
+    };
 
 
     public void openMonthSummary(View view){

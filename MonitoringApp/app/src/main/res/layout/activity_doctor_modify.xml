@@ -46,7 +46,7 @@
             <EditText
                 android:id="@+id/phone_doctor"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
                 android:textAppearance="@style/DoctorInformations"/>
@@ -61,7 +61,7 @@
             <EditText
                 android:id="@+id/mail_doctor"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
                 android:textAppearance="@style/DoctorInformations"/>
@@ -76,7 +76,7 @@
             <EditText
                 android:id="@+id/username_doctor"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
                 android:textAppearance="@style/DoctorInformations"/>
@@ -91,7 +91,7 @@
             <EditText
                 android:id="@+id/password_doctor"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
                 android:textAppearance="@style/DoctorInformations"/>

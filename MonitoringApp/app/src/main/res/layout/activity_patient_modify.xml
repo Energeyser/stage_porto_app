@@ -49,10 +49,9 @@
             <EditText
                 android:id="@+id/phone_patient"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:text="+351 22 508 1400"
                 android:textAppearance="@style/PatientInformations"/>
             <TextView
                 android:id="@+id/txt_adress_patient"
@@ -65,10 +64,9 @@
             <EditText
                 android:id="@+id/address_patient"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:text="150, rua da ....."
                 android:textAppearance="@style/PatientInformations"/>
             <TextView
                 android:id="@+id/person_trust"
@@ -89,10 +87,9 @@
             <EditText
                 android:id="@+id/name_person_trust"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:text="Jane DOE"
                 android:textAppearance="@style/PatientInformations"/>
             <TextView
                 android:id="@+id/phone_number_person_trust"
@@ -105,10 +102,9 @@
             <EditText
                 android:id="@+id/phone_person_trust"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:text="+351 22 508 1400"
                 android:textAppearance="@style/PatientInformations"/>
         </LinearLayout>
     </ScrollView>

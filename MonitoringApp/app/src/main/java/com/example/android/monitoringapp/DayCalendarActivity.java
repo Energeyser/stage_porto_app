@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import static com.example.android.monitoringapp.R.id.title_day_calendar;
 
 public class DayCalendarActivity extends AppCompatActivity {
 
@@ -11,6 +14,9 @@ public class DayCalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day_calendar);
+        String dayDate = CalendarActivity.returnDayDate();
+        TextView titleDayDate = (TextView) findViewById(R.id.title_day_calendar);
+        titleDayDate.setText(dayDate);
     }
 
     public void openMonthSummary(View view){
@@ -38,8 +44,4 @@ public class DayCalendarActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void openDayCalendar(View view){
-        Intent i = new Intent(this, DayCalendarActivity.class);
-        startActivity(i);
-    }
 }
