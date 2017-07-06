@@ -32,7 +32,8 @@
         android:id="@+id/calendar_date"
         android:layout_width="match_parent"
         android:layout_height="342dp"
-        android:layout_gravity="center" >
+        android:layout_gravity="center"
+        android:showWeekNumber="false">
     </CalendarView>
     <LinearLayout
         android:layout_width="match_parent"

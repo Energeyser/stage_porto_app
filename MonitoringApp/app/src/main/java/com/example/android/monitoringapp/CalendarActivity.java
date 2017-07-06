@@ -14,6 +14,9 @@ public class CalendarActivity extends AppCompatActivity {
 
     CalendarView calendar;
     public static String DayDate = "";
+    public static int DayWeekDate = 0;
+    public static int MonthDate = 0;
+    public static int YearDate = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,12 @@ public class CalendarActivity extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth){
-                month = month + 1; //probleme qd on récupère la mois sinon
+                if(month<12){
+                    month = month + 1; //probleme qd on récupère la mois sinon
+                }
+                else{
+                    month = 1;
+                }
                 Toast.makeText(getBaseContext(), "Selected date"+dayOfMonth+"/"+month+"/"+year , Toast.LENGTH_LONG).show();
                 DayDate = dayOfMonth+"/"+month+"/"+year;
                 openDayCalendar(view);
@@ -36,7 +44,6 @@ public class CalendarActivity extends AppCompatActivity {
     public static String returnDayDate(){
         return DayDate;
     };
-
 
     public void openMonthSummary(View view){
         Intent i = new Intent(this, MonthSummaryActivity.class);
