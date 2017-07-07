@@ -3,6 +3,7 @@ package com.example.android.monitoringapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.CalendarView;
@@ -23,6 +24,13 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         calendar = (CalendarView)findViewById(R.id.calendar_date);
+
+       /* calendar.setOnLongClickListener(new CalendarView.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                openDayCalendar(v);
+                return true;
+            }
+        });*/
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth){
@@ -32,7 +40,7 @@ public class CalendarActivity extends AppCompatActivity {
                 else{
                     month = 1;
                 }
-                Toast.makeText(getBaseContext(), "Selected date"+dayOfMonth+"/"+month+"/"+year , Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Selected date"+dayOfMonth+"/"+month+"/"+year , Toast.LENGTH_SHORT).show();
                 DayDate = dayOfMonth+"/"+month+"/"+year;
                 openDayCalendar(view);
             }

@@ -19,9 +19,8 @@ public class WeekCalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week_calendar);
-         //initialized date of weeks
+        //initialized date of weeks
         initializedDate();
-
     }
 
     public void initializedDate(){

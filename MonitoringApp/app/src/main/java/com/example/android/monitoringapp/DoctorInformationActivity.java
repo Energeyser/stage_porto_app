@@ -4,13 +4,24 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class DoctorInformationActivity extends AppCompatActivity {
+
+    TextView phoneDoctor;
+    TextView emailDoctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_information);
+
+        phoneDoctor = (TextView) findViewById(R.id.phone_doctor);
+        phoneDoctor.setText("+351 22 508 1400");
+
+        emailDoctor = (TextView) findViewById(R.id.mail_doctor);
+        emailDoctor.setText("carla.martins@gmail.com");
     }
 
 

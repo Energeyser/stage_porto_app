@@ -49,7 +49,6 @@
                 android:layout_height="20dp"
                 android:layout_margin="5dp"
                 android:paddingLeft="75dp"
-                android:text="+351 22 508 1400"
                 android:textAppearance="@style/DoctorInformations"/>
             <TextView
                 android:id="@+id/mail_address_doctor"
@@ -65,7 +64,6 @@
                 android:layout_height="20dp"
                 android:layout_margin="5dp"
                 android:paddingLeft="75dp"
-                android:text="carla.martins@gmail.com"
                 android:textAppearance="@style/DoctorInformations"/>
         </LinearLayout>
     </ScrollView>

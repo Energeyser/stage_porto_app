@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class MonthSummaryActivity extends AppCompatActivity {
 
@@ -11,6 +12,11 @@ public class MonthSummaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_month_summary);
+
+        /*
+        TextView putre =(TextView)findViewById(R.id.Rcin);
+        putre.setVisibility(View.VISIBLE); //show textview*/
+
     }
 
     public void openMonthSummary(View view){
