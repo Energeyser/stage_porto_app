@@ -54,6 +54,12 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="PbSeeMore">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#424242</item>
+    </style>
+
 <!-- STYLE FOR THE DOCTOR INFORMATION VIEW  -->
 
     <style name="DoctorInitial">
