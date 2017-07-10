@@ -91,6 +91,7 @@
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
                 android:textAppearance="@style/PatientInformations"/>
+
             <TextView
                 android:id="@+id/phone_number_person_trust"
                 android:layout_width="match_parent"
@@ -98,7 +99,8 @@
                 android:layout_margin="5dp"
                 android:paddingLeft="35dp"
                 android:text="Phone number:"
-                android:textAppearance="@style/PatientInformations"/>
+                android:textAppearance="@style/PatientInformations" />
+
             <EditText
                 android:id="@+id/phone_person_trust"
                 android:layout_width="wrap_content"
@@ -108,6 +110,7 @@
                 android:textAppearance="@style/PatientInformations"/>
         </LinearLayout>
     </ScrollView>
+
     <Button
         android:id="@+id/button_validate_info_patient"
         android:layout_width="match_parent"
