@@ -28,13 +28,14 @@
             android:onClick="openWeekCalendar"
             android:textAppearance="@style/CalendarWeekView"/>
     </LinearLayout>
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendar_date"
         android:layout_width="match_parent"
         android:layout_height="342dp"
-        android:layout_gravity="center"
-        android:showWeekNumber="false">
-    </CalendarView>
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#00F"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

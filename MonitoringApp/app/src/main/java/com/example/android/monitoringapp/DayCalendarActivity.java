@@ -14,9 +14,17 @@ public class DayCalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day_calendar);
-        String dayDate = CalendarActivity.returnDayDate();
-        TextView titleDayDate = (TextView) findViewById(R.id.title_day_calendar);
-        titleDayDate.setText(dayDate);
+
+       /* boolean pbDet = MonthSummaryActivity.problemDetected();
+        //si on est arrivé ici à cause d'un soucis (see more)
+        if(pbDet){
+            String dayDate = CalendarActivity.returnDayDate();
+            TextView titleDayDate = (TextView) findViewById(R.id.title_day_calendar);
+            titleDayDate.setText(dayDate);
+        }*/
+            String dayDate = CalendarActivity.returnDayDate();
+            TextView titleDayDate = (TextView) findViewById(R.id.title_day_calendar);
+            titleDayDate.setText(dayDate);
     }
 
     public void openMonthSummary(View view){
