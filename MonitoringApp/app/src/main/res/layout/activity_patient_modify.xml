@@ -20,7 +20,7 @@
             android:background="@drawable/oval"
             android:textAppearance="@style/FrontNameInitial"
             android:text="JD"/>
-        <TextView
+        <EditText
             android:id="@+id/name_patient"
             android:layout_width="200dp"
             android:layout_height="40dp"
