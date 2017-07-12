@@ -1,48 +1,64 @@
 package com.example.android.monitoringapp;
-
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.CalendarView;
-import android.widget.TextView;
 import android.widget.Toast;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 
 public class CalendarActivity extends AppCompatActivity {
 
-    CalendarView calendar;
+    MaterialCalendarView calendar;
     public static String DayDate = "";
     public static int DayWeekDate = 0;
     public static int MonthDate = 0;
     public static int YearDate = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        calendar = (CalendarView)findViewById(R.id.calendar_date);
+        calendar = (MaterialCalendarView) findViewById(R.id.calendar_date);
 
-       /* calendar.setOnLongClickListener(new CalendarView.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-                openDayCalendar(v);
-                return true;
-            }
-        });*/
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+
+        //initailization of the calendar
+        calendar.state().edit()
+                .setFirstDayOfWeek(Calendar.MONDAY)
+                .setMinimumDate(CalendarDay.from(2016, 4, 3))
+                .setMaximumDate(CalendarDay.from(2018, 5, 12))
+                .setCalendarDisplayMode(CalendarMode.MONTHS)
+                .commit();
+
+        //if there is a problem
+       boolean pbDetected = MonthSummaryActivity.problemDetected();
+        if (pbDetected) {
+            //Collection<CalendarDay> datePB ;
+            //calendar.addDecorator(new EventDecorator(Color.RED, datePB));
+            //probleme avec la liste de date datePB
+
+
+          /*  CalendarDay day1 =
+             ArrayList<CalendarDay> dates;
+             date
+             */
+        }
+
+        calendar.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth){
-                if(month<12){
-                    month = month + 1; //probleme qd on récupère la mois sinon
-                }
-                else{
-                    month = 1;
-                }
-                Toast.makeText(getBaseContext(), "Selected date"+dayOfMonth+"/"+month+"/"+year , Toast.LENGTH_SHORT).show();
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                int dayOfMonth = date.getDay();
+                int month = date.getMonth() + 1;
+                int year = date.getYear();
                 DayDate = dayOfMonth+"/"+month+"/"+year;
-                openDayCalendar(view);
+                Toast.makeText(getBaseContext(), "Selected date "+DayDate , Toast.LENGTH_SHORT).show();
+                openDayCalendar(widget);
             }
         });
 

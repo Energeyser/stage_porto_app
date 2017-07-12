@@ -8,11 +8,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import static com.example.android.monitoringapp.MonthSummaryActivity.problemDetected;
 import static com.example.android.monitoringapp.R.id.probleme_detected;
 
 public class MonthSummaryActivity extends AppCompatActivity {
 
-    boolean pbDetected = true;
+    boolean pbDetected = false;
+    static boolean pb = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,19 @@ public class MonthSummaryActivity extends AppCompatActivity {
         if(pbDetected) {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);
             pbView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public static boolean problemDetected(){
+        pb = true;
+        return pb;
+    }
+
+    public void openSeeMorePb(View view){
+        if(pbDetected) {
+            problemDetected();
+            Intent i = new Intent(this, DayCalendarActivity.class);
+            startActivity(i);
         }
     }
 
