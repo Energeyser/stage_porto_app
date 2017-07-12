@@ -23,6 +23,7 @@ import static com.example.android.monitoringapp.R.id.address_patient;
 
 public class PatientModifyActivity extends AppCompatActivity {
 
+    EditText namePatient;
     EditText phonePatient;
     EditText addressPatient;
     EditText namePersonTrust;
@@ -41,6 +42,7 @@ public class PatientModifyActivity extends AppCompatActivity {
 
         //Initialized every EditText
        // if (phonePatient.getText().toString().equals("") && addressPatient.getText().toString().equals("") && namePersonTrust.getText().toString().equals("") && phonePersonTrust.getText().toString().equals("")) {
+            namePatient = (EditText) findViewById(R.id.name_patient);
             phonePatient = (EditText) findViewById(R.id.phone_patient);
             addressPatient = (EditText) findViewById(address_patient);
             namePersonTrust = (EditText) findViewById(R.id.name_person_trust);
@@ -54,9 +56,14 @@ public class PatientModifyActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        displayDatabaseInfo();
+        displayPatientInfo();
     }
 
+
+    public void openMonthSummary(View view){
+        Intent i = new Intent(this, MonthSummaryActivity.class);
+        startActivity(i);
+    }
 
     public void openPatientInformation(View view){
         Intent i = new Intent(this, PatientInformationsActivity.class);
@@ -97,10 +104,12 @@ public class PatientModifyActivity extends AppCompatActivity {
         phonePersonTrustValid = isPhoneValid(tmp_modification);
 
 
-        if ((v == Click) &&  (phonePatient.getText().toString().equals("") || addressPatient.getText().toString().equals("") || namePersonTrust.getText().toString().equals("") || phonePersonTrust.getText().toString().equals("")) ){
+        if ((v == Click) &&  (namePatient.getText().toString().equals("") || phonePatient.getText().toString().equals("") || addressPatient.getText().toString().equals("") || namePersonTrust.getText().toString().equals("") || phonePersonTrust.getText().toString().equals("")) ){
             Toast.makeText(getBaseContext(), "One of the field is empty, please fill it to validate changes" , Toast.LENGTH_LONG).show();
         }
         else if (phonePatientValid && phonePersonTrustValid){
+            tmp_modification = namePatient.getText().toString();
+            namePatient.setText(tmp_modification);
             tmp_modification = phonePatient.getText().toString();
             phonePatient.setText(tmp_modification);
             tmp_modification = addressPatient.getText().toString();
@@ -122,7 +131,7 @@ public class PatientModifyActivity extends AppCompatActivity {
      * Temporary helper method to display information in the onscreen TextView about the state of
      * the patient database.
      */
-    private void displayDatabaseInfo() {
+    private void displayPatientInfo() {
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -147,37 +156,39 @@ public class PatientModifyActivity extends AppCompatActivity {
                 null);                   // The sort order
 
 
-        try {
-            // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(PatientEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_NAME);
-            int phoneColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_PHONE);
-            int addressColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_ADDRESS);
-            int potNameColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_POT_NAME);
-            int potPhoneColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_POT_PHONE);
+            try {
+                // Figure out the index of each column
+                int idColumnIndex = cursor.getColumnIndex(PatientEntry._ID);
+                int nameColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_NAME);
+                int phoneColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_PHONE);
+                int addressColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_ADDRESS);
+                int potNameColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_POT_NAME);
+                int potPhoneColumnIndex = cursor.getColumnIndex(PatientEntry.COLUMN_PATIENT_POT_PHONE);
 
-            // Iterate through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word
-                // at the current row the cursor is on.
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentName = cursor.getString(nameColumnIndex);
-                String currentPhone = cursor.getString(phoneColumnIndex);
-                String currentAddress = cursor.getString(addressColumnIndex);
-                String currentPotName = cursor.getString(potNameColumnIndex);
-                String currentPotPhone = cursor.getString(potPhoneColumnIndex);
-                phonePatient.setText(currentPhone);
-                addressPatient.setText(currentAddress);
-                namePersonTrust.setText(currentPotName);
-                phonePersonTrust.setText(currentPotPhone);
+                // Iterate through all the returned rows in the cursor
+                while (cursor.moveToNext()) {
+                    // Use that index to extract the String or Int value of the word
+                    // at the current row the cursor is on.
+                    int currentID = cursor.getInt(idColumnIndex);
+                    String currentName = cursor.getString(nameColumnIndex);
+                    String currentPhone = cursor.getString(phoneColumnIndex);
+                    String currentAddress = cursor.getString(addressColumnIndex);
+                    String currentPotName = cursor.getString(potNameColumnIndex);
+                    String currentPotPhone = cursor.getString(potPhoneColumnIndex);
+                    namePatient.setText(currentName);
+                    phonePatient.setText(currentPhone);
+                    addressPatient.setText(currentAddress);
+                    namePersonTrust.setText(currentPotName);
+                    phonePersonTrust.setText(currentPotPhone);
 
+                }
+            } finally {
+                // Always close the cursor when you're done reading from it. This releases all its
+                // resources and makes it invalid.
+                cursor.close();
             }
-        } finally {
-            // Always close the cursor when you're done reading from it. This releases all its
-            // resources and makes it invalid.
-            cursor.close();
-        }
     }
+
 
     /**
      * Get user input from editor and update the patient info into database.
@@ -185,6 +196,7 @@ public class PatientModifyActivity extends AppCompatActivity {
     private void updatePatient() {
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
+        String nameString = namePatient.getText().toString().trim();
         String phoneString = phonePatient.getText().toString().trim();
         String addressString = addressPatient.getText().toString().trim();
         String phoneTrustString = phonePersonTrust.getText().toString().trim();
@@ -200,6 +212,7 @@ public class PatientModifyActivity extends AppCompatActivity {
         // Create a ContentValues object where column names are the keys,
         // and pet attributes from the editor are the values.
         ContentValues values = new ContentValues();
+        values.put(PatientEntry.COLUMN_PATIENT_NAME, nameString);
         values.put(PatientEntry.COLUMN_PATIENT_PHONE, phoneString);
         values.put(PatientEntry.COLUMN_PATIENT_ADDRESS, addressString);
         values.put(PatientEntry.COLUMN_PATIENT_POT_PHONE, phoneTrustString);
