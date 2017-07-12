@@ -1,13 +1,15 @@
 package com.example.android.monitoringapp;
 
+import android.widget.Toast;
+
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
+
+import static com.example.android.monitoringapp.CalendarActivity.DayDate;
 
 
 public class EventDecorator implements DayViewDecorator {

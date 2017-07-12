@@ -13,7 +13,7 @@ import static com.example.android.monitoringapp.R.id.probleme_detected;
 
 public class MonthSummaryActivity extends AppCompatActivity {
 
-    boolean pbDetected = false;
+    static boolean pbDetected = false;
     static boolean pb = false;
 
     @Override
@@ -28,13 +28,14 @@ public class MonthSummaryActivity extends AppCompatActivity {
     }
 
     public static boolean problemDetected(){
-        pb = true;
+        if(pbDetected) {
+            pb = true;
+        }
         return pb;
     }
 
     public void openSeeMorePb(View view){
         if(pbDetected) {
-            problemDetected();
             Intent i = new Intent(this, DayCalendarActivity.class);
             startActivity(i);
         }

@@ -1,5 +1,6 @@
 package com.example.android.monitoringapp;
 import android.content.Intent;
+import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +9,14 @@ import android.view.View;
 import android.widget.Toast;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+import java.util.ArrayList;
+
+import static com.prolificinteractive.materialcalendarview.CalendarDay.from;
 
 
 public class CalendarActivity extends AppCompatActivity {
@@ -31,23 +38,33 @@ public class CalendarActivity extends AppCompatActivity {
         //initailization of the calendar
         calendar.state().edit()
                 .setFirstDayOfWeek(Calendar.MONDAY)
-                .setMinimumDate(CalendarDay.from(2016, 4, 3))
-                .setMaximumDate(CalendarDay.from(2018, 5, 12))
+                .setMinimumDate(from(2016, 4, 3))
+                .setMaximumDate(from(2035, 5, 12))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
 
+        //draw a bleu cercle for the current date
+        CalendarDay currentDay = new CalendarDay();
+        int thisYear = currentDay.getYear();
+        int thisMonth = currentDay.getMonth();
+        int thisDay = currentDay.getDay();
+        calendar.setSelectedDate(from(thisYear, thisMonth, thisDay));
+
+
         //if there is a problem
        boolean pbDetected = MonthSummaryActivity.problemDetected();
-        if (pbDetected) {
-            //Collection<CalendarDay> datePB ;
-            //calendar.addDecorator(new EventDecorator(Color.RED, datePB));
-            //probleme avec la liste de date datePB
+        if (pbDetected == true) {
+            ArrayList<CalendarDay> dates = new ArrayList<CalendarDay>();
+            CalendarDay CD = new CalendarDay();
 
+            //what is the date where there was a problem
+            int year = 2017;
+            int monthOfYear = 06;
+            int dayOfMonth = 14;
 
-          /*  CalendarDay day1 =
-             ArrayList<CalendarDay> dates;
-             date
-             */
+            CD = from(year, monthOfYear, dayOfMonth);
+            dates.add(CD);
+            calendar.addDecorator(new EventDecorator(Color.RED, dates));
         }
 
         calendar.setOnDateChangedListener(new OnDateSelectedListener() {
