@@ -4,35 +4,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
+
+    <Button
+        android:id="@+id/button_validate_info_doctor"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Validate the changes"
+        android:textAllCaps="true"
+        android:onClick="onClickChanges"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="393dp"
         android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/name_doctor_initials"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/oval"
-                android:textAppearance="@style/DoctorInitial"
-                android:text="CM"/>
+                android:gravity="center"
+                android:text="CM"
+                android:textAppearance="@style/DoctorInitial" />
+
             <EditText
                 android:id="@+id/name_doctor"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:gravity="center"
+                android:layout_marginBottom="2.5dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="2.5dp"
-                android:layout_marginBottom="2.5dp"
+                android:gravity="center"
                 android:text="Carla MARTINS"
-                android:textAppearance="@style/DoctorName"/>
-
+                android:textAppearance="@style/DoctorName" />
 
 
             <TextView
@@ -42,14 +53,17 @@
                 android:layout_margin="5dp"
                 android:paddingLeft="35dp"
                 android:text="Phone number:"
-                android:textAppearance="@style/DoctorInformations"/>
+                android:textAppearance="@style/DoctorInformations" />
+
             <EditText
                 android:id="@+id/phone_doctor"
+                android:inputType="phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:textAppearance="@style/DoctorInformations"/>
+                android:layout_margin="5dp"
+                android:textAppearance="@style/DoctorInformations" />
+
             <TextView
                 android:id="@+id/mail_address_doctor"
                 android:layout_width="match_parent"
@@ -57,14 +71,17 @@
                 android:layout_margin="5dp"
                 android:paddingLeft="35dp"
                 android:text="Email address:"
-                android:textAppearance="@style/DoctorInformations"/>
+                android:textAppearance="@style/DoctorInformations" />
+
             <EditText
                 android:id="@+id/mail_doctor"
+                android:inputType="textEmailAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:textAppearance="@style/DoctorInformations"/>
+                android:layout_margin="5dp"
+                android:textAppearance="@style/DoctorInformations" />
+
             <TextView
                 android:id="@+id/txt_username_doctor"
                 android:layout_width="match_parent"
@@ -72,14 +89,16 @@
                 android:layout_margin="5dp"
                 android:paddingLeft="35dp"
                 android:text="Username:"
-                android:textAppearance="@style/DoctorInformations"/>
+                android:textAppearance="@style/DoctorInformations" />
+
             <EditText
                 android:id="@+id/username_doctor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:textAppearance="@style/DoctorInformations"/>
+                android:layout_margin="5dp"
+                android:textAppearance="@style/DoctorInformations" />
+
             <TextView
                 android:id="@+id/txt_password_doctor"
                 android:layout_width="match_parent"
@@ -87,23 +106,19 @@
                 android:layout_margin="5dp"
                 android:paddingLeft="35dp"
                 android:text="Password:"
-                android:textAppearance="@style/DoctorInformations"/>
+                android:textAppearance="@style/DoctorInformations" />
+
             <EditText
                 android:id="@+id/password_doctor"
+                android:inputType="textVisiblePassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:textAppearance="@style/DoctorInformations"/>
+                android:layout_margin="5dp"
+                android:textAppearance="@style/DoctorInformations" />
         </LinearLayout>
     </ScrollView>
-    <Button
-        android:id="@+id/button_validate_info_doctor"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Validate the changes"
-        android:textAllCaps="true"
-        android:onClick="onClickChanges"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
