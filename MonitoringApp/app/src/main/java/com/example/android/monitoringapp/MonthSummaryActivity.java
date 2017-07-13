@@ -143,11 +143,11 @@ public class MonthSummaryActivity extends AppCompatActivity {
             }
         }else{
             try {
-                ContentValues values = new ContentValues();
+               /* ContentValues values = new ContentValues();
                 values.put(PatientEntry.COLUMN_PATIENT_NAME, "Name Surname");
 
                 long newRowId = db.insert(PatientEntry.TABLE_NAME, null, values);
-                displayPatientInfo();
+                displayPatientInfo();*/
             } finally {
                 // Always close the cursor when you're done reading from it. This releases all its
                 // resources and makes it invalid.
