@@ -27,6 +27,8 @@ public class MonthSummaryActivity extends AppCompatActivity {
     private PatientDbHelper mDbHelper;
 
     TextView namePatient;
+    TextView namePatientInitials;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MonthSummaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_month_summary);
 
         namePatient = (TextView) findViewById(R.id.name_patient);
+        namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
 
         if(pbDetected) {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);
@@ -131,6 +134,7 @@ public class MonthSummaryActivity extends AppCompatActivity {
 
                     String currentName = cursor.getString(nameColumnIndex);
                     namePatient.setText(currentName);
+                    namePatientInitials.setText(currentName.substring(0,1));
                 }
             } finally {
                 // Always close the cursor when you're done reading from it. This releases all its

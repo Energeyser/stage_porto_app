@@ -28,6 +28,7 @@ public class PatientModifyActivity extends AppCompatActivity {
     EditText addressPatient;
     EditText namePersonTrust;
     EditText phonePersonTrust;
+    TextView namePatientInitials;
 
     /** Database helper that will provide us access to the database */
     private PatientDbHelper mDbHelper;
@@ -47,6 +48,7 @@ public class PatientModifyActivity extends AppCompatActivity {
             addressPatient = (EditText) findViewById(address_patient);
             namePersonTrust = (EditText) findViewById(R.id.name_person_trust);
             phonePersonTrust = (EditText) findViewById(R.id.phone_person_trust);
+        namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
       //  }
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
@@ -180,7 +182,7 @@ public class PatientModifyActivity extends AppCompatActivity {
                     addressPatient.setText(currentAddress);
                     namePersonTrust.setText(currentPotName);
                     phonePersonTrust.setText(currentPotPhone);
-
+                    namePatientInitials.setText(currentName.substring(0,1));
                 }
             } finally {
                 // Always close the cursor when you're done reading from it. This releases all its

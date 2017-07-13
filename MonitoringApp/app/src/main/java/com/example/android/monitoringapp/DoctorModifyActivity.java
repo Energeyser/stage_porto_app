@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry;
@@ -25,6 +26,7 @@ public class DoctorModifyActivity extends AppCompatActivity {
     EditText mailDoctor;
     EditText usernameDoctor;
     EditText passwordDoctor;
+    TextView nameDoctorInitials;
 
     Button Click;
 
@@ -43,6 +45,7 @@ public class DoctorModifyActivity extends AppCompatActivity {
             mailDoctor = (EditText) findViewById(R.id.mail_doctor);
             usernameDoctor = (EditText) findViewById(R.id.username_doctor);
             passwordDoctor = (EditText) findViewById(R.id.password_doctor);
+            nameDoctorInitials = (TextView) findViewById(R.id.name_doctor_initials);
        // }
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
@@ -198,6 +201,7 @@ public class DoctorModifyActivity extends AppCompatActivity {
                 mailDoctor.setText(currentMail);
                 usernameDoctor.setText(currentUsername);
                 passwordDoctor.setText(currentPassword);
+                nameDoctorInitials.setText(currentName.substring(0,1));
             }
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its

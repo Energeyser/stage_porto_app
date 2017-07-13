@@ -13,11 +13,14 @@ import android.widget.TextView;
 import com.example.android.monitoringapp.Data.DoctorDbHelper;
 import com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry;
 
+import org.w3c.dom.Text;
+
 public class DoctorInformationActivity extends AppCompatActivity {
 
     TextView nameDoctor;
     TextView phoneDoctor;
     TextView emailDoctor;
+    TextView nameDoctorInitials;
 
     /** Database helper that will provide us access to the database */
     private DoctorDbHelper mDbHelper;
@@ -30,6 +33,7 @@ public class DoctorInformationActivity extends AppCompatActivity {
         nameDoctor = (TextView) findViewById(R.id.name_doctor);
         phoneDoctor = (TextView) findViewById(R.id.phone_doctor);
         emailDoctor = (TextView) findViewById(R.id.mail_doctor);
+        nameDoctorInitials = (TextView) findViewById(R.id.name_doctor_initials);
 
 
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
@@ -127,7 +131,7 @@ public class DoctorInformationActivity extends AppCompatActivity {
                     nameDoctor.setText(currentName);
                     phoneDoctor.setText(currentPhone);
                     emailDoctor.setText(currentMail);
-
+                    nameDoctorInitials.setText(currentName.substring(0,1));
                 }
             } finally {
                 // Always close the cursor when you're done reading from it. This releases all its

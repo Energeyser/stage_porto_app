@@ -20,6 +20,7 @@ public class PatientInformationsActivity extends AppCompatActivity {
     TextView addressPatient;
     TextView phonePersonTrustPatient;
     TextView namePersonTrustPatient;
+    TextView namePatientInitials;
 
     /**
      * Database helper that will provide us access to the database
@@ -37,6 +38,7 @@ public class PatientInformationsActivity extends AppCompatActivity {
         addressPatient = (TextView) findViewById(R.id.address_patient);
         namePersonTrustPatient = (TextView) findViewById(R.id.name_person_trust);
         phonePersonTrustPatient = (TextView) findViewById(R.id.phone_person_trust);
+        namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
 
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
@@ -130,6 +132,7 @@ public class PatientInformationsActivity extends AppCompatActivity {
                     String currentPotName = cursor.getString(potNameColumnIndex);
                     String currentPotPhone = cursor.getString(potPhoneColumnIndex);
 
+                    namePatientInitials.setText(currentName.substring(0,1));
                     namePatient.setText(currentName);
                     phonePatient.setText(currentPhone);
                     addressPatient.setText(currentAddress);
