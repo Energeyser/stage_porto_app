@@ -113,20 +113,26 @@ public class ExportActivity extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
               year = arg1;
-              month = arg2;
+              month = arg2 + 1 ;
               day = arg3 ;
             TextView dateFrom;
             String newDateFrom;
 
+            TextView dateTo;
+            String newDateTo;
+
+            dateFrom = (TextView) findViewById(R.id.date_from_export_calendar);
+            dateTo = (TextView) findViewById(R.id.date_to_export_calendar);
+            String from = (String)dateFrom.getText();
+            String to = (String)dateTo.getText();
+
             if(datePickerCheck==1) {
-                dateFrom = (TextView) findViewById(R.id.date_from_export_calendar);
                 newDateFrom = day + "/" +  month + "/" + year;
                 dateFrom.setText(newDateFrom);
             }
             else if(datePickerCheck==2) {
-                dateFrom = (TextView) findViewById(R.id.date_to_export_calendar);
-                newDateFrom = day + "/" +  month + "/" + year;
-                dateFrom.setText(newDateFrom);
+                newDateTo = day + "/" +  month + "/" + year;
+                dateTo.setText(newDateTo);
             }
         }
     };
