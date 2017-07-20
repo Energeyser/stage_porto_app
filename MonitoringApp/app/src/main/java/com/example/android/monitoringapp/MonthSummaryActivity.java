@@ -11,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.android.monitoringapp.Data.DoctorDbHelper;
-import com.example.android.monitoringapp.Data.PatientDbHelper;
+
+import com.example.android.monitoringapp.Data.Patient;
+import com.example.android.monitoringapp.Data.PatientBDD;
+import com.example.android.monitoringapp.Data.MonitoringAppDbHelper;
 import com.example.android.monitoringapp.Data.PatientContract.PatientEntry;
 
 import static com.example.android.monitoringapp.MonthSummaryActivity.problemDetected;
@@ -23,8 +25,10 @@ public class MonthSummaryActivity extends AppCompatActivity {
     static boolean pbDetected = false;
     static boolean pb = false;
 
-    /** Database helper that will provide us access to the database */
-    private PatientDbHelper mDbHelper;
+    //New instance of the patientBDD class
+    PatientBDD patientBDD = new PatientBDD(this);
+    //Creation of a patient
+    Patient patient = new Patient();
 
     TextView namePatient;
     TextView namePatientInitials;
@@ -35,24 +39,23 @@ public class MonthSummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_month_summary);
 
+        patientBDD.open();
+        patient = patientBDD.getPatient();
+        patientBDD.close();
+
         namePatient = (TextView) findViewById(R.id.name_patient);
+        namePatient.setText(patient.getName());
         namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
+        namePatientInitials.setText(patient.getName().substring(0,1));
 
         if(pbDetected) {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);
             pbView.setVisibility(View.VISIBLE);
         }
 
-        // To access our database, we instantiate our subclass of SQLiteOpenHelper
-        // and pass the context, which is the current activity.
-        mDbHelper = new PatientDbHelper(this);
+
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        displayPatientInfo();
-    }
 
     public static boolean problemDetected(){
         if(pbDetected) {
@@ -97,6 +100,7 @@ public class MonthSummaryActivity extends AppCompatActivity {
      * Temporary helper method to display information in the onscreen TextView about the state of
      * the patient database.
      */
+    /*
     private void displayPatientInfo() {
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -134,7 +138,7 @@ public class MonthSummaryActivity extends AppCompatActivity {
 
                     String currentName = cursor.getString(nameColumnIndex);
                     namePatient.setText(currentName);
-                    namePatientInitials.setText(currentName.substring(0,1));
+                   // namePatientInitials.setText(currentName.substring(0,1));
                 }
             } finally {
                 // Always close the cursor when you're done reading from it. This releases all its
@@ -145,7 +149,6 @@ public class MonthSummaryActivity extends AppCompatActivity {
             try {
                 ContentValues values = new ContentValues();
                 values.put(PatientEntry.COLUMN_PATIENT_NAME, "Name Surname");
-
                 long newRowId = db.insert(PatientEntry.TABLE_NAME, null, values);
                 displayPatientInfo();
             } finally {
@@ -154,5 +157,5 @@ public class MonthSummaryActivity extends AppCompatActivity {
                 mcursor.close();
             }
         }
-    }
+    }*/
 }

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry;
-import com.example.android.monitoringapp.Data.DoctorDbHelper;
+import com.example.android.monitoringapp.Data.MonitoringAppDbHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +31,7 @@ public class DoctorModifyActivity extends AppCompatActivity {
     Button Click;
 
     /** Database helper that will provide us access to the database */
-    private DoctorDbHelper mDbHelper;
+    private MonitoringAppDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class DoctorModifyActivity extends AppCompatActivity {
        // }
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
-        mDbHelper = new DoctorDbHelper(this);
+        mDbHelper = new MonitoringAppDbHelper(this);
     }
 
     @Override
@@ -225,7 +225,7 @@ public class DoctorModifyActivity extends AppCompatActivity {
 
 
         // Create database helper
-        DoctorDbHelper mDbHelper = new DoctorDbHelper(this);
+        MonitoringAppDbHelper mDbHelper = new MonitoringAppDbHelper(this);
 
         // Gets the database in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();

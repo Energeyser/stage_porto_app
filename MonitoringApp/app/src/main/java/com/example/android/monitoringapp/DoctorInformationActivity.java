@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.android.monitoringapp.Data.DoctorDbHelper;
+import com.example.android.monitoringapp.Data.MonitoringAppDbHelper;
 import com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry;
 
 import org.w3c.dom.Text;
@@ -23,7 +23,7 @@ public class DoctorInformationActivity extends AppCompatActivity {
     TextView nameDoctorInitials;
 
     /** Database helper that will provide us access to the database */
-    private DoctorDbHelper mDbHelper;
+    private MonitoringAppDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class DoctorInformationActivity extends AppCompatActivity {
 
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
-        mDbHelper = new DoctorDbHelper(this);
+        mDbHelper = new MonitoringAppDbHelper(this);
     }
 
     @Override
