@@ -1,9 +1,6 @@
 package com.example.android.monitoringapp;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +9,6 @@ import android.widget.TextView;
 
 import com.example.android.monitoringapp.Data.Patient;
 import com.example.android.monitoringapp.Data.PatientBDD;
-import com.example.android.monitoringapp.Data.MonitoringAppDbHelper;
-import com.example.android.monitoringapp.Data.PatientContract.PatientEntry;
 
 public class PatientInformationsActivity extends AppCompatActivity {
 

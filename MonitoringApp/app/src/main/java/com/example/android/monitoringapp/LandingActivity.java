@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.android.monitoringapp.Data.DoctorDbHelper;
-import com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry;
 
 import static com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry.COLUMN_DOCTOR_PASSWORD;
 import static com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry.COLUMN_DOCTOR_USERNAME;
