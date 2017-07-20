@@ -25,7 +25,8 @@
         <activity android:name=".DoctorModifyActivity" />
         <activity android:name=".ExportSuccessfulActivity" />
         <activity android:name=".PatientInformationsActivity" />
-        <activity android:name=".PatientModifyActivity"></activity>
+        <activity android:name=".PatientModifyActivity" />
+        <activity android:name=".IdentificationActivity"></activity>
     </application>
 
 </manifest>
