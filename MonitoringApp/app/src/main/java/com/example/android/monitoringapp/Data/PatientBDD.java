@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.android.monitoringapp.Data.PatientContract.PatientEntry;
 
-import static android.R.attr.id;
 
 
 /**

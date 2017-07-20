@@ -31,6 +31,7 @@ public class DoctorInformationActivity extends AppCompatActivity {
         doctorBDD.open();
         doctor = doctorBDD.getDoctor();
         doctorBDD.close();
+        System.out.println(doctorBDD.toString());
 
         nameDoctor = (TextView) findViewById(R.id.name_doctor);
         nameDoctor.setText(doctor.getName());
@@ -67,5 +68,5 @@ public class DoctorInformationActivity extends AppCompatActivity {
         Intent i = new Intent(this, DoctorModifyActivity.class);
         startActivity(i);
     }
-    
+
 }
