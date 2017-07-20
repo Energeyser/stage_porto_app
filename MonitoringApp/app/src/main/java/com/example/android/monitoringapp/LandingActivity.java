@@ -11,6 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.monitoringapp.Data.Doctor;
+import com.example.android.monitoringapp.Data.DoctorBDD;
+import com.example.android.monitoringapp.Data.Patient;
+import com.example.android.monitoringapp.Data.PatientBDD;
+
 import static com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry.COLUMN_DOCTOR_PASSWORD;
 import static com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry.COLUMN_DOCTOR_USERNAME;
 
@@ -18,38 +23,27 @@ public class LandingActivity extends AppCompatActivity {
 
     EditText login;
     EditText password;
+
     /**
      * Database helper that will provide us access to the database
      */
-
-
-   // private DoctorDbHelper mDbHelper;
+    //New instance of the patientBDD class
+    DoctorBDD doctorBDD = new DoctorBDD(this);
+    //Creation of a patient
+    Doctor doctor = new Doctor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
-        /*mDbHelper = new DoctorDbHelper(this);
-        insertDoctor();*/
+
+        doctorBDD.open();
+        doctor = doctorBDD.getDoctor();
+        doctorBDD.close();
     }
 
 
     public void onClickValidation(View v) {
-
-        boolean check = true;
-       // check = checkDoctor();
-
-        if (check) {
-            Intent i = new Intent(this, MonthSummaryActivity.class);
-            startActivity(i);
-        } else {
-            Toast.makeText(getBaseContext(), "Your identification is false, try again", Toast.LENGTH_LONG).show();
-        }
-    }
-    /**
-     * Get user input from editor and update the doctor info into database.
-     */
-   /* private boolean checkDoctor() {
 
         //Get values enter in editText (login + password)
         String log = "";
@@ -57,62 +51,22 @@ public class LandingActivity extends AppCompatActivity {
 
         login = (EditText) findViewById(R.id.login_doctor);
         password = (EditText) findViewById(R.id.password_doctor);
-        log = login.getText().toString();
-        pwd = password.getText().toString();
+        log = login.getText().toString().trim();
+        pwd = password.getText().toString().trim();
 
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        String user = doctor.getUsername().toString().trim();
+        String passwd = doctor.getPassword().toString().trim();
 
-        try {
-            String selectQueryUsername = "SELECT " + COLUMN_DOCTOR_USERNAME + " FROM " + db;
-            String selectQueryPassword = "SELECT " + COLUMN_DOCTOR_PASSWORD + " FROM " + db;
-
-           // Cursor cursor_log = db.rawQuery(selectQueryUsername, null);
-            //String user = cursor_log.toString();
-
-            //Cursor cursor_pwd = db.rawQuery(selectQueryPassword, null);
-            //String passwd = cursor_pwd.toString();
-
-            Toast.makeText(this, "Problem with your username ! " + selectQueryUsername , Toast.LENGTH_LONG).show();
-            Toast.makeText(this, "Problem with your pwd! " + selectQueryPassword, Toast.LENGTH_LONG).show();
-
-            if (log == selectQueryUsername) {
-                if (pwd ==  selectQueryPassword) {
-                    // Otherwise, the update was successful and we can display a toast.
-                    Toast.makeText(this, "Get data Successful", Toast.LENGTH_SHORT).show();
-                    return true;
-                } else {
-                    Toast.makeText(this, "Problem with your password", Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            } else {
-                return false;
+        if (log.equals(user)) {
+            if(pwd.equals(passwd)){
+                Intent i = new Intent(this, MonthSummaryActivity.class);
+                startActivity(i);
+                Toast.makeText(getBaseContext(), "Identification OK", Toast.LENGTH_SHORT).show();
+            } else{
+                Toast.makeText(getBaseContext(), "Problem with your password", Toast.LENGTH_LONG).show();
             }
-        } catch (Exception e) {
-            // If the row ID is < 1, then there was an error with update.
-            Toast.makeText(this, "Error with login doctor", Toast.LENGTH_SHORT).show();
-            return false;
+        } else {
+            Toast.makeText(getBaseContext(), "Your identification is false, try again", Toast.LENGTH_LONG).show();
         }
     }
-
-    private void insertDoctor() {
-        // Gets the database in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(DoctorEntry.COLUMN_DOCTOR_USERNAME, "Admin");
-        values.put(DoctorEntry.COLUMN_DOCTOR_PASSWORD, "password");
-        values.put(DoctorEntry.COLUMN_DOCTOR_NAME, "Carla");
-        values.put(DoctorEntry.COLUMN_DOCTOR_PHONE, "+351 22 508 1400");
-        values.put(DoctorEntry.COLUMN_DOCTOR_MAIL, "martins.carlamrt@gmail.com");
-
-        // Insert a new row for Toto in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the pets table name.
-        // The second argument provides the name of a column in which the framework
-        // can insert NULL in the event that the ContentValues is empty (if
-        // this is set to "null", then the framework will not insert a row when
-        // there are no values).
-        // The third argument is the ContentValues object containing the info for Toto.
-        long newRowId = db.insert(DoctorEntry.TABLE_NAME, null, values);
-    }
-    */
 }
