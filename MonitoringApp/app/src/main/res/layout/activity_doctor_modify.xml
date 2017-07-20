@@ -5,14 +5,6 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <Button
-        android:id="@+id/button_validate_info_doctor"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Validate the changes"
-        android:textAllCaps="true"
-        android:onClick="onClickChanges"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="393dp"
@@ -36,15 +28,14 @@
 
             <EditText
                 android:id="@+id/name_doctor"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginBottom="2.5dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="2.5dp"
-                android:gravity="center"
+                android:layout_gravity="center"
                 android:text="Carla MARTINS"
                 android:textAppearance="@style/DoctorName" />
-
 
             <TextView
                 android:id="@+id/phone_number_doctor"
@@ -118,7 +109,13 @@
                 android:textAppearance="@style/DoctorInformations" />
         </LinearLayout>
     </ScrollView>
-
+    <Button
+        android:id="@+id/button_validate_info_patient"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Validate the changes"
+        android:textAllCaps="true"
+        android:onClick="onClickChanges"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

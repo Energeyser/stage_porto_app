@@ -95,16 +95,16 @@ public class WeekCalendarActivity extends AppCompatActivity {
         TextView titleDateWeek2 = (TextView) findViewById(R.id.date_week_summary_week2);
         if(cpt_week==1) {
             if(cpt_year==1) {
-                titleDateWeek2.setText("This week (from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + (month-1) + "/" + (year-1) + ")");
+                titleDateWeek2.setText("Week from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + (month-1) + "/" + (year-1) );
                 cpt_year=0;
             }
             else{
-                titleDateWeek2.setText("This week (from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + (month-1) + "/" + year + ")");
+                titleDateWeek2.setText("Week from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + (month-1) + "/" + year );
             }
             cpt_week=0;
         }
         else{
-            titleDateWeek2.setText("This week (from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + month + "/" + year + ")");
+            titleDateWeek2.setText("Week from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + month + "/" + year);
         }
 
         //week3
@@ -132,16 +132,16 @@ public class WeekCalendarActivity extends AppCompatActivity {
         TextView titleDateWeek3 = (TextView) findViewById(R.id.date_week_summary_week3);
         if(cpt_week==1) {
             if(cpt_year==1) {
-                titleDateWeek3.setText("This week (from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + (month-1) + "/" + (year-1) + ")");
+                titleDateWeek3.setText("Week from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + (month-1) + "/" + (year-1));
                 cpt_year=0;
             }
             else{
-                titleDateWeek3.setText("This week (from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + (month-1) + "/" + year + ")");
+                titleDateWeek3.setText("Week from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + (month-1) + "/" + year);
             }
             cpt_week=0;
         }
         else{
-            titleDateWeek3.setText("This week (from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + month + "/" + year + ")");
+            titleDateWeek3.setText("Week from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + month + "/" + year);
         }
 
         //week4
@@ -169,16 +169,16 @@ public class WeekCalendarActivity extends AppCompatActivity {
         TextView titleDateWeek4 = (TextView) findViewById(R.id.date_week_summary_week4);
         if(cpt_week==1) {
             if(cpt_year==1) {
-                titleDateWeek4.setText("This week (from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + (month-1) + "/" + (year-1) + ")");
+                titleDateWeek4.setText("Week from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + (month-1) + "/" + (year-1));
                 cpt_year=0;
             }
             else{
-                titleDateWeek4.setText("This week (from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + (month-1) + "/" + year + ")");
+                titleDateWeek4.setText("TWeek from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + (month-1) + "/" + year);
             }
             cpt_week=0;
         }
         else{
-            titleDateWeek4.setText("This week (from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + month + "/" + year + ")");
+            titleDateWeek4.setText("Week from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + month + "/" + year);
         }
 
         //week5
@@ -206,16 +206,16 @@ public class WeekCalendarActivity extends AppCompatActivity {
         TextView titleDateWeek5 = (TextView) findViewById(R.id.date_week_summary_week5);
         if(cpt_week==1) {
             if(cpt_year==1) {
-                titleDateWeek5.setText("This week (from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + (month-1) + "/" + (year-1) + ")");
+                titleDateWeek5.setText("Week from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + (month-1) + "/" + (year-1));
                 cpt_year=0;
             }
             else{
-                titleDateWeek5.setText("This week (from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + (month-1) + "/" + year + ")");
+                titleDateWeek5.setText("Week from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + (month-1) + "/" + year);
             }
             cpt_week=0;
         }
         else{
-            titleDateWeek5.setText("This week (from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + month + "/" + year + ")");
+            titleDateWeek5.setText("Week from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + month + "/" + year);
         }
     }
 
