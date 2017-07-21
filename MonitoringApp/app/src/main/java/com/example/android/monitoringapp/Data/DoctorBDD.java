@@ -48,62 +48,62 @@ public class DoctorBDD {
         return db;
     }
 
-    public long insertDoctor(Doctor patient){
+    public long insertDoctor(Doctor doctor){
         //Creation of a ContentValues (working like a HashMap)
         ContentValues values = new ContentValues();
-        values.put(DoctorEntry.COLUMN_DOCTOR_NAME, patient.getName());
-        values.put(DoctorEntry.COLUMN_DOCTOR_PHONE, patient.getPhone());
-        values.put(DoctorEntry.COLUMN_DOCTOR_MAIL, patient.getMail());
-        values.put(DoctorEntry.COLUMN_DOCTOR_USERNAME, patient.getUsername());
-        values.put(DoctorEntry.COLUMN_DOCTOR_PASSWORD, patient.getPassword());
+        values.put(DoctorEntry.COLUMN_DOCTOR_NAME, doctor.getName());
+        values.put(DoctorEntry.COLUMN_DOCTOR_PHONE, doctor.getPhone());
+        values.put(DoctorEntry.COLUMN_DOCTOR_MAIL, doctor.getMail());
+        values.put(DoctorEntry.COLUMN_DOCTOR_USERNAME, doctor.getUsername());
+        values.put(DoctorEntry.COLUMN_DOCTOR_PASSWORD, doctor.getPassword());
         return db.insert(TABLE_DOCTOR,null,values);
     }
 
-    public int updateDoctor(Doctor patient){
+    public int updateDoctor(Doctor doctor){
         //The update works more or less like an insertion
-        //you just need to specify the id of the patient to update
+        //you just need to specify the id of the doctor to update
         ContentValues values = new ContentValues();
-        values.put(DoctorEntry.COLUMN_DOCTOR_NAME, patient.getName());
-        values.put(DoctorEntry.COLUMN_DOCTOR_PHONE, patient.getPhone());
-        values.put(DoctorEntry.COLUMN_DOCTOR_MAIL, patient.getMail());
-        values.put(DoctorEntry.COLUMN_DOCTOR_USERNAME, patient.getUsername());
-        values.put(DoctorEntry.COLUMN_DOCTOR_PASSWORD, patient.getPassword());
+        values.put(DoctorEntry.COLUMN_DOCTOR_NAME, doctor.getName());
+        values.put(DoctorEntry.COLUMN_DOCTOR_PHONE, doctor.getPhone());
+        values.put(DoctorEntry.COLUMN_DOCTOR_MAIL, doctor.getMail());
+        values.put(DoctorEntry.COLUMN_DOCTOR_USERNAME, doctor.getUsername());
+        values.put(DoctorEntry.COLUMN_DOCTOR_PASSWORD, doctor.getPassword());
         return db.update(TABLE_DOCTOR, values,null, null);
 
     }
 
     public int removeDoctorWithID(int id){
-        //removing a patient with it's id
+        //removing a doctor with it's id
         return db.delete(TABLE_DOCTOR, DoctorEntry._ID + " = " +id, null);
     }
 
     public Doctor getDoctor(){
-        //Gets in a cursor the data of the patient (there should be only one patient in the database, so we do not need to specify and id)
+        //Gets in a cursor the data of the doctor (there should be only one doctor in the database, so we do not need to specify and id)
         Cursor cursor = db.query(TABLE_DOCTOR, new String[] { "*" },
                 null,
                 null, null, null, null, null);
-        Doctor patient = new Doctor();
+        Doctor doctor = new Doctor();
         if(cursor != null)
         {
             if (cursor.moveToFirst()) {
 
-                patient.setId(cursor.getInt(INDEX_ID));
-                patient.setName(cursor.getString(INDEX_NAME));
-                patient.setPhone(cursor.getString(INDEX_PHONE));
-                patient.setMail(cursor.getString(INDEX_MAIL));
-                patient.setUsername(cursor.getString(INDEX_USERNAME));
-                patient.setPassword(cursor.getString(INDEX_PASSWORD));
+                doctor.setId(cursor.getInt(INDEX_ID));
+                doctor.setName(cursor.getString(INDEX_NAME));
+                doctor.setPhone(cursor.getString(INDEX_PHONE));
+                doctor.setMail(cursor.getString(INDEX_MAIL));
+                doctor.setUsername(cursor.getString(INDEX_USERNAME));
+                doctor.setPassword(cursor.getString(INDEX_PASSWORD));
             }
         } else{
-            patient.setName("Test");
-            patient.setPhone("0123456789");
-            patient.setMail("default@mail.pt");
-            patient.setUsername("username");
-            patient.setPassword("password");
-            insertDoctor(patient);
+            doctor.setName("Test");
+            doctor.setPhone("0123456789");
+            doctor.setMail("default@mail.pt");
+            doctor.setUsername("username");
+            doctor.setPassword("password");
+            insertDoctor(doctor);
         }
         cursor.close();
-        return patient;
+        return doctor;
     }
 
 }

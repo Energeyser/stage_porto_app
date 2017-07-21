@@ -48,6 +48,7 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
 
         // Execute the SQL statement
         db.execSQL(SQL_CREATE_PATIENT_TABLE);
+
         //Creation of a ContentValues (working like a HashMap)
         ContentValues values = new ContentValues();
         values.put(PatientEntry._ID,1);
@@ -57,9 +58,10 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         values.put(PatientEntry.COLUMN_PATIENT_POT_NAME, "Default Name");
         values.put(PatientEntry.COLUMN_PATIENT_POT_PHONE, "0123456789");
         db.insert(PatientEntry.TABLE_NAME,null,values);
+
         values.clear();
 
-        // Create a String that contains the SQL statement to create the pets table
+        // Create a String that contains the SQL statement to create the doctor table
         String SQL_CREATE_DOCTOR_TABLE =  "CREATE TABLE " + DoctorEntry.TABLE_NAME + " ("
                 + DoctorEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DoctorEntry.COLUMN_DOCTOR_NAME + " TEXT NOT NULL, "
