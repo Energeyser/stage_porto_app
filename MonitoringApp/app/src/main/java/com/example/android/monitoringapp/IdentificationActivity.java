@@ -40,8 +40,16 @@ public class IdentificationActivity extends AppCompatActivity {
 
         nameDoctor = (TextView) findViewById(R.id.name_doctor);
         nameDoctor.setText(doctor.getName());
+        //get first two letters of the name (initiales)
+        String str = doctor.getName();
+        String [] tab = str.split(" ");
+        String tmp ="";
+
+        for(int i = 0; i< tab.length;i++) {
+            tmp = tmp.concat(tab[i].substring(0,1));
+        }
         nameDoctorInitials = (TextView) findViewById(R.id.name_doctor_initials);
-        nameDoctorInitials.setText(doctor.getName().substring(0,1));
+        nameDoctorInitials.setText(tmp);
     }
 
     public void openMonthSummary(View view){

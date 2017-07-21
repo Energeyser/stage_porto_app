@@ -1,24 +1,16 @@
 package com.example.android.monitoringapp;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
 import com.example.android.monitoringapp.Data.Patient;
 import com.example.android.monitoringapp.Data.PatientBDD;
-import com.example.android.monitoringapp.Data.MonitoringAppDbHelper;
-import com.example.android.monitoringapp.Data.PatientContract.PatientEntry;
 
-import static com.example.android.monitoringapp.MonthSummaryActivity.problemDetected;
-import static com.example.android.monitoringapp.R.id.probleme_detected;
+import java.lang.reflect.Array;
+
 
 public class MonthSummaryActivity extends AppCompatActivity {
 
@@ -45,8 +37,18 @@ public class MonthSummaryActivity extends AppCompatActivity {
 
         namePatient = (TextView) findViewById(R.id.name_patient);
         namePatient.setText(patient.getName());
+
+        //get first two letters of the name (initiales)
+        String str = patient.getName();
+        String [] tab = str.split(" ");
+        String tmp ="";
+
+        for(int i = 0; i< tab.length;i++) {
+            tmp = tmp.concat(tab[i].substring(0,1));
+        }
+
         namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
-        namePatientInitials.setText(patient.getName().substring(0,1));
+        namePatientInitials.setText(tmp);
 
         if(pbDetected) {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);

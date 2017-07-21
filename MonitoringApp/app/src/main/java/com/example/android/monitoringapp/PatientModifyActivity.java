@@ -53,8 +53,16 @@ public class PatientModifyActivity extends AppCompatActivity {
         namePersonTrustPatient.setText(patient.getPot_name());
         phonePersonTrustPatient = (EditText) findViewById(R.id.phone_person_trust);
         phonePersonTrustPatient.setText(patient.getPot_phone());
+        //get first two letters of the name (initiales)
+        String str = patient.getName();
+        String [] tab = str.split(" ");
+        String tmp ="";
+
+        for(int i = 0; i< tab.length;i++) {
+            tmp = tmp.concat(tab[i].substring(0,1));
+        }
         namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
-        namePatientInitials.setText(patient.getName().substring(0,1));
+        namePatientInitials.setText(tmp);
 
     }
 

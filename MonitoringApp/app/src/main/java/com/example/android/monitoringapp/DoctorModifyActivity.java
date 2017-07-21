@@ -201,7 +201,16 @@ public class DoctorModifyActivity extends AppCompatActivity {
                 mailDoctor.setText(currentMail);
                 usernameDoctor.setText(currentUsername);
                 passwordDoctor.setText(currentPassword);
-                nameDoctorInitials.setText(currentName.substring(0,1));
+                //get first two letters of the name (initiales)
+                String str = currentName;
+                String [] tab = str.split(" ");
+                String tmp ="";
+
+                for(int i = 0; i< tab.length;i++) {
+                    tmp = tmp.concat(tab[i].substring(0,1));
+                }
+                nameDoctorInitials = (TextView) findViewById(R.id.name_doctor_initials);
+                nameDoctorInitials.setText(tmp);
             }
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its

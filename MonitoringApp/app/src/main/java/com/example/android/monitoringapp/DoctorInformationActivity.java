@@ -38,8 +38,16 @@ public class DoctorInformationActivity extends AppCompatActivity {
         phoneDoctor.setText(doctor.getPhone());
         emailDoctor = (TextView) findViewById(R.id.mail_doctor);
         emailDoctor.setText(doctor.getMail());
+        //get first two letters of the name (initiales)
+        String str = doctor.getName();
+        String [] tab = str.split(" ");
+        String tmp ="";
+
+        for(int i = 0; i< tab.length;i++) {
+            tmp = tmp.concat(tab[i].substring(0,1));
+        }
         nameDoctorInitials = (TextView) findViewById(R.id.name_doctor_initials);
-        nameDoctorInitials.setText(doctor.getName().substring(0,1));
+        nameDoctorInitials.setText(tmp);
     }
 
 

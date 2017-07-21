@@ -6,25 +6,19 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.view.View.OnClickListener;
-import android.view.View.OnClickListener;
-
-import static com.example.android.monitoringapp.R.id.date_from_export_calendar;
+import java.text.DateFormat;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExportActivity extends AppCompatActivity {
 
@@ -126,13 +120,41 @@ public class ExportActivity extends AppCompatActivity {
             String from = (String)dateFrom.getText();
             String to = (String)dateTo.getText();
 
+            DateFormat sdf = new SimpleDateFormat("dd//MM/yyyy");
+            Date newDate;
+            Date oldDate;
+
             if(datePickerCheck==1) {
                 newDateFrom = day + "/" +  month + "/" + year;
-                dateFrom.setText(newDateFrom);
+               /* newDate = sdf.parse(newDateFrom, new ParsePosition(0));
+                if(to.equals("Select a date to")){*/
+                    dateFrom.setText(newDateFrom);
+               /* }
+                else{
+                    oldDate = sdf.parse(to, new ParsePosition(0));
+                    if (newDate.compareTo(oldDate) <= 0) {
+                        dateFrom.setText(newDateFrom);
+                    }
+                    else{
+                        Toast.makeText(getBaseContext(), "You need to select a date from before a date to, try again", Toast.LENGTH_LONG).show();
+                    }
+                }*/
             }
             else if(datePickerCheck==2) {
-                newDateTo = day + "/" +  month + "/" + year;
-                dateTo.setText(newDateTo);
+                newDateTo = day + "/" + month + "/" + year;
+               /* newDate = sdf.parse(newDateTo, new ParsePosition(0));
+                if(to.equals("Select a date to")){*/
+                    dateTo.setText(newDateTo);
+               /* }
+                else{
+                    oldDate = sdf.parse(from, new ParsePosition(0));
+                    if (newDate.compareTo(oldDate) >= 0) {
+                        dateTo.setText(newDateTo);
+                    }
+                    else{
+                        Toast.makeText(getBaseContext(), "You need to select a date from before a date to, try again", Toast.LENGTH_LONG).show();
+                    }
+                }*/
             }
         }
     };
