@@ -1,6 +1,5 @@
 package com.example.android.monitoringapp;
 
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +12,8 @@ import com.example.android.monitoringapp.Data.DataBDD;
 import com.example.android.monitoringapp.Data.Data;
 import com.example.android.monitoringapp.Data.Patient;
 import com.example.android.monitoringapp.Data.PatientBDD;
+
+import java.lang.reflect.Array;
 
 
 public class MonthSummaryActivity extends AppCompatActivity {
@@ -43,8 +44,18 @@ public class MonthSummaryActivity extends AppCompatActivity {
 
         namePatient = (TextView) findViewById(R.id.name_patient);
         namePatient.setText(patient.getName());
+
+        //get first two letters of the name (initiales)
+        String str = patient.getName();
+        String [] tab = str.split(" ");
+        String tmp ="";
+
+        for(int i = 0; i< tab.length;i++) {
+            tmp = tmp.concat(tab[i].substring(0,1));
+        }
+
         namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
-        namePatientInitials.setText(patient.getName().substring(0,1));
+        namePatientInitials.setText(tmp);
 
         if(pbDetected) {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);

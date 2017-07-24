@@ -51,9 +51,17 @@ public class DoctorModifyActivity extends AppCompatActivity {
 
         passwordDoctor = (EditText) findViewById(R.id.password_doctor);
         passwordDoctor.setText(doctor.getPassword());
+        
+        String str = doctor.getName();
+        String [] tab = str.split(" ");
+        //get first two letters of the name (initiales)
+        String tmp ="";
 
+        for(int i = 0; i< tab.length;i++) {
+            tmp = tmp.concat(tab[i].substring(0,1));
+        }
         nameDoctorInitials = (TextView) findViewById(R.id.name_doctor_initials);
-        nameDoctorInitials.setText(doctor.getName().substring(0,1));
+        nameDoctorInitials.setText(tmp);
 
     }
 
@@ -124,7 +132,6 @@ public class DoctorModifyActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Email or phone number are wrong, please correct the field" , Toast.LENGTH_LONG).show();
         }
     }
-
 
     /**
      * Get user input from editor and update the doctor info into database.
