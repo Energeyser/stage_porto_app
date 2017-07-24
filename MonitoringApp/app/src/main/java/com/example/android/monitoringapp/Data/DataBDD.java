@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.android.monitoringapp.Data.DataContract.DataEntry;
 
+import java.sql.Date;
+
 
 /**
  * Created by axel- on 19/07/2017.
@@ -21,21 +23,20 @@ public class DataBDD {
     private static final int INDEX_ID = 0;
     private static final int INDEX_PATIENT_NAME = 1;
     private static final int INDEX_PATIENT_PROCESS_NUMBER = 2;
-    private static final int INDEX_MONTH = 3;
-    private static final int INDEX_DAY = 4;
-    private static final int INDEX_MENSAL = 5;
-    private static final int INDEX_MINIMUM_HR = 6;
-    private static final int INDEX_MAXIMUM_HR = 7;
-    private static final int INDEX_AVERAGE_HR = 8;
-    private static final int INDEX_MINIMUM_RESP = 9;
-    private static final int INDEX_MAXIMUM_RESP = 10;
-    private static final int INDEX_AVERAGE_RESP = 11;
-    private static final int INDEX_ECG_DESCRIPTION = 12;
-    private static final int INDEX_THORACIC_FRLUID_CONTENT = 13;
-    private static final int INDEX_BODY_FLUID_CONTENT = 14;
-    private static final int INDEX_BLOOD_PRESSURE = 15;
-    private static final int INDEX_SODIUM_CHLORIDE = 16;
-    private static final int INDEX_ALERT = 17;
+    private static final int INDEX_DATE = 3;
+    private static final int INDEX_MENSAL = 4;
+    private static final int INDEX_MINIMUM_HR = 5;
+    private static final int INDEX_MAXIMUM_HR = 6;
+    private static final int INDEX_AVERAGE_HR = 7;
+    private static final int INDEX_MINIMUM_RESP = 8;
+    private static final int INDEX_MAXIMUM_RESP = 9;
+    private static final int INDEX_AVERAGE_RESP = 10;
+    private static final int INDEX_ECG_DESCRIPTION = 11;
+    private static final int INDEX_THORACIC_FRLUID_CONTENT = 12;
+    private static final int INDEX_BODY_FLUID_CONTENT = 13;
+    private static final int INDEX_BLOOD_PRESSURE = 14;
+    private static final int INDEX_SODIUM_CHLORIDE = 15;
+    private static final int INDEX_ALERT = 16;
 
     private SQLiteDatabase db;
     private MonitoringAppDbHelper mDbHelper;
@@ -65,8 +66,7 @@ public class DataBDD {
         ContentValues values = new ContentValues();
         values.put(DataEntry.COLUMN_PATIENT_NAME, data.getPatient_name());
         values.put(DataEntry.COLUMN_PATIENT_PROCESS_NUMBER,data.getPatient_process_number());
-        values.put(DataEntry.COLUMN_MONTH,data.getMonth());
-        values.put(DataEntry.COLUMN_DAY, data.getDay());
+        values.put(DataEntry.COLUMN_DATE,data.getDate());
         values.put(DataEntry.COLUMN_MENSAL, data.getMensal());
         values.put(DataEntry.COLUMN_MIN_HR, data.getMinimum_hr());
         values.put(DataEntry.COLUMN_MAX_HR, data.getMaximum_hr());
@@ -90,8 +90,7 @@ public class DataBDD {
         ContentValues values = new ContentValues();
         values.put(DataEntry.COLUMN_PATIENT_NAME, data.getPatient_name());
         values.put(DataEntry.COLUMN_PATIENT_PROCESS_NUMBER,data.getPatient_process_number());
-        values.put(DataEntry.COLUMN_MONTH,data.getMonth());
-        values.put(DataEntry.COLUMN_DAY, data.getDay());
+        values.put(DataEntry.COLUMN_DATE,data.getDate());
         values.put(DataEntry.COLUMN_MENSAL, data.getMensal());
         values.put(DataEntry.COLUMN_MIN_HR, data.getMinimum_hr());
         values.put(DataEntry.COLUMN_MAX_HR, data.getMaximum_hr());
@@ -114,9 +113,9 @@ public class DataBDD {
         return db.delete(TABLE_DATA, DataEntry._ID + " = " +id, null);
     }
 
-    public Data getDataWithDate(int day, int month){
+    public Data getDataWithDate(Date date){
         //Gets in a cursor the data of the patient
-        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DAY + " LIKE \"" + day + " AND " + DataEntry.COLUMN_MONTH + "LIKE \"" + month + "\"", null, null, null, null);
+        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE + " LIKE \"" + date + "\"", null, null, null, null);
         Data data = new Data();
         data.setId(cursor.getInt(INDEX_ID));
         if(cursor != null)
@@ -125,8 +124,7 @@ public class DataBDD {
                 data.setId(cursor.getInt(INDEX_ID));
                 data.setPatient_name(cursor.getString(INDEX_PATIENT_NAME));
                 data.setPatient_process_number(cursor.getInt(INDEX_PATIENT_PROCESS_NUMBER));
-                data.setMonth(cursor.getInt(INDEX_MONTH));
-                data.setDay(cursor.getInt(INDEX_DAY));
+                data.setDate(cursor.getString(INDEX_DATE));
                 data.setMensal(cursor.getInt(INDEX_MENSAL));
                 data.setMinimum_hr(cursor.getInt(INDEX_MINIMUM_HR));
                 data.setMaximum_hr(cursor.getInt(INDEX_MAXIMUM_HR));
@@ -137,9 +135,47 @@ public class DataBDD {
                 data.setEcg_description(cursor.getString(INDEX_ECG_DESCRIPTION));
                 data.setThoracic_fluid_content(cursor.getInt(INDEX_THORACIC_FRLUID_CONTENT));
                 data.setBody_fluid_content(cursor.getInt(INDEX_BODY_FLUID_CONTENT));
-                data.setBlood_pressure(cursor.getInt(INDEX_BLOOD_PRESSURE));
+                data.setBlood_pressure(cursor.getString(INDEX_BLOOD_PRESSURE));
                 data.setSodium_chloride(cursor.getInt(INDEX_SODIUM_CHLORIDE));
                 data.setAlert(cursor.getInt(INDEX_ALERT));
+            }
+        } else{
+            System.out.println("Error when retrieving the data from the database");
+        }
+        cursor.close();
+        return data;
+    }
+
+    public Data getLastMonth(){
+        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE +" BETWEEN datetime('now', 'start of month') AND datetime('now', 'localtime');", null, null, null, null);
+        //SELECT * FROM data WHERE date BETWEEN datetime('now', 'start of month') AND datetime('now', 'localtime');
+
+        Data data = new Data();
+        Data dataMean = new Data();
+
+
+        if(cursor != null)
+        {
+            while (cursor.moveToNext()) {
+                    data.setId(cursor.getInt(INDEX_ID));
+                    data.setPatient_name(cursor.getString(INDEX_PATIENT_NAME));
+                    data.setPatient_process_number(cursor.getInt(INDEX_PATIENT_PROCESS_NUMBER));
+                    data.setDate(cursor.getString(INDEX_DATE));
+                    data.setMensal(cursor.getInt(INDEX_MENSAL));
+                    data.setMinimum_hr(cursor.getInt(INDEX_MINIMUM_HR));
+                    data.setMaximum_hr(cursor.getInt(INDEX_MAXIMUM_HR));
+                    data.setAverage_hr(cursor.getInt(INDEX_AVERAGE_HR));
+                    data.setMinimum_resp(cursor.getInt(INDEX_MINIMUM_RESP));
+                    data.setMaximum_resp(cursor.getInt(INDEX_MAXIMUM_RESP));
+                    data.setAverage_resp(cursor.getInt(INDEX_AVERAGE_RESP));
+                    data.setEcg_description(cursor.getString(INDEX_ECG_DESCRIPTION));
+                    data.setThoracic_fluid_content(cursor.getInt(INDEX_THORACIC_FRLUID_CONTENT));
+                    data.setBody_fluid_content(cursor.getInt(INDEX_BODY_FLUID_CONTENT));
+                    data.setBlood_pressure(cursor.getString(INDEX_BLOOD_PRESSURE));
+                    data.setSodium_chloride(cursor.getInt(INDEX_SODIUM_CHLORIDE));
+                    data.setAlert(cursor.getInt(INDEX_ALERT));
+
+                    System.out.println(data.toString());
             }
         } else{
             System.out.println("Error when retrieving the data from the database");

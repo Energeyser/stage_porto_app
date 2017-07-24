@@ -45,18 +45,11 @@ public final class DataContract {
         public final static String COLUMN_PATIENT_PROCESS_NUMBER = "patient_process_number";
 
         /**
-         * The date (Month).
+         * The date.
          *
-         * Type: INTEGER
+         * Type: INT
          */
-        public final static String COLUMN_MONTH = "month";
-
-        /**
-         * Date (Day).
-         *
-         * Type: INTEGER
-         */
-        public final static String COLUMN_DAY = "day";
+        public final static String COLUMN_DATE = "date";
 
         /**
          * Mensal (?).
@@ -131,7 +124,7 @@ public final class DataContract {
         /**
          * Blood pressure for the day.
          *
-         * Type: INTEGER
+         * Type: STRING
          */
         public final static String COLUMN_BLOOD_PRESSURE = "blood_pressure";
 

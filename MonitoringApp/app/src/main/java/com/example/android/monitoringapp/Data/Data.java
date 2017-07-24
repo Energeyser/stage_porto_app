@@ -1,5 +1,7 @@
 package com.example.android.monitoringapp.Data;
 
+import java.sql.Date;
+
 import static android.R.attr.name;
 import static android.R.attr.password;
 
@@ -11,8 +13,7 @@ public class Data {
     private int id;
     private String patient_name;
     private int patient_process_number;
-    private int month;
-    private int day;
+    private String date;
     private int mensal;
     private int minimum_hr;
     private int maximum_hr;
@@ -23,7 +24,7 @@ public class Data {
     private String ecg_description;
     private int thoracic_fluid_content;
     private int body_fluid_content;
-    private int blood_pressure;
+    private String blood_pressure;
     private int sodium_chloride;
     private int alert;
 
@@ -32,8 +33,7 @@ public class Data {
     public Data(int id,
                 String patient_name,
                 int patient_process_number,
-                int month,
-                int day,
+                String date,
                 int mensal,
                 int minimum_hr,
                 int maximum_hr,
@@ -44,14 +44,13 @@ public class Data {
                 String ecg_description,
                 int thoracic_fluid_content,
                 int body_fluid_content,
-                int blood_pressure,
+                String blood_pressure,
                 int sodium_chloride,
                 int alert){
         this.id = id;
         this.patient_name = patient_name;
         this.patient_process_number = patient_process_number;
-        this.month = month;
-        this.day = day;
+        this.date = date;
         this.mensal = mensal;
         this.minimum_hr = minimum_hr;
         this.maximum_hr = maximum_hr;
@@ -92,20 +91,13 @@ public class Data {
         this.patient_process_number = patient_process_number;
     }
 
-    public int getMonth() {
-        return month;
+    public String getDate() {
+        return date;
     }
 
-    public void setMonth(int month) {
-        this.month = month;
-    }
 
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getMensal() {
@@ -188,11 +180,11 @@ public class Data {
         this.body_fluid_content = body_fluid_content;
     }
 
-    public int getBlood_pressure() {
+    public String getBlood_pressure() {
         return blood_pressure;
     }
 
-    public void setBlood_pressure(int blood_pressure) {
+    public void setBlood_pressure(String blood_pressure) {
         this.blood_pressure = blood_pressure;
     }
 
@@ -212,5 +204,32 @@ public class Data {
         this.alert = alert;
     }
 
+    public String toString(){
+        return "ID : "+id+"\nName : "+patient_name+"\nProcess Number : "+patient_process_number+
+                "\nDate : "+date+"\nMensal : "
+                +mensal+"\nminimum_hr : "+minimum_hr+"\nmaximum_hr : "+maximum_hr
+                +"\naverage_hr : "+average_hr+"\nminimum_resp : "+minimum_resp
+                +"\nmaximum_resp : "+maximum_resp+"\naverage_resp : "+average_resp
+                +"\necg_description : "+ecg_description+"\nthoracic_fluif_content : "+thoracic_fluid_content
+                +"\nbody_fluid_content : "+body_fluid_content+"\nblood_pressure : "+blood_pressure
+                +"\nsodium_chloride : "+sodium_chloride+"\nalert : "+alert;
+    }
+   /* int id,
+    String patient_name,
+    int patient_process_number,
+    int date,
+    int mensal,
+    int minimum_hr,
+    int maximum_hr,
+    int average_hr,
+    int minimum_resp,
+    int maximum_resp,
+    int average_resp,
+    String ecg_description,
+    int thoracic_fluid_content,
+    int body_fluid_content,
+    int blood_pressure,
+    int sodium_chloride,
+    int alert*/
 
 }

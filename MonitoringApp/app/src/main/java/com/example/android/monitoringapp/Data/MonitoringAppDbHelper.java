@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.android.monitoringapp.Data.PatientContract.PatientEntry;
 import com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry;
+import com.example.android.monitoringapp.Data.DataContract.DataEntry;
 
 /**
  * Database helper for the monitoring app. Manages database creation and version management.
@@ -81,6 +82,52 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         values.put(DoctorEntry.COLUMN_DOCTOR_USERNAME, "username");
         values.put(DoctorEntry.COLUMN_DOCTOR_PASSWORD, "password");
         db.insert(DoctorEntry.TABLE_NAME,null,values);
+
+        values.clear();
+
+        // Create a String that contains the SQL statement to create the doctor table
+        String SQL_CREATE_DATA_TABLE =  "CREATE TABLE " + DataEntry.TABLE_NAME + " ("
+                + DataEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DataEntry.COLUMN_PATIENT_NAME + " TEXT NOT NULL, "
+                + DataEntry.COLUMN_PATIENT_PROCESS_NUMBER + " INTEGER NOT NULL, "
+                + DataEntry.COLUMN_DATE + " STRING, "
+                + DataEntry.COLUMN_MENSAL + " INTEGER,"
+                + DataEntry.COLUMN_MIN_HR + " INTEGER,"
+                + DataEntry.COLUMN_MAX_HR + " INTEGER,"
+                + DataEntry.COLUMN_AVERAGE_HR + " INTEGER,"
+                + DataEntry.COLUMN_MIN_RESP + " INTEGER,"
+                + DataEntry.COLUMN_MAX_RESP + " INTEGER,"
+                + DataEntry.COLUMN_AVERAGE_RESP + " INTEGER,"
+                + DataEntry.COLUMN_ECG_DESCRIPTION + " STRING,"
+                + DataEntry.COLUMN_THORACIC_FC + " INTEGER,"
+                + DataEntry.COLUMN_BODY_FC + " INTEGER,"
+                + DataEntry.COLUMN_BLOOD_PRESSURE + " STRING,"
+                + DataEntry.COLUMN_SODIUM + " INTEGER,"
+                + DataEntry.COLUMN_ALERT + " INTEGER);";
+
+        // Execute the SQL statement
+        db.execSQL(SQL_CREATE_DATA_TABLE);
+
+        //Creation of a ContentValues (working like a HashMap)
+        values.put(DataEntry._ID,1);
+        values.put(DataEntry.COLUMN_PATIENT_NAME, "Default Name");
+        values.put(DataEntry.COLUMN_PATIENT_PROCESS_NUMBER, "1");
+        values.put(DataEntry.COLUMN_DATE, "24/07/2017");
+        values.put(DataEntry.COLUMN_MENSAL, "1");
+        values.put(DataEntry.COLUMN_MIN_HR, "55");
+        values.put(DataEntry.COLUMN_MAX_HR, "105");
+        values.put(DataEntry.COLUMN_AVERAGE_HR, "75");
+        values.put(DataEntry.COLUMN_MIN_RESP, "13");
+        values.put(DataEntry.COLUMN_MAX_RESP, "17");
+        values.put(DataEntry.COLUMN_AVERAGE_RESP, "15");
+        values.put(DataEntry.COLUMN_MIN_RESP, "13");
+        values.put(DataEntry.COLUMN_ECG_DESCRIPTION, "ecg description");
+        values.put(DataEntry.COLUMN_THORACIC_FC, "15");
+        values.put(DataEntry.COLUMN_BODY_FC, "75");
+        values.put(DataEntry.COLUMN_BLOOD_PRESSURE, "125/82");
+        values.put(DataEntry.COLUMN_SODIUM, "40");
+        values.put(DataEntry.COLUMN_ALERT,"0");
+        db.insert(DataEntry.TABLE_NAME,null,values);
     }
 
     /**
