@@ -23,7 +23,7 @@
         <EditText
             android:id="@+id/name_patient"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="2.5dp"
             android:layout_marginBottom="2.5dp"
