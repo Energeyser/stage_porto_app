@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.android.monitoringapp.Data.Data;
+import com.example.android.monitoringapp.Data.DataBDD;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -16,6 +19,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 
+import static com.example.android.monitoringapp.MonthSummaryActivity.pbDetected;
 import static com.prolificinteractive.materialcalendarview.CalendarDay.from;
 
 
@@ -27,6 +31,8 @@ public class CalendarActivity extends AppCompatActivity {
     public static int MonthDate = 0;
     public static int YearDate = 0;
 
+    DataBDD dataBDD = new DataBDD(this);
+    Data data = new Data();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +44,8 @@ public class CalendarActivity extends AppCompatActivity {
         //initailization of the calendar
         calendar.state().edit()
                 .setFirstDayOfWeek(Calendar.MONDAY)
-                .setMinimumDate(from(2016, 4, 3))
-                .setMaximumDate(from(2035, 5, 12))
+                .setMinimumDate(from(2017, 04, 03))
+                .setMaximumDate(from(2035, 05, 12))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
 
@@ -51,18 +57,33 @@ public class CalendarActivity extends AppCompatActivity {
         calendar.setSelectedDate(from(thisYear, thisMonth, thisDay));
 
 
+        //put 0 if the number is less than 10 (ex: from 9 to 09)
+        if(thisDay < 10 ){
+            if(thisMonth < 10){
+                DayDate = "0"+thisDay+"/"+"0"+thisMonth+"/"+thisYear;
+            }
+            DayDate = "0"+thisDay+"/"+thisMonth+"/"+thisYear;
+        }
+        else if(thisMonth < 10){
+            DayDate = thisDay+"/"+"0"+thisMonth+"/"+thisYear;
+        }
+
+        /*
+       //look in the database if there is an alert
+        dataBDD.open();
+        data = dataBDD.getDataWithDate(DayDate);
+        dataBDD.close();
+
+        int pbDetected = data.getAlert();*/
+
         //if there is a problem
-       boolean pbDetected = MonthSummaryActivity.problemDetected();
-        if (pbDetected == true) {
+        boolean pbDetected = false;
+        if (pbDetected == true ) {
             ArrayList<CalendarDay> dates = new ArrayList<CalendarDay>();
             CalendarDay CD = new CalendarDay();
 
             //what is the date where there was a problem
-            int year = 2017;
-            int monthOfYear = 06;
-            int dayOfMonth = 14;
-
-            CD = from(year, monthOfYear, dayOfMonth);
+            CD = from(thisYear, thisMonth, thisDay);
             dates.add(CD);
             calendar.addDecorator(new EventDecorator(Color.RED, dates));
         }

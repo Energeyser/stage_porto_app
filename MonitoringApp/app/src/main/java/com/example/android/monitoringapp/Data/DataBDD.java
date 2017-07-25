@@ -113,7 +113,7 @@ public class DataBDD {
         return db.delete(TABLE_DATA, DataEntry._ID + " = " +id, null);
     }
 
-    public Data getDataWithDate(Date date){
+    public Data getDataWithDate(String date){
         //Gets in a cursor the data of the patient
         Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE + " LIKE \"" + date + "\"", null, null, null, null);
         Data data = new Data();

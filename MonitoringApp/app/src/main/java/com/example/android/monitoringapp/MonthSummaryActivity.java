@@ -15,10 +15,12 @@ import com.example.android.monitoringapp.Data.PatientBDD;
 
 import java.lang.reflect.Array;
 
+import static android.R.attr.data;
+
 
 public class MonthSummaryActivity extends AppCompatActivity {
 
-    static boolean pbDetected = false;
+    static int pbDetected = 0;
     static boolean pb = false;
 
     //New instance of the patientBDD class
@@ -27,7 +29,7 @@ public class MonthSummaryActivity extends AppCompatActivity {
     Patient patient = new Patient();
 
     DataBDD dataBDD = new DataBDD(this);
-    Data data = new Data();
+    Data dataMonth = new Data();
 
     TextView namePatient;
     TextView namePatientInitials;
@@ -57,28 +59,30 @@ public class MonthSummaryActivity extends AppCompatActivity {
         namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
         namePatientInitials.setText(tmp);
 
-        if(pbDetected) {
+        //look in the database if there is an alert
+        dataBDD.open();
+        dataMonth = dataBDD.getLastMonth();
+        dataBDD.close();
+
+        pbDetected = dataMonth.getAlert();
+
+        if(pbDetected != 0) {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);
             pbView.setVisibility(View.VISIBLE);
         }
-
-        dataBDD.open();
-        data = dataBDD.getLastMonth();
-        dataBDD.close();
-
     }
 
 
     public static boolean problemDetected(){
-        if(pbDetected) {
+        if(pbDetected != 0) {
             pb = true;
         }
         return pb;
     }
 
     public void openSeeMorePb(View view){
-        if(pbDetected) {
-            Intent i = new Intent(this, DayCalendarActivity.class);
+        if(pbDetected != 0) {
+            Intent i = new Intent(this, CalendarActivity.class);
             startActivity(i);
         }
     }
