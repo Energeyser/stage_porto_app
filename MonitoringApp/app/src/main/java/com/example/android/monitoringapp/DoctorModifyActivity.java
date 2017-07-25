@@ -51,7 +51,7 @@ public class DoctorModifyActivity extends AppCompatActivity {
 
         passwordDoctor = (EditText) findViewById(R.id.password_doctor);
         passwordDoctor.setText(doctor.getPassword());
-        
+
         String str = doctor.getName();
         String [] tab = str.split(" ");
         //get first two letters of the name (initiales)
