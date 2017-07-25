@@ -64,6 +64,8 @@ public class MonthSummaryActivity extends AppCompatActivity {
         dataMonth = dataBDD.getLastMonth();
         dataBDD.close();
 
+        System.out.println(dataMonth.toString());
+
         pbDetected = dataMonth.getAlert();
 
         if(pbDetected != 0) {
