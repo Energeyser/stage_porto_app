@@ -9,6 +9,8 @@ import com.example.android.monitoringapp.Data.DataContract.DataEntry;
 
 import java.sql.Date;
 
+import static android.R.attr.data;
+
 
 /**
  * Created by axel- on 19/07/2017.
@@ -113,11 +115,11 @@ public class DataBDD {
         return db.delete(TABLE_DATA, DataEntry._ID + " = " +id, null);
     }
 
-    public Data getDataWithDate(Date date){
+    public Data getDataWithDate(String date){
         //Gets in a cursor the data of the patient
-        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE + " LIKE \"" + date + "\"", null, null, null, null);
+        //Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE + " = '" + date +"'", null, null, null, null);
+        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"},DataEntry.COLUMN_DATE +" = \""+date+"\"", null, null, null, null);
         Data data = new Data();
-        data.setId(cursor.getInt(INDEX_ID));
         if(cursor != null)
         {
             if (cursor.moveToFirst()) {
@@ -175,7 +177,7 @@ public class DataBDD {
                     data.setSodium_chloride(cursor.getInt(INDEX_SODIUM_CHLORIDE));
                     data.setAlert(cursor.getInt(INDEX_ALERT));
 
-                    System.out.println(data.toString());
+                    //System.out.println(data.toString());
             }
         } else{
             System.out.println("Error when retrieving the data from the database");

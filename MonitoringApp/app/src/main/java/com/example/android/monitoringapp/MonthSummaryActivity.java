@@ -28,6 +28,7 @@ public class MonthSummaryActivity extends AppCompatActivity {
 
     DataBDD dataBDD = new DataBDD(this);
     Data data = new Data();
+    Data dataTest = new Data();
 
     TextView namePatient;
     TextView namePatientInitials;
@@ -63,8 +64,12 @@ public class MonthSummaryActivity extends AppCompatActivity {
         }
 
         dataBDD.open();
-        data = dataBDD.getLastMonth();
+        //data = dataBDD.getLastMonth();
+        dataTest = dataBDD.getDataWithDate("24/07/2017");
         dataBDD.close();
+
+       // System.out.println(data.toString());
+       System.out.println(dataTest.toString());
 
     }
 
