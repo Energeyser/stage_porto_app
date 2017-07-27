@@ -60,12 +60,12 @@ public class CalendarActivity extends AppCompatActivity {
         //put 0 if the number is less than 10 (ex: from 9 to 09)
         if(thisDay < 10 ){
             if(thisMonth < 10){
-                DayDate = "0"+thisDay+"/"+"0"+thisMonth+"/"+thisYear;
+                DayDate = thisYear+"/"+"0"+thisMonth+"/"+"0"+thisDay;
             }
-            DayDate = "0"+thisDay+"/"+thisMonth+"/"+thisYear;
+            DayDate = thisYear+"/"+thisMonth+"/"+"0"+thisDay;
         }
         else if(thisMonth < 10){
-            DayDate = thisDay+"/"+"0"+thisMonth+"/"+thisYear;
+            DayDate = thisYear+"/"+"0"+thisMonth+"/"+thisDay;
         }
 
         /*

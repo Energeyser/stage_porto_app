@@ -16,6 +16,7 @@ import com.example.android.monitoringapp.Data.PatientBDD;
 import java.lang.reflect.Array;
 
 import static android.R.attr.data;
+import static com.example.android.monitoringapp.R.id.value_min_heart_monitor;
 
 
 public class MonthSummaryActivity extends AppCompatActivity {
@@ -35,6 +36,30 @@ public class MonthSummaryActivity extends AppCompatActivity {
     TextView namePatient;
     TextView namePatientInitials;
 
+    //initialized TextView with data of the month
+    TextView heartMean;
+    TextView heartMin;
+    TextView heartMax;
+
+    TextView bloodMean;
+    TextView bloodMin;
+    TextView bloodMax;
+
+    TextView waterMean;
+    TextView waterMin;
+    TextView waterMax;
+
+    TextView salinityMean;
+    TextView salinityMin;
+    TextView salinityMax;
+
+    TextView oxygeneMean;
+    TextView oxygeneMin;
+    TextView oxygeneMax;
+
+    TextView pressurePulmonaryMean;
+    TextView pressurePulmonaryMin;
+    TextView pressurePulmonaryMax;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +100,20 @@ public class MonthSummaryActivity extends AppCompatActivity {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);
             pbView.setVisibility(View.VISIBLE);
         }
+
+        heartMin = (TextView) findViewById(R.id.value_min_heart_monitor);
+        heartMax =(TextView) findViewById(R.id.value_max_heart_monitor);
+        heartMean =(TextView) findViewById(R.id.value_mean_heart_monitor);
+
+        heartMin.setText(dataMonth.getMinimum_hr());
+        heartMax.setText(dataMonth.getMaximum_hr());
+        heartMean.setText(dataMonth.getAverage_hr());
+
+        /*dataBDD.open();
+        dataTest = dataBDD.getDataWithDate("24/07/2017");
+        dataBDD.close();*/
+
+       System.out.println(dataMonth.toString());
 
     }
 
