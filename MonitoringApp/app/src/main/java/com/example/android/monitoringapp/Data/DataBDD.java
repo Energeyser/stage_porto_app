@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.android.monitoringapp.Data.DataContract.DataEntry;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static android.R.attr.data;
 
@@ -149,41 +151,65 @@ public class DataBDD {
     }
 
     public Data getLastMonth(){
-        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE +" BETWEEN datetime('now', 'start of month') AND datetime('now', 'localtime');", null, null, null, null);
+       // Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE +" BETWEEN datetime('now', 'localtime', 'start of month') AND datetime('now', 'localtime');", null, null, null, null);
         //SELECT * FROM data WHERE date BETWEEN datetime('now', 'start of month') AND datetime('now', 'localtime');
 
+        Calendar theEnd = Calendar.getInstance();
+        Calendar theStart = (Calendar) theEnd.clone();
+
+        theStart.add(Calendar.DAY_OF_MONTH, -30);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String start = dateFormat.format(theStart.getTime());
+        String end = dateFormat.format(theEnd.getTime());
+
+        // Now you have date boundaries in TEXT format
+
+        //Cursor cursor = db.rawQuery("SELECT * FROM data WHERE timestamp BETWEEN "+start+" AND "+end);
+        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE +" BETWEEN '"+start+"' AND '"+end+"'", null, null, null, null);
+
         Data data = new Data();
-        Data dataMean = new Data();
+        Data dataSum = new Data();
 
 
         if(cursor != null)
         {
             while (cursor.moveToNext()) {
-                    data.setId(cursor.getInt(INDEX_ID));
-                    data.setPatient_name(cursor.getString(INDEX_PATIENT_NAME));
-                    data.setPatient_process_number(cursor.getInt(INDEX_PATIENT_PROCESS_NUMBER));
-                    data.setDate(cursor.getString(INDEX_DATE));
-                    data.setMensal(cursor.getInt(INDEX_MENSAL));
-                    data.setMinimum_hr(cursor.getInt(INDEX_MINIMUM_HR));
-                    data.setMaximum_hr(cursor.getInt(INDEX_MAXIMUM_HR));
-                    data.setAverage_hr(cursor.getInt(INDEX_AVERAGE_HR));
-                    data.setMinimum_resp(cursor.getInt(INDEX_MINIMUM_RESP));
-                    data.setMaximum_resp(cursor.getInt(INDEX_MAXIMUM_RESP));
-                    data.setAverage_resp(cursor.getInt(INDEX_AVERAGE_RESP));
-                    data.setEcg_description(cursor.getString(INDEX_ECG_DESCRIPTION));
-                    data.setThoracic_fluid_content(cursor.getInt(INDEX_THORACIC_FRLUID_CONTENT));
-                    data.setBody_fluid_content(cursor.getInt(INDEX_BODY_FLUID_CONTENT));
-                    data.setBlood_pressure(cursor.getString(INDEX_BLOOD_PRESSURE));
-                    data.setSodium_chloride(cursor.getInt(INDEX_SODIUM_CHLORIDE));
-                    data.setAlert(cursor.getInt(INDEX_ALERT));
-
-                    //System.out.println(data.toString());
+                    dataSum.setMinimum_hr(dataSum.getMinimum_hr()+cursor.getInt(INDEX_MINIMUM_HR));
+                    dataSum.setMaximum_hr(dataSum.getMaximum_hr()+cursor.getInt(INDEX_MAXIMUM_HR));
+                    dataSum.setAverage_hr(dataSum.getAverage_hr()+cursor.getInt(INDEX_AVERAGE_HR));
+                    dataSum.setMinimum_resp(dataSum.getMinimum_resp()+cursor.getInt(INDEX_MINIMUM_RESP));
+                    dataSum.setMaximum_resp(dataSum.getMaximum_resp()+cursor.getInt(INDEX_MAXIMUM_RESP));
+                    dataSum.setAverage_resp(dataSum.getAverage_resp()+cursor.getInt(INDEX_AVERAGE_RESP));
+                    dataSum.setThoracic_fluid_content(dataSum.getThoracic_fluid_content()+cursor.getInt(INDEX_THORACIC_FRLUID_CONTENT));
+                    dataSum.setBody_fluid_content(dataSum.getBody_fluid_content()+cursor.getInt(INDEX_BODY_FLUID_CONTENT));
+                    dataSum.setSodium_chloride(dataSum.getSodium_chloride()+cursor.getInt(INDEX_SODIUM_CHLORIDE));
+                    if(cursor.getInt(INDEX_ALERT) != 0){
+                        dataSum.setAlert(cursor.getInt(INDEX_ALERT));
+                    }
+                    //System.out.println(dataSum.toString());
             }
         } else{
             System.out.println("Error when retrieving the data from the database");
         }
+        data.setMinimum_hr(dataSum.getMinimum_hr()/cursor.getCount());
+        data.setMaximum_hr(dataSum.getMaximum_hr()/cursor.getCount());
+        data.setAverage_hr(dataSum.getAverage_hr()/cursor.getCount());
+        data.setMinimum_resp(dataSum.getMinimum_resp()/cursor.getCount());
+        data.setMaximum_resp(dataSum.getMaximum_resp()/cursor.getCount());
+        data.setAverage_resp(dataSum.getAverage_resp()/cursor.getCount());
+        data.setThoracic_fluid_content(dataSum.getThoracic_fluid_content()/cursor.getCount());
+        data.setBody_fluid_content(dataSum.getBody_fluid_content()/cursor.getCount());
+        data.setSodium_chloride(dataSum.getSodium_chloride()/cursor.getCount());
+        data.setAlert(1);
         cursor.close();
+        //System.out.println(data.toString());
         return data;
+    }
+
+    public Cursor getDataExport(String start, String end){
+        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"},null, null, null, null, null);
+        return cursor;
     }
 
 }

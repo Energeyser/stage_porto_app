@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +18,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.monitoringapp.Data.Data;
+import com.example.android.monitoringapp.Data.DataBDD;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -36,19 +45,25 @@ public class ExportActivity extends AppCompatActivity {
 
 
     static final int DATE_DIALOG_ID = 999;
+    Button btnexport;
+    DataBDD dataBDD = new DataBDD(this);
+    Data data = new Data();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
-        spinner = (Spinner)findViewById(R.id.spinner_destination_export);
+        btnexport = (Button) findViewById(R.id.button_destination_export);
+        btnexport.setOnClickListener(myhandler);
+        spinner = (Spinner) findViewById(R.id.spinner_destination_export);
         adapter = ArrayAdapter.createFromResource(this, R.array.data_destination, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), parent.getItemIdAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), parent.getItemIdAtPosition(position) + " selected", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -102,6 +117,65 @@ public class ExportActivity extends AppCompatActivity {
         }
         return null;
     }
+
+    View.OnClickListener myhandler = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            Toast.makeText(getBaseContext(), " Ouais ouais le click", Toast.LENGTH_LONG).show();
+            try {
+                File sdCardDir = Environment.getExternalStorageDirectory();
+                String filename = "MyBackUp.csv";
+                File saveFile = new File(sdCardDir, filename);
+                FileWriter fw = new FileWriter(saveFile);
+
+                BufferedWriter bw = new BufferedWriter(fw);
+                dataBDD.open();
+                Cursor cursor = dataBDD.getDataExport("2017/07/25","2017/07/24");
+
+                int rowcount;
+                int colcount;
+                rowcount = cursor.getCount();
+                colcount = cursor.getColumnCount();
+                if (rowcount > 0) {
+                    cursor.moveToFirst();
+
+                    for (int i = 0; i < colcount; i++) {
+                        if (i != colcount - 1) {
+
+                            bw.write(cursor.getColumnName(i) + ",");
+
+                        } else {
+
+                            bw.write(cursor.getColumnName(i));
+
+                        }
+                    }
+                    bw.newLine();
+
+                    for (int i = 0; i < rowcount; i++) {
+                        cursor.moveToPosition(i);
+
+                        for (int j = 0; j < colcount; j++) {
+                            if (j != colcount - 1)
+                                bw.write(cursor.getString(j) + ",");
+                            else
+                                bw.write(cursor.getString(j));
+                        }
+                        bw.newLine();
+                    }
+                    bw.flush();
+                }
+            } catch (Exception ex) {
+                System.out.println(ex);
+
+            } finally {
+                dataBDD.close();
+            }
+
+        }
+    };
+
+
 
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override

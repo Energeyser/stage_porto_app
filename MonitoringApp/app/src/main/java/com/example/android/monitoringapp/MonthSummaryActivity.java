@@ -63,9 +63,11 @@ public class MonthSummaryActivity extends AppCompatActivity {
         //look in the database if there is an alert
         dataBDD.open();
         dataMonth = dataBDD.getLastMonth();
+        dataTest = dataBDD.getDataWithDate("2017/07/25");
         dataBDD.close();
 
         System.out.println(dataMonth.toString());
+        System.out.println(dataTest.toString());
 
         pbDetected = dataMonth.getAlert();
 
@@ -73,12 +75,6 @@ public class MonthSummaryActivity extends AppCompatActivity {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);
             pbView.setVisibility(View.VISIBLE);
         }
-
-        dataBDD.open();
-        dataTest = dataBDD.getDataWithDate("24/07/2017");
-        dataBDD.close();
-
-       System.out.println(dataTest.toString());
 
     }
 
