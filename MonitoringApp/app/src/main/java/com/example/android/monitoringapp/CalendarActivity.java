@@ -56,6 +56,7 @@ public class CalendarActivity extends AppCompatActivity {
         int thisDay = currentDay.getDay();
         calendar.setSelectedDate(from(thisYear, thisMonth, thisDay));
 
+        thisMonth =  thisMonth + 1;
 
         //put 0 if the number is less than 10 (ex: from 9 to 09)
         if(thisDay < 10 ){
@@ -68,21 +69,21 @@ public class CalendarActivity extends AppCompatActivity {
             DayDate = thisYear+"/"+"0"+thisMonth+"/"+thisDay;
         }
 
-        /*
+
        //look in the database if there is an alert
         dataBDD.open();
         data = dataBDD.getDataWithDate(DayDate);
         dataBDD.close();
 
-        int pbDetected = data.getAlert();*/
+        int pbDetected = data.getAlert();
 
         //if there is a problem
-        boolean pbDetected = false;
-        if (pbDetected == true ) {
+        if (pbDetected != 0 ) {
             ArrayList<CalendarDay> dates = new ArrayList<CalendarDay>();
             CalendarDay CD = new CalendarDay();
 
             //what is the date where there was a problem
+            thisMonth =  thisMonth - 1;
             CD = from(thisYear, thisMonth, thisDay);
             dates.add(CD);
             calendar.addDecorator(new EventDecorator(Color.RED, dates));
@@ -92,7 +93,7 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 int dayOfMonth = date.getDay();
-                int month = date.getMonth() + 1;
+                int month = date.getMonth()+1;
                 int year = date.getYear();
                 DayDate = dayOfMonth+"/"+month+"/"+year;
                 Toast.makeText(getBaseContext(), "Selected date "+DayDate , Toast.LENGTH_SHORT).show();

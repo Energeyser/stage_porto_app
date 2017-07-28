@@ -88,11 +88,9 @@ public class MonthSummaryActivity extends AppCompatActivity {
         //look in the database if there is an alert
         dataBDD.open();
         dataMonth = dataBDD.getLastMonth();
-        dataTest = dataBDD.getDataWithDate("2017/07/25");
         dataBDD.close();
 
         System.out.println(dataMonth.toString());
-        System.out.println(dataTest.toString());
 
         pbDetected = dataMonth.getAlert();
 
@@ -101,13 +99,13 @@ public class MonthSummaryActivity extends AppCompatActivity {
             pbView.setVisibility(View.VISIBLE);
         }
 
-        heartMin = (TextView) findViewById(R.id.value_min_heart_monitor);
+        /*heartMin = (TextView) findViewById(R.id.value_min_heart_monitor);
         heartMax =(TextView) findViewById(R.id.value_max_heart_monitor);
         heartMean =(TextView) findViewById(R.id.value_mean_heart_monitor);
 
         heartMin.setText(dataMonth.getMinimum_hr());
         heartMax.setText(dataMonth.getMaximum_hr());
-        heartMean.setText(dataMonth.getAverage_hr());
+        heartMean.setText(dataMonth.getAverage_hr());*/
 
         /*dataBDD.open();
         dataTest = dataBDD.getDataWithDate("24/07/2017");
