@@ -95,7 +95,17 @@ public class CalendarActivity extends AppCompatActivity {
                 int dayOfMonth = date.getDay();
                 int month = date.getMonth()+1;
                 int year = date.getYear();
-                DayDate = dayOfMonth+"/"+month+"/"+year;
+
+                //put 0 if the number is less than 10 (ex: from 9 to 09)
+                if(dayOfMonth < 10 ){
+                    if(month < 10){
+                        DayDate = year+"/"+"0"+month+"/"+"0"+dayOfMonth;
+                    }
+                    DayDate = year+"/"+month+"/"+"0"+dayOfMonth;
+                }
+                else if(month < 10){
+                    DayDate = year+"/"+"0"+month+"/"+dayOfMonth;
+                }
                 Toast.makeText(getBaseContext(), "Selected date "+DayDate , Toast.LENGTH_SHORT).show();
                 openDayCalendar(widget);
             }
@@ -105,7 +115,9 @@ public class CalendarActivity extends AppCompatActivity {
 
     //passer une variable d'une classe a une autre via une méthode
     public static String returnDayDate(){
+
         return DayDate;
+
     };
 
     public void openMonthSummary(View view){
