@@ -99,19 +99,22 @@ public class MonthSummaryActivity extends AppCompatActivity {
             pbView.setVisibility(View.VISIBLE);
         }
 
-        /*heartMin = (TextView) findViewById(R.id.value_min_heart_monitor);
+        heartMin = (TextView) findViewById(R.id.value_min_heart_monitor);
         heartMax =(TextView) findViewById(R.id.value_max_heart_monitor);
         heartMean =(TextView) findViewById(R.id.value_mean_heart_monitor);
 
-        heartMin.setText(dataMonth.getMinimum_hr());
-        heartMax.setText(dataMonth.getMaximum_hr());
-        heartMean.setText(dataMonth.getAverage_hr());*/
+        heartMin.setText(Integer.toString(dataMonth.getMinimum_hr()));
+        heartMax.setText(Integer.toString(dataMonth.getMaximum_hr()));
+        heartMean.setText(Integer.toString(dataMonth.getAverage_hr()));
 
-        /*dataBDD.open();
-        dataTest = dataBDD.getDataWithDate("24/07/2017");
-        dataBDD.close();*/
+        bloodMean =(TextView) findViewById(R.id.value_mean_blood_pressure);
+        bloodMean.setText(dataMonth.getBlood_pressure());
 
-       System.out.println(dataMonth.toString());
+        waterMean =(TextView) findViewById(R.id.value_mean_qty_water_lungs);
+        waterMean.setText(Integer.toString(dataMonth.getThoracic_fluid_content()));
+
+        salinityMean =(TextView) findViewById(R.id.value_mean_salinity_skin);
+        salinityMean.setText(Integer.toString(dataMonth.getSodium_chloride()));
 
     }
 
