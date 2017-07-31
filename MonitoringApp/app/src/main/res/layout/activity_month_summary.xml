@@ -130,15 +130,16 @@
                                 android:id="@+id/value_min_heart_monitor"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_margin="2.5dp" />
+                                android:gravity="center"
+                                android:layout_marginLeft="11dp"
+                                android:textAppearance="@style/MinMaxValue"/>
 
                             <TextView
                                 android:id="@+id/bpm_min_heart_monitor"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="center"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:text="BPM"
                                 android:textAppearance="@style/MinMaxMeasure" />
                         </LinearLayout>
@@ -153,6 +154,7 @@
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
                                 android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:text="Mean"
                                 android:textAppearance="@style/MinMaxMeasure"/>
@@ -160,14 +162,15 @@
                                 android:id="@+id/value_mean_heart_monitor"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center" />
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_mean_heart_monitor"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
                                 android:layout_gravity="center"
+                                android:layout_marginLeft="11dp"
                                 android:text="BPM"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -191,15 +194,16 @@
                                 android:id="@+id/value_max_heart_monitor"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_margin="2.5dp" />
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue" />
 
                             <TextView
                                 android:id="@+id/bpm_max_heart_monitor"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="center"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:text="BPM"
                                 android:textAppearance="@style/MinMaxMeasure" />
                         </LinearLayout>
@@ -249,13 +253,14 @@
                                 android:id="@+id/value_min_blood_pressure"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_min_blood_pressure"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:text="mmHg"
                                 android:textAppearance="@style/MinMaxMeasure"/>
@@ -269,21 +274,23 @@
                                 android:id="@+id/txt_mean_blood_pressure"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
+                                android:layout_margin="2.5dp"
                                 android:text="Mean"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                             <TextView
                                 android:id="@+id/value_mean_blood_pressure"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_mean_blood_pressure"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:text="mmHg"
                                 android:textAppearance="@style/MinMaxMeasure"/>
@@ -305,13 +312,14 @@
                                 android:id="@+id/value_max_blood_pressure"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_max_blood_pressure"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:text="mmHg"
                                 android:textAppearance="@style/MinMaxMeasure"/>
@@ -362,13 +370,14 @@
                                 android:id="@+id/value_min_qty_water_lungs"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_min_qty_water_lungs"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:text="mmol/L"
                                 android:textAppearance="@style/MinMaxMeasure"/>
@@ -382,21 +391,23 @@
                                 android:id="@+id/txt_mean_qty_water_lungs"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
+                                android:layout_margin="2.5dp"
                                 android:text="Mean"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                             <TextView
                                 android:id="@+id/value_mean_qty_water_lungs"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_mean_qty_water_lungs"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:text="mmol/L"
                                 android:textAppearance="@style/MinMaxMeasure"/>
@@ -418,13 +429,14 @@
                                 android:id="@+id/value_max_qty_water_lungs"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_max_qty_water_lungs"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:text="mmol/L"
                                 android:textAppearance="@style/MinMaxMeasure"/>
@@ -475,13 +487,14 @@
                                 android:id="@+id/value_min_salinity_skin"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_min_salinity_skin"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -494,21 +507,23 @@
                                 android:id="@+id/txt_mean_salinity_skin"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
+                                android:layout_margin="2.5dp"
                                 android:text="Mean"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                             <TextView
                                 android:id="@+id/value_mean_salinity_skin"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_mean_salinity_skin"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -529,13 +544,14 @@
                                 android:id="@+id/value_max_salinity_skin"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_max_salinity_skin"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -584,13 +600,14 @@
                                 android:id="@+id/value_min_oxygen_saturation"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_min_oxygen_saturation"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -603,21 +620,23 @@
                                 android:id="@+id/txt_mean_oxygen_saturation"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
+                                android:layout_margin="2.5dp"
                                 android:text="Mean"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                             <TextView
                                 android:id="@+id/value_mean_oxygen_saturation"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_mean_oxygen_saturation"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -638,13 +657,14 @@
                                 android:id="@+id/value_max_oxygen_saturation"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_max_oxygen_saturation"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -693,13 +713,14 @@
                                 android:id="@+id/value_min_pressure_arterial_pulmonary"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_min_pressure_arterial_pulmonary"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -712,21 +733,23 @@
                                 android:id="@+id/txt_mean_pressure_arterial_pulmonary"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
+                                android:layout_margin="2.5dp"
                                 android:text="Mean"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                             <TextView
                                 android:id="@+id/value_mean_pressure_arterial_pulmonary"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_mean_pressure_arterial_pulmonary"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
@@ -747,13 +770,14 @@
                                 android:id="@+id/value_max_pressure_arterial_pulmonary"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:layout_margin="2.5dp"
-                                android:layout_gravity="center"/>
+                                android:gravity="center"
+                                android:layout_marginLeft="18dp"
+                                android:textAppearance="@style/MinMaxValue"/>
                             <TextView
                                 android:id="@+id/bpm_max_pressure_arterial_pulmonary"
                                 android:layout_width="75dp"
                                 android:layout_height="20dp"
-                                android:layout_margin="2.5dp"
+                                android:layout_marginLeft="11dp"
                                 android:layout_gravity="center"
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>

@@ -16,6 +16,7 @@ import com.example.android.monitoringapp.Data.PatientBDD;
 import java.lang.reflect.Array;
 
 import static android.R.attr.data;
+import static com.example.android.monitoringapp.R.id.value_min_heart_monitor;
 
 
 public class MonthSummaryActivity extends AppCompatActivity {
@@ -35,6 +36,30 @@ public class MonthSummaryActivity extends AppCompatActivity {
     TextView namePatient;
     TextView namePatientInitials;
 
+    //initialized TextView with data of the month
+    TextView heartMean;
+    TextView heartMin;
+    TextView heartMax;
+
+    TextView bloodMean;
+    TextView bloodMin;
+    TextView bloodMax;
+
+    TextView waterMean;
+    TextView waterMin;
+    TextView waterMax;
+
+    TextView salinityMean;
+    TextView salinityMin;
+    TextView salinityMax;
+
+    TextView oxygeneMean;
+    TextView oxygeneMin;
+    TextView oxygeneMax;
+
+    TextView pressurePulmonaryMean;
+    TextView pressurePulmonaryMin;
+    TextView pressurePulmonaryMax;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +88,9 @@ public class MonthSummaryActivity extends AppCompatActivity {
         //look in the database if there is an alert
         dataBDD.open();
         dataMonth = dataBDD.getLastMonth();
-        dataTest = dataBDD.getDataWithDate("2017/07/25");
         dataBDD.close();
 
         System.out.println(dataMonth.toString());
-        System.out.println(dataTest.toString());
 
         pbDetected = dataMonth.getAlert();
 
@@ -75,6 +98,23 @@ public class MonthSummaryActivity extends AppCompatActivity {
             LinearLayout pbView = (LinearLayout) findViewById(R.id.probleme_detected);
             pbView.setVisibility(View.VISIBLE);
         }
+
+        heartMin = (TextView) findViewById(R.id.value_min_heart_monitor);
+        heartMax =(TextView) findViewById(R.id.value_max_heart_monitor);
+        heartMean =(TextView) findViewById(R.id.value_mean_heart_monitor);
+
+        heartMin.setText(Integer.toString(dataMonth.getMinimum_hr()));
+        heartMax.setText(Integer.toString(dataMonth.getMaximum_hr()));
+        heartMean.setText(Integer.toString(dataMonth.getAverage_hr()));
+
+        bloodMean =(TextView) findViewById(R.id.value_mean_blood_pressure);
+        bloodMean.setText(dataMonth.getBlood_pressure());
+
+        waterMean =(TextView) findViewById(R.id.value_mean_qty_water_lungs);
+        waterMean.setText(Integer.toString(dataMonth.getThoracic_fluid_content()));
+
+        salinityMean =(TextView) findViewById(R.id.value_mean_salinity_skin);
+        salinityMean.setText(Integer.toString(dataMonth.getSodium_chloride()));
 
     }
 
