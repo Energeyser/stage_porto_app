@@ -134,7 +134,7 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         values.put(DataEntry._ID,2);
         values.put(DataEntry.COLUMN_PATIENT_NAME, "Default Name 2");
         values.put(DataEntry.COLUMN_PATIENT_PROCESS_NUMBER, "2");
-        values.put(DataEntry.COLUMN_DATE, "2017/07/28");
+        values.put(DataEntry.COLUMN_DATE, "2017/07/29");
         values.put(DataEntry.COLUMN_MENSAL, "1");
         values.put(DataEntry.COLUMN_MIN_HR, "50");
         values.put(DataEntry.COLUMN_MAX_HR, "130");
