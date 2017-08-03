@@ -27,7 +27,7 @@ public class WeekCalendarActivity extends AppCompatActivity {
     TextView heartMin;
     TextView heartMax;
 
-    TextView bloodMean;
+    TextView systolicBloodMean;
     TextView waterMean;
     TextView salinityMean;
 
@@ -326,13 +326,13 @@ public class WeekCalendarActivity extends AppCompatActivity {
             heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
             heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
 
-            bloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_week1);
-            bloodMean.setText(dataWeek.getBlood_pressure());
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week1);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
 
-            waterMean = (TextView) findViewById(R.id.value_mean_qty_water_lungs_week1);
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week1);
             waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
 
-            salinityMean = (TextView) findViewById(R.id.value_mean_salinity_skin_week1);
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week1);
             salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
         }
         else if(cptWeek == 1){
@@ -344,13 +344,13 @@ public class WeekCalendarActivity extends AppCompatActivity {
             heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
             heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
 
-            bloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_week2);
-            bloodMean.setText(dataWeek.getBlood_pressure());
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week2);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
 
-            waterMean = (TextView) findViewById(R.id.value_mean_qty_water_lungs_week2);
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week2);
             waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
 
-            salinityMean = (TextView) findViewById(R.id.value_mean_salinity_skin_week2);
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week2);
             salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
         }
         else if (cptWeek == 2){
@@ -362,13 +362,13 @@ public class WeekCalendarActivity extends AppCompatActivity {
             heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
             heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
 
-            bloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_week3);
-            bloodMean.setText(dataWeek.getBlood_pressure());
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week3);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
 
-            waterMean = (TextView) findViewById(R.id.value_mean_qty_water_lungs_week3);
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week3);
             waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
 
-            salinityMean = (TextView) findViewById(R.id.value_mean_salinity_skin_week3);
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week3);
             salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
         }
         else if( cptWeek == 3){
@@ -380,13 +380,13 @@ public class WeekCalendarActivity extends AppCompatActivity {
             heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
             heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
 
-            bloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_week4);
-            bloodMean.setText(dataWeek.getBlood_pressure());
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week4);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
 
-            waterMean = (TextView) findViewById(R.id.value_mean_qty_water_lungs_week4);
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week4);
             waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
 
-            salinityMean = (TextView) findViewById(R.id.value_mean_salinity_skin_week4);
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week4);
             salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
         }
         else if (cptWeek==4){
@@ -398,13 +398,13 @@ public class WeekCalendarActivity extends AppCompatActivity {
             heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
             heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
 
-            bloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_week5);
-            bloodMean.setText(dataWeek.getBlood_pressure());
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week5);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
 
-            waterMean = (TextView) findViewById(R.id.value_mean_qty_water_lungs_week5);
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week5);
             waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
 
-            salinityMean = (TextView) findViewById(R.id.value_mean_salinity_skin_week5);
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week5);
             salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
         }
         cptWeek++;
