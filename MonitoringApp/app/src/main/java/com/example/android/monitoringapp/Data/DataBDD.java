@@ -7,11 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.android.monitoringapp.Data.DataContract.DataEntry;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import android.widget.Toast;
 
+import static android.R.attr.data;
 
 /**
  * Created by axel- on 19/07/2017.
@@ -275,6 +275,48 @@ public class DataBDD {
         System.out.println("aaaaaaaaaaaaaaaaaaa");
         System.out.println("ahahaha: " + data.toString());
         return data;
+    }
+
+    public Date[] getLastMonthAlarm(){
+
+        Calendar theEnd = Calendar.getInstance();
+        Calendar theStart = (Calendar) theEnd.clone();
+
+        theStart.add(Calendar.DAY_OF_MONTH, -30);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String start = dateFormat.format(theStart.getTime());
+        String end = dateFormat.format(theEnd.getTime());
+
+        //Cursor cursor = db.rawQuery("SELECT * FROM data WHERE timestamp BETWEEN "+start+" AND "+end);
+        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE +" BETWEEN '"+start+"' AND '"+end+"'", null, null, null, null);
+
+        Date[] date = new Date[30];
+
+        int idArray=0;
+        String dateArray ="";
+        SimpleDateFormat dateForm = new SimpleDateFormat("yyyy/MM/dd");
+        Date dateAr = new Date();
+        if(cursor != null) {
+            while (cursor.moveToNext()) {
+                if (cursor.getInt(INDEX_ALERT) != 0) {
+                    dateArray = cursor.getString(INDEX_DATE);
+                    try {
+                        dateAr = dateForm.parse(dateArray);
+                        date[idArray] = dateAr;
+                        idArray++;
+                    } catch (Exception e) {
+                        System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+                        System.err.println(e.getMessage());
+                    }
+                }
+            }
+        }
+        else{
+            System.out.println("Error when retrieving the data from the database");
+        }
+        cursor.close();
+        return date;
     }
 
 }
