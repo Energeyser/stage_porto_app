@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Date;
 
 import com.example.android.monitoringapp.Data.Data;
 import com.example.android.monitoringapp.Data.DataBDD;
@@ -24,10 +25,8 @@ import com.example.android.monitoringapp.Data.DataBDD;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.text.DateFormat;
-import java.text.ParsePosition;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ExportActivity extends AppCompatActivity {
 
@@ -42,7 +41,6 @@ public class ExportActivity extends AppCompatActivity {
     private int day = 03;
 
     private int datePickerCheck = 0;
-
 
     static final int DATE_DIALOG_ID = 999;
     Button btnexport;
@@ -183,6 +181,7 @@ public class ExportActivity extends AppCompatActivity {
               year = arg1;
               month = arg2 + 1 ;
               day = arg3 ;
+
             TextView dateFrom;
             String newDateFrom;
 
@@ -194,42 +193,102 @@ public class ExportActivity extends AppCompatActivity {
             String from = (String)dateFrom.getText();
             String to = (String)dateTo.getText();
 
-            DateFormat sdf = new SimpleDateFormat("dd//MM/yyyy");
-            Date newDate;
-            Date oldDate;
+            System.out.println("from: "+from+ " to: "+to);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date dateF = new Date();
+            Date dateT = new Date();
+            try {
+                dateF = dateFormat.parse(from);
+                dateT = dateFormat.parse(to);
+            } catch (Exception e) {
+                System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+                System.err.println(e.getMessage());
+            }
+
+            //current day
+            CalendarDay currentDay = new CalendarDay();
+            int thisYear = currentDay.getYear();
+            int thisMonth = currentDay.getMonth() + 1;
+            int thisDay = currentDay.getDay();
+            String curDay = putZero(thisDay, thisMonth, thisYear);
+            Date todayDay = new Date();
+            todayDay = null;
+
+            //new dates
+            SimpleDateFormat dateForm = new SimpleDateFormat("yyyy/MM/dd");
+            Date newDat = new Date();
+            newDat = null;
+
+            //put the string current day in date type
+            try {
+                todayDay = dateForm.parse(curDay);
+            } catch (Exception e) {
+                System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+                System.err.println(e.getMessage());
+            }
+
 
             if(datePickerCheck==1) {
-                newDateFrom = day + "/" +  month + "/" + year;
-               /* newDate = sdf.parse(newDateFrom, new ParsePosition(0));
-                if(to.equals("Select a date to")){*/
+                newDateFrom = putZero(day, month, year);
+                if(to == ""){
                     dateFrom.setText(newDateFrom);
-               /* }
-                else{
-                    oldDate = sdf.parse(to, new ParsePosition(0));
-                    if (newDate.compareTo(oldDate) <= 0) {
+                }
+                else {
+                    try {
+                        newDat = dateForm.parse(newDateFrom);
+                    } catch (Exception e) {
+                        System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+                        System.err.println(e.getMessage());
+                    }
+                    if (newDat.after(todayDay)){
+                        Toast.makeText(getBaseContext(), " You need to choose a date before today", Toast.LENGTH_LONG).show();
+                    }
+                    else if (newDat.after(dateT)) {
+                        Toast.makeText(getBaseContext(), " The date from is after the date to, correct please", Toast.LENGTH_LONG).show();
+                    } else {
                         dateFrom.setText(newDateFrom);
                     }
-                    else{
-                        Toast.makeText(getBaseContext(), "You need to select a date from before a date to, try again", Toast.LENGTH_LONG).show();
-                    }
-                }*/
+                }
             }
             else if(datePickerCheck==2) {
-                newDateTo = day + "/" + month + "/" + year;
-               /* newDate = sdf.parse(newDateTo, new ParsePosition(0));
-                if(to.equals("Select a date to")){*/
+                newDateTo = putZero(day, month, year);
+                if(from == ""){
                     dateTo.setText(newDateTo);
-               /* }
-                else{
-                    oldDate = sdf.parse(from, new ParsePosition(0));
-                    if (newDate.compareTo(oldDate) >= 0) {
-                        dateTo.setText(newDateTo);
+                }
+                else {
+                    try {
+                        newDat = dateForm.parse(newDateTo);
+                    } catch (Exception e) {
+                        System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+                        System.err.println(e.getMessage());
+                    }
+                    if (newDat.after(todayDay)){
+                        Toast.makeText(getBaseContext(), " You need to choose a date before today", Toast.LENGTH_LONG).show();
+                    }
+                    else if (newDat.before(dateF)) {
+                        Toast.makeText(getBaseContext(), " The date to is before the date from, correct please", Toast.LENGTH_LONG).show();
                     }
                     else{
-                        Toast.makeText(getBaseContext(), "You need to select a date from before a date to, try again", Toast.LENGTH_LONG).show();
+                        dateTo.setText(newDateTo);
                     }
-                }*/
+                }
             }
         }
     };
+
+    public String putZero(int dayOfMonth, int month, int year){
+        String DayDate ="";
+        //put 0if the number is less than 10(ex:from 9to 09)
+        if(dayOfMonth< 10) {
+            if (month < 10) {
+                DayDate = year + "/" + "0" + month + "/" + "0" + dayOfMonth;
+            }
+            DayDate = year + "/" + month + "/" + "0" + dayOfMonth;
+        }
+        else if(month< 10) {
+            DayDate = year + "/" + "0" + month + "/" + dayOfMonth;
+        }
+        return DayDate;
+    }
 }

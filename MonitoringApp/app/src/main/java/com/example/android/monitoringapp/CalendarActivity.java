@@ -16,7 +16,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-
+import java.util.Date;
 import java.util.ArrayList;
 
 import static com.example.android.monitoringapp.MonthSummaryActivity.pbDetected;
@@ -70,21 +70,21 @@ public class CalendarActivity extends AppCompatActivity {
         }
 
 
+        Date[] datesAr = new Date[30];
        //look in the database if there is an alert
         dataBDD.open();
         data = dataBDD.getDataWithDate(DayDate);
+        datesAr = dataBDD.getLastMonthAlarm();
         dataBDD.close();
 
-        int pbDetected = data.getAlert();
+        System.out.println("bonjour1: " + datesAr[0].toString());
+        System.out.println("bonjour2: " + datesAr[1].toString());
 
-        //if there is a problem
-        if (pbDetected != 0 ) {
-            ArrayList<CalendarDay> dates = new ArrayList<CalendarDay>();
-            CalendarDay CD = new CalendarDay();
-
-            //what is the date where there was a problem
-            thisMonth =  thisMonth - 1;
-            CD = from(thisYear, thisMonth, thisDay);
+        ArrayList<CalendarDay> dates = new ArrayList<CalendarDay>();
+        CalendarDay CD = new CalendarDay();
+        int i=0;
+        for(i=0;i<datesAr.length;i++){
+            CD = from(datesAr[i]);
             dates.add(CD);
             calendar.addDecorator(new EventDecorator(Color.RED, dates));
         }

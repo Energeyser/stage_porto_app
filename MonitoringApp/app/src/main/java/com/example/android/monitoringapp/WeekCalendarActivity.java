@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.android.monitoringapp.Data.Data;
+import com.example.android.monitoringapp.Data.DataBDD;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -14,6 +18,23 @@ import java.lang.String;
 import static android.media.CamcorderProfile.get;
 
 public class WeekCalendarActivity extends AppCompatActivity {
+
+    DataBDD dataBDD = new DataBDD(this);
+    Data dataWeek = new Data();
+
+    //initialized TextView with data of the month
+    TextView heartMean;
+    TextView heartMin;
+    TextView heartMax;
+
+    TextView systolicBloodMean;
+    TextView waterMean;
+    TextView salinityMean;
+
+    String dateStart = "";
+    String dateEnd = "";
+
+    int cptWeek = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +77,24 @@ public class WeekCalendarActivity extends AppCompatActivity {
         }
 
         TextView titleDateWeek1 = (TextView) findViewById(R.id.date_week_summary_week1);
-        if(cpt_week==1) {
-            if(cpt_year==1) {
-                titleDateWeek1.setText("This week (from " + (dayweek1) + "/" + month + "/" + year + " to " + dayNumber + "/" + (month-1) + "/" + (year-1) + ")");
-                cpt_year=0;
+        if (cpt_week == 1) {
+            if (cpt_year == 1) {
+                dateStart = putZero(dayweek1,month,year);
+                dateEnd = putZero(dayNumber,month+1,year+1);
+                titleDateWeek1.setText("This week (from " + (dayweek1) + "/" + month + "/" + year + " to " + dayNumber + "/" + (month + 1) + "/" + (year + 1) + ")");
+                cpt_year = 0;
+            } else {
+                dateStart = putZero(dayweek1,month,year);
+                dateEnd = putZero(dayNumber,month+1,year);
+                titleDateWeek1.setText("This week (from " + (dayweek1) + "/" + month + "/" + year + " to " + dayNumber + "/" + (month + 1) + "/" + year + ")");
             }
-            else{
-                titleDateWeek1.setText("This week (from " + (dayweek1) + "/" + month + "/" + year + " to " + dayNumber + "/" + (month-1) + "/" + year + ")");
-            }
-            cpt_week=0;
-        }
-        else{
+            cpt_week = 0;
+        } else {
+            dateStart = putZero(dayweek1,month,year);
+            dateEnd = putZero(dayNumber,month,year);
             titleDateWeek1.setText("This week (from " + (dayweek1) + "/" + month + "/" + year + " to " + dayNumber + "/" + month + "/" + year + ")");
         }
+        fillWeekFields(dateStart, dateEnd);
 
         //week2
         int dayweek2 = dayweek1-7;
@@ -93,19 +119,24 @@ public class WeekCalendarActivity extends AppCompatActivity {
         }
 
         TextView titleDateWeek2 = (TextView) findViewById(R.id.date_week_summary_week2);
-        if(cpt_week==1) {
-            if(cpt_year==1) {
-                titleDateWeek2.setText("Week from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + (month-1) + "/" + (year-1) );
-                cpt_year=0;
+        if (cpt_week == 1) {
+            if (cpt_year == 1) {
+                dateStart = putZero(dayweek2,month,year);
+                dateEnd = putZero(dayweek1,month+1,year+1);
+                titleDateWeek2.setText("Week from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + (month + 1) + "/" + (year + 1));
+                cpt_year = 0;
+            } else {
+                dateStart = putZero(dayweek2,month,year);
+                dateEnd = putZero(dayweek1,month+1,year);
+                titleDateWeek2.setText("Week from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + (month + 1) + "/" + year);
             }
-            else{
-                titleDateWeek2.setText("Week from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + (month-1) + "/" + year );
-            }
-            cpt_week=0;
-        }
-        else{
+            cpt_week = 0;
+        } else {
+            dateStart = putZero(dayweek2,month,year);
+            dateEnd = putZero(dayweek1,month,year);
             titleDateWeek2.setText("Week from " + (dayweek2) + "/" + month + "/" + year + " to " + dayweek1 + "/" + month + "/" + year);
         }
+        fillWeekFields(dateStart, dateEnd);
 
         //week3
         int dayweek3 = dayweek2-7;
@@ -130,19 +161,24 @@ public class WeekCalendarActivity extends AppCompatActivity {
         }
 
         TextView titleDateWeek3 = (TextView) findViewById(R.id.date_week_summary_week3);
-        if(cpt_week==1) {
-            if(cpt_year==1) {
-                titleDateWeek3.setText("Week from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + (month-1) + "/" + (year-1));
-                cpt_year=0;
+        if (cpt_week == 1) {
+            if (cpt_year == 1) {
+                dateStart = putZero(dayweek3,month,year);
+                dateEnd = putZero(dayweek2,month+1,year+1);
+                titleDateWeek3.setText("Week from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + (month + 1) + "/" + (year + 1));
+                cpt_year = 0;
+            } else {
+                dateStart = putZero(dayweek3,month,year);
+                dateEnd = putZero(dayweek2,month+1,year);
+                titleDateWeek3.setText("Week from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + (month + 1) + "/" + year);
             }
-            else{
-                titleDateWeek3.setText("Week from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + (month-1) + "/" + year);
-            }
-            cpt_week=0;
-        }
-        else{
+            cpt_week = 0;
+        } else {
+            dateStart = putZero(dayweek3,month,year);
+            dateEnd = putZero(dayweek2,month,year);
             titleDateWeek3.setText("Week from " + (dayweek3) + "/" + month + "/" + year + " to " + dayweek2 + "/" + month + "/" + year);
         }
+        fillWeekFields(dateStart, dateEnd);
 
         //week4
         int dayweek4 = dayweek3-7;
@@ -167,19 +203,24 @@ public class WeekCalendarActivity extends AppCompatActivity {
         }
 
         TextView titleDateWeek4 = (TextView) findViewById(R.id.date_week_summary_week4);
-        if(cpt_week==1) {
-            if(cpt_year==1) {
-                titleDateWeek4.setText("Week from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + (month-1) + "/" + (year-1));
-                cpt_year=0;
+        if (cpt_week == 1) {
+            if (cpt_year == 1) {
+                dateStart = putZero(dayweek4,month,year);
+                dateEnd = putZero(dayweek3,month+1,year+1);
+                titleDateWeek4.setText("Week from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + (month + 1) + "/" + (year + 1));
+                cpt_year = 0;
+            } else {
+                dateStart = putZero(dayweek3,month,year);
+                dateEnd = putZero(dayweek2,month+1,year);
+                titleDateWeek4.setText("TWeek from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + (month + 1) + "/" + year);
             }
-            else{
-                titleDateWeek4.setText("TWeek from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + (month-1) + "/" + year);
-            }
-            cpt_week=0;
-        }
-        else{
+            cpt_week = 0;
+        } else {
+            dateStart = putZero(dayweek3,month,year);
+            dateEnd = putZero(dayweek2,month,year);
             titleDateWeek4.setText("Week from " + (dayweek4) + "/" + month + "/" + year + " to " + dayweek3 + "/" + month + "/" + year);
         }
+        fillWeekFields(dateStart, dateEnd);
 
         //week5
         int dayweek5 = dayweek4-7;
@@ -204,19 +245,24 @@ public class WeekCalendarActivity extends AppCompatActivity {
         }
 
         TextView titleDateWeek5 = (TextView) findViewById(R.id.date_week_summary_week5);
-        if(cpt_week==1) {
-            if(cpt_year==1) {
-                titleDateWeek5.setText("Week from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + (month-1) + "/" + (year-1));
-                cpt_year=0;
+        if (cpt_week == 1) {
+            if (cpt_year == 1) {
+                dateStart = putZero(dayweek5,month,year);
+                dateEnd = putZero(dayweek4,month+1,year+1);
+                titleDateWeek5.setText("Week from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + (month + 1) + "/" + (year + 1));
+                cpt_year = 0;
+            } else {
+                dateStart = putZero(dayweek5,month,year);
+                dateEnd = putZero(dayweek4,month+1,year);
+                titleDateWeek5.setText("Week from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + (month + 1) + "/" + year);
             }
-            else{
-                titleDateWeek5.setText("Week from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + (month-1) + "/" + year);
-            }
-            cpt_week=0;
-        }
-        else{
+            cpt_week = 0;
+        } else {
+            dateStart = putZero(dayweek5,month,year);
+            dateEnd = putZero(dayweek4,month,year);
             titleDateWeek5.setText("Week from " + (dayweek5) + "/" + month + "/" + year + " to " + dayweek4 + "/" + month + "/" + year);
         }
+        fillWeekFields(dateStart, dateEnd);
     }
 
     public void openMonthSummary(View view){
@@ -247,5 +293,120 @@ public class WeekCalendarActivity extends AppCompatActivity {
     public void openDayCalendar(View view){
         Intent i = new Intent(this, DayCalendarActivity.class);
         startActivity(i);
+    }
+
+    public String putZero(int dayOfMonth, int month, int year){
+        String DayDate ="";
+        //put 0if the number is less than 10(ex:from 9to 09)
+        if(dayOfMonth< 10) {
+            if (month < 10) {
+                DayDate = year + "/" + "0" + month + "/" + "0" + dayOfMonth;
+            }
+            DayDate = year + "/" + month + "/" + "0" + dayOfMonth;
+        }
+        else if(month< 10) {
+            DayDate = year + "/" + "0" + month + "/" + dayOfMonth;
+        }
+
+        return DayDate;
+    }
+
+    public void fillWeekFields(String startDate, String endDate){
+
+        dataBDD.open();
+        dataWeek = dataBDD.getDataForWeek(startDate, endDate);
+        dataBDD.close();
+
+        if(cptWeek == 0){
+            heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week1);
+            heartMax = (TextView) findViewById(R.id.value_max_heart_monitor_week1);
+            heartMean = (TextView) findViewById(R.id.value_mean_heart_monitor_week1);
+
+            heartMin.setText(Integer.toString(dataWeek.getMinimum_hr()));
+            heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
+            heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
+
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week1);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
+
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week1);
+            waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
+
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week1);
+            salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
+        }
+        else if(cptWeek == 1){
+            heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week2);
+            heartMax = (TextView) findViewById(R.id.value_max_heart_monitor_week2);
+            heartMean = (TextView) findViewById(R.id.value_mean_heart_monitor_week2);
+
+            heartMin.setText(Integer.toString(dataWeek.getMinimum_hr()));
+            heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
+            heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
+
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week2);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
+
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week2);
+            waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
+
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week2);
+            salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
+        }
+        else if (cptWeek == 2){
+            heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week3);
+            heartMax = (TextView) findViewById(R.id.value_max_heart_monitor_week3);
+            heartMean = (TextView) findViewById(R.id.value_mean_heart_monitor_week3);
+
+            heartMin.setText(Integer.toString(dataWeek.getMinimum_hr()));
+            heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
+            heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
+
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week3);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
+
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week3);
+            waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
+
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week3);
+            salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
+        }
+        else if( cptWeek == 3){
+            heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week4);
+            heartMax = (TextView) findViewById(R.id.value_max_heart_monitor_week4);
+            heartMean = (TextView) findViewById(R.id.value_mean_heart_monitor_week4);
+
+            heartMin.setText(Integer.toString(dataWeek.getMinimum_hr()));
+            heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
+            heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
+
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week4);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
+
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week4);
+            waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
+
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week4);
+            salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
+        }
+        else if (cptWeek==4){
+            heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week5);
+            heartMax = (TextView) findViewById(R.id.value_max_heart_monitor_week5);
+            heartMean = (TextView) findViewById(R.id.value_mean_heart_monitor_week5);
+
+            heartMin.setText(Integer.toString(dataWeek.getMinimum_hr()));
+            heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
+            heartMean.setText(Integer.toString(dataWeek.getAverage_hr()));
+
+            systolicBloodMean = (TextView) findViewById(R.id.value_mean_blood_pressure_systolic_week5);
+            systolicBloodMean.setText(dataWeek.getBlood_pressure());
+
+            waterMean = (TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content_week5);
+            waterMean.setText(Integer.toString(dataWeek.getThoracic_fluid_content()));
+
+            salinityMean = (TextView) findViewById(R.id.value_mean_sodium_chloride_week5);
+            salinityMean.setText(Integer.toString(dataWeek.getSodium_chloride()));
+        }
+        cptWeek++;
     }
 }

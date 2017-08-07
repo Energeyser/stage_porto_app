@@ -7,12 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.android.monitoringapp.Data.DataContract.DataEntry;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static android.R.attr.data;
-
 
 /**
  * Created by axel- on 19/07/2017.
@@ -201,7 +200,9 @@ public class DataBDD {
         data.setThoracic_fluid_content(dataSum.getThoracic_fluid_content()/cursor.getCount());
         data.setBody_fluid_content(dataSum.getBody_fluid_content()/cursor.getCount());
         data.setSodium_chloride(dataSum.getSodium_chloride()/cursor.getCount());
-        data.setAlert(1);
+        if(dataSum.getAlert() != 0){
+            data.setAlert(dataSum.getAlert());
+        }
         cursor.close();
         //System.out.println(data.toString());
         return data;
@@ -210,6 +211,112 @@ public class DataBDD {
     public Cursor getDataExport(String start, String end){
         Cursor cursor = db.query(TABLE_DATA, new String[] {"*"},null, null, null, null, null);
         return cursor;
+    }
+
+    public Data getDataForWeek(String startDate, String endDate){
+
+        //Cursor cursor = db.rawQuery("SELECT * FROM data WHERE timestamp BETWEEN "+start+" AND "+end);
+        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE +" BETWEEN '"+startDate+"' AND '"+endDate+"'", null, null, null, null);
+
+        Data data = new Data();
+        Data dataSum = new Data();
+
+
+        if(cursor != null)
+        {
+            while (cursor.moveToNext()) {
+                dataSum.setMinimum_hr(dataSum.getMinimum_hr()+cursor.getInt(INDEX_MINIMUM_HR));
+                dataSum.setMaximum_hr(dataSum.getMaximum_hr()+cursor.getInt(INDEX_MAXIMUM_HR));
+                dataSum.setAverage_hr(dataSum.getAverage_hr()+cursor.getInt(INDEX_AVERAGE_HR));
+                dataSum.setMinimum_resp(dataSum.getMinimum_resp()+cursor.getInt(INDEX_MINIMUM_RESP));
+                dataSum.setMaximum_resp(dataSum.getMaximum_resp()+cursor.getInt(INDEX_MAXIMUM_RESP));
+                dataSum.setAverage_resp(dataSum.getAverage_resp()+cursor.getInt(INDEX_AVERAGE_RESP));
+                dataSum.setThoracic_fluid_content(dataSum.getThoracic_fluid_content()+cursor.getInt(INDEX_THORACIC_FRLUID_CONTENT));
+                dataSum.setBody_fluid_content(dataSum.getBody_fluid_content()+cursor.getInt(INDEX_BODY_FLUID_CONTENT));
+                dataSum.setSodium_chloride(dataSum.getSodium_chloride()+cursor.getInt(INDEX_SODIUM_CHLORIDE));
+                if(cursor.getInt(INDEX_ALERT) != 0){
+                    dataSum.setAlert(cursor.getInt(INDEX_ALERT));
+                }
+                System.out.println("summaryyyyyyyyyy: " + dataSum.getMinimum_hr() + "   " + dataSum.getMaximum_hr() +"   "+ dataSum.getAverage_hr());
+            }
+        } else{
+            System.out.println("Error when retrieving the data from the database");
+        }
+
+       if(cursor.getCount() !=0){
+           data.setMinimum_hr(dataSum.getMinimum_hr()/cursor.getCount());
+           data.setMaximum_hr(dataSum.getMaximum_hr()/cursor.getCount());
+           data.setAverage_hr(dataSum.getAverage_hr()/cursor.getCount());
+           data.setMinimum_resp(dataSum.getMinimum_resp()/cursor.getCount());
+           data.setMaximum_resp(dataSum.getMaximum_resp()/cursor.getCount());
+           data.setAverage_resp(dataSum.getAverage_resp()/cursor.getCount());
+           data.setThoracic_fluid_content(dataSum.getThoracic_fluid_content()/cursor.getCount());
+           data.setBody_fluid_content(dataSum.getBody_fluid_content()/cursor.getCount());
+           data.setSodium_chloride(dataSum.getSodium_chloride()/cursor.getCount());
+           if(dataSum.getAlert() != 0){
+               data.setAlert(dataSum.getAlert());
+           }
+           cursor.close();
+       }
+       else{
+           data.setMinimum_hr(0);
+           data.setMaximum_hr(0);
+           data.setAverage_hr(0);
+           data.setMinimum_resp(0);
+           data.setMaximum_resp(0);
+           data.setAverage_resp(0);
+           data.setThoracic_fluid_content(0);
+           data.setBody_fluid_content(0);
+           data.setSodium_chloride(0);
+           data.setAlert(0);
+           cursor.close();
+       }
+
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("ahahaha: " + data.toString());
+        return data;
+    }
+
+    public Date[] getLastMonthAlarm(){
+
+        Calendar theEnd = Calendar.getInstance();
+        Calendar theStart = (Calendar) theEnd.clone();
+
+        theStart.add(Calendar.DAY_OF_MONTH, -30);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String start = dateFormat.format(theStart.getTime());
+        String end = dateFormat.format(theEnd.getTime());
+
+        //Cursor cursor = db.rawQuery("SELECT * FROM data WHERE timestamp BETWEEN "+start+" AND "+end);
+        Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE +" BETWEEN '"+start+"' AND '"+end+"'", null, null, null, null);
+
+        Date[] date = new Date[30];
+
+        int idArray=0;
+        String dateArray ="";
+        SimpleDateFormat dateForm = new SimpleDateFormat("yyyy/MM/dd");
+        Date dateAr = new Date();
+        if(cursor != null) {
+            while (cursor.moveToNext()) {
+                if (cursor.getInt(INDEX_ALERT) != 0) {
+                    dateArray = cursor.getString(INDEX_DATE);
+                    try {
+                        dateAr = dateForm.parse(dateArray);
+                        date[idArray] = dateAr;
+                        idArray++;
+                    } catch (Exception e) {
+                        System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+                        System.err.println(e.getMessage());
+                    }
+                }
+            }
+        }
+        else{
+            System.out.println("Error when retrieving the data from the database");
+        }
+        cursor.close();
+        return date;
     }
 
 }
