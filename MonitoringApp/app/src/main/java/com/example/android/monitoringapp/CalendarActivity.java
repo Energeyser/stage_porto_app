@@ -77,9 +77,6 @@ public class CalendarActivity extends AppCompatActivity {
         datesAr = dataBDD.getLastMonthAlarm();
         dataBDD.close();
 
-        System.out.println("bonjour1: " + datesAr[0].toString());
-        System.out.println("bonjour2: " + datesAr[1].toString());
-
         ArrayList<CalendarDay> dates = new ArrayList<CalendarDay>();
         CalendarDay CD = new CalendarDay();
         int i=0;
