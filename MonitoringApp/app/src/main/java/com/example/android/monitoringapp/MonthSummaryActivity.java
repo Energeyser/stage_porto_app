@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.example.android.monitoringapp.Alert.Alert;
 import com.example.android.monitoringapp.Data.DataBDD;
 import com.example.android.monitoringapp.Data.Data;
 import com.example.android.monitoringapp.Data.Patient;
@@ -58,6 +59,10 @@ public class MonthSummaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_month_summary);
+        //boolean messageSent;
+        //Alert alert = new Alert();
+
+        //messageSent = alert.SendMessage("+33673579282","Test");
 
         patientBDD.open();
         patient = patientBDD.getPatient();

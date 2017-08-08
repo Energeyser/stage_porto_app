@@ -14,56 +14,65 @@ public class Data {
     private String patient_name;
     private int patient_process_number;
     private String date;
-    private int mensal;
     private int minimum_hr;
     private int maximum_hr;
     private int average_hr;
     private int minimum_resp;
     private int maximum_resp;
     private int average_resp;
+    private int minimum_oxy;
+    private int maximum_oxy;
+    private int average_oxy;
     private String ecg_description;
-    private int thoracic_fluid_content;
-    private int body_fluid_content;
-    private String blood_pressure;
-    private int sodium_chloride;
+    private int minimum_thoracic_fluid_content;
+    private int maximum_thoracic_fluid_content;
+    private int average_thoracic_fluid_content;
+    private int minimum_body_fluid_content;
+    private int maximum_body_fluid_content;
+    private int average_body_fluid_content;
+    private String minimum_systolic_blood_pressure;
+    private String maximum_systolic_blood_pressure;
+    private String average_systolic_blood_pressure;
+    private String minimum_diastolic_blood_pressure;
+    private String maximum_diastolic_blood_pressure;
+    private String average_diastolic_blood_pressure;
+    private int minimum_sodium_chloride;
+    private int maximum_sodium_chloride;
+    private int average_sodium_chloride;
     private int alert;
 
     public Data(){}
 
-    public Data(int id,
-                String patient_name,
-                int patient_process_number,
-                String date,
-                int mensal,
-                int minimum_hr,
-                int maximum_hr,
-                int average_hr,
-                int minimum_resp,
-                int maximum_resp,
-                int average_resp,
-                String ecg_description,
-                int thoracic_fluid_content,
-                int body_fluid_content,
-                String blood_pressure,
-                int sodium_chloride,
-                int alert){
+    public Data(int id, String patient_name, int patient_process_number, String date, int minimum_hr, int maximum_hr, int average_hr, int minimum_resp, int maximum_resp, int average_resp, int minimum_oxy, int maximum_oxy, int average_oxy, String ecg_description, int minimum_thoracic_fluid_content, int maximum_thoracic_fluid_content, int average_thoracic_fluid_content, int minimum_body_fluid_content, int maximum_body_fluid_content, int average_body_fluid_content, String minimum_systolic_blood_pressure, String maximum_systolic_blood_pressure, String average_systolic_blood_pressure, String minimum_diastolic_blood_pressure, String maximum_diastolic_blood_pressure, String average_diastolic_blood_pressure, int minimum_sodium_chloride, int maximum_sodium_chloride, int average_sodium_chloride, int alert) {
         this.id = id;
         this.patient_name = patient_name;
         this.patient_process_number = patient_process_number;
         this.date = date;
-        this.mensal = mensal;
         this.minimum_hr = minimum_hr;
         this.maximum_hr = maximum_hr;
         this.average_hr = average_hr;
         this.minimum_resp = minimum_resp;
         this.maximum_resp = maximum_resp;
         this.average_resp = average_resp;
+        this.minimum_oxy = minimum_oxy;
+        this.maximum_oxy = maximum_oxy;
+        this.average_oxy = average_oxy;
         this.ecg_description = ecg_description;
-        this.thoracic_fluid_content = thoracic_fluid_content;
-        this.body_fluid_content = body_fluid_content;
-        this.body_fluid_content = body_fluid_content;
-        this.blood_pressure = blood_pressure;
-        this.sodium_chloride = sodium_chloride;
+        this.minimum_thoracic_fluid_content = minimum_thoracic_fluid_content;
+        this.maximum_thoracic_fluid_content = maximum_thoracic_fluid_content;
+        this.average_thoracic_fluid_content = average_thoracic_fluid_content;
+        this.minimum_body_fluid_content = minimum_body_fluid_content;
+        this.maximum_body_fluid_content = maximum_body_fluid_content;
+        this.average_body_fluid_content = average_body_fluid_content;
+        this.minimum_systolic_blood_pressure = minimum_systolic_blood_pressure;
+        this.maximum_systolic_blood_pressure = maximum_systolic_blood_pressure;
+        this.average_systolic_blood_pressure = average_systolic_blood_pressure;
+        this.minimum_diastolic_blood_pressure = minimum_diastolic_blood_pressure;
+        this.maximum_diastolic_blood_pressure = maximum_diastolic_blood_pressure;
+        this.average_diastolic_blood_pressure = average_diastolic_blood_pressure;
+        this.minimum_sodium_chloride = minimum_sodium_chloride;
+        this.maximum_sodium_chloride = maximum_sodium_chloride;
+        this.average_sodium_chloride = average_sodium_chloride;
         this.alert = alert;
     }
 
@@ -95,17 +104,8 @@ public class Data {
         return date;
     }
 
-
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public int getMensal() {
-        return mensal;
-    }
-
-    public void setMensal(int mensal) {
-        this.mensal = mensal;
     }
 
     public int getMinimum_hr() {
@@ -156,6 +156,30 @@ public class Data {
         this.average_resp = average_resp;
     }
 
+    public int getMinimum_oxy() {
+        return minimum_oxy;
+    }
+
+    public void setMinimum_oxy(int minimum_oxy) {
+        this.minimum_oxy = minimum_oxy;
+    }
+
+    public int getMaximum_oxy() {
+        return maximum_oxy;
+    }
+
+    public void setMaximum_oxy(int maximum_oxy) {
+        this.maximum_oxy = maximum_oxy;
+    }
+
+    public int getAverage_oxy() {
+        return average_oxy;
+    }
+
+    public void setAverage_oxy(int average_oxy) {
+        this.average_oxy = average_oxy;
+    }
+
     public String getEcg_description() {
         return ecg_description;
     }
@@ -164,36 +188,124 @@ public class Data {
         this.ecg_description = ecg_description;
     }
 
-    public int getThoracic_fluid_content() {
-        return thoracic_fluid_content;
+    public int getMinimum_thoracic_fluid_content() {
+        return minimum_thoracic_fluid_content;
     }
 
-    public void setThoracic_fluid_content(int thoracic_fluid_content) {
-        this.thoracic_fluid_content = thoracic_fluid_content;
+    public void setMinimum_thoracic_fluid_content(int minimum_thoracic_fluid_content) {
+        this.minimum_thoracic_fluid_content = minimum_thoracic_fluid_content;
     }
 
-    public int getBody_fluid_content() {
-        return body_fluid_content;
+    public int getMaximum_thoracic_fluid_content() {
+        return maximum_thoracic_fluid_content;
     }
 
-    public void setBody_fluid_content(int body_fluid_content) {
-        this.body_fluid_content = body_fluid_content;
+    public void setMaximum_thoracic_fluid_content(int maximum_thoracic_fluid_content) {
+        this.maximum_thoracic_fluid_content = maximum_thoracic_fluid_content;
     }
 
-    public String getBlood_pressure() {
-        return blood_pressure;
+    public int getAverage_thoracic_fluid_content() {
+        return average_thoracic_fluid_content;
     }
 
-    public void setBlood_pressure(String blood_pressure) {
-        this.blood_pressure = blood_pressure;
+    public void setAverage_thoracic_fluid_content(int average_thoracic_fluid_content) {
+        this.average_thoracic_fluid_content = average_thoracic_fluid_content;
     }
 
-    public int getSodium_chloride() {
-        return sodium_chloride;
+    public int getMinimum_body_fluid_content() {
+        return minimum_body_fluid_content;
     }
 
-    public void setSodium_chloride(int sodium_chloride) {
-        this.sodium_chloride = sodium_chloride;
+    public void setMinimum_body_fluid_content(int minimum_body_fluid_content) {
+        this.minimum_body_fluid_content = minimum_body_fluid_content;
+    }
+
+    public int getMaximum_body_fluid_content() {
+        return maximum_body_fluid_content;
+    }
+
+    public void setMaximum_body_fluid_content(int maximum_body_fluid_content) {
+        this.maximum_body_fluid_content = maximum_body_fluid_content;
+    }
+
+    public int getAverage_body_fluid_content() {
+        return average_body_fluid_content;
+    }
+
+    public void setAverage_body_fluid_content(int average_body_fluid_content) {
+        this.average_body_fluid_content = average_body_fluid_content;
+    }
+
+    public String getMinimum_systolic_blood_pressure() {
+        return minimum_systolic_blood_pressure;
+    }
+
+    public void setMinimum_systolic_blood_pressure(String minimum_systolic_blood_pressure) {
+        this.minimum_systolic_blood_pressure = minimum_systolic_blood_pressure;
+    }
+
+    public String getMaximum_systolic_blood_pressure() {
+        return maximum_systolic_blood_pressure;
+    }
+
+    public void setMaximum_systolic_blood_pressure(String maximum_systolic_blood_pressure) {
+        this.maximum_systolic_blood_pressure = maximum_systolic_blood_pressure;
+    }
+
+    public String getAverage_systolic_blood_pressure() {
+        return average_systolic_blood_pressure;
+    }
+
+    public void setAverage_systolic_blood_pressure(String average_systolic_blood_pressure) {
+        this.average_systolic_blood_pressure = average_systolic_blood_pressure;
+    }
+
+    public String getMinimum_diastolic_blood_pressure() {
+        return minimum_diastolic_blood_pressure;
+    }
+
+    public void setMinimum_diastolic_blood_pressure(String minimum_diastolic_blood_pressure) {
+        this.minimum_diastolic_blood_pressure = minimum_diastolic_blood_pressure;
+    }
+
+    public String getMaximum_diastolic_blood_pressure() {
+        return maximum_diastolic_blood_pressure;
+    }
+
+    public void setMaximum_diastolic_blood_pressure(String maximum_diastolic_blood_pressure) {
+        this.maximum_diastolic_blood_pressure = maximum_diastolic_blood_pressure;
+    }
+
+    public String getAverage_diastolic_blood_pressure() {
+        return average_diastolic_blood_pressure;
+    }
+
+    public void setAverage_diastolic_blood_pressure(String average_diastolic_blood_pressure) {
+        this.average_diastolic_blood_pressure = average_diastolic_blood_pressure;
+    }
+
+    public int getMinimum_sodium_chloride() {
+        return minimum_sodium_chloride;
+    }
+
+    public void setMinimum_sodium_chloride(int minimum_sodium_chloride) {
+        this.minimum_sodium_chloride = minimum_sodium_chloride;
+    }
+
+    public int getMaximum_sodium_chloride() {
+        return maximum_sodium_chloride;
+    }
+
+    public void setMaximum_sodium_chloride(int maximum_sodium_chloride) {
+        this.maximum_sodium_chloride = maximum_sodium_chloride;
+    }
+
+    public int getAverage_sodium_chloride() {
+        return average_sodium_chloride;
+    }
+
+    public void setAverage_sodium_chloride(int average_sodium_chloride) {
+        this.average_sodium_chloride = average_sodium_chloride;
     }
 
     public int getAlert() {
@@ -204,32 +316,39 @@ public class Data {
         this.alert = alert;
     }
 
-    public String toString(){
-        return "ID : "+id+"\nName : "+patient_name+"\nProcess Number : "+patient_process_number+
-                "\nDate : "+date+"\nMensal : "
-                +mensal+"\nminimum_hr : "+minimum_hr+"\nmaximum_hr : "+maximum_hr
-                +"\naverage_hr : "+average_hr+"\nminimum_resp : "+minimum_resp
-                +"\nmaximum_resp : "+maximum_resp+"\naverage_resp : "+average_resp
-                +"\necg_description : "+ecg_description+"\nthoracic_fluif_content : "+thoracic_fluid_content
-                +"\nbody_fluid_content : "+body_fluid_content+"\nblood_pressure : "+blood_pressure
-                +"\nsodium_chloride : "+sodium_chloride+"\nalert : "+alert;
+    @Override
+    public String toString() {
+        return "Data{" +
+                "id=" + id +
+                ", patient_name='" + patient_name + '\'' +
+                ", patient_process_number=" + patient_process_number +
+                ", date='" + date + '\'' +
+                ", minimum_hr=" + minimum_hr +
+                ", maximum_hr=" + maximum_hr +
+                ", average_hr=" + average_hr +
+                ", minimum_resp=" + minimum_resp +
+                ", maximum_resp=" + maximum_resp +
+                ", average_resp=" + average_resp +
+                ", minimum_oxy=" + minimum_oxy +
+                ", maximum_oxy=" + maximum_oxy +
+                ", average_oxy=" + average_oxy +
+                ", ecg_description='" + ecg_description + '\'' +
+                ", minimum_thoracic_fluid_content=" + minimum_thoracic_fluid_content +
+                ", maximum_thoracic_fluid_content=" + maximum_thoracic_fluid_content +
+                ", average_thoracic_fluid_content=" + average_thoracic_fluid_content +
+                ", minimum_body_fluid_content=" + minimum_body_fluid_content +
+                ", maximum_body_fluid_content=" + maximum_body_fluid_content +
+                ", average_body_fluid_content=" + average_body_fluid_content +
+                ", minimum_systolic_blood_pressure='" + minimum_systolic_blood_pressure + '\'' +
+                ", maximum_systolic_blood_pressure='" + maximum_systolic_blood_pressure + '\'' +
+                ", average_systolic_blood_pressure='" + average_systolic_blood_pressure + '\'' +
+                ", minimum_diastolic_blood_pressure='" + minimum_diastolic_blood_pressure + '\'' +
+                ", maximum_diastolic_blood_pressure='" + maximum_diastolic_blood_pressure + '\'' +
+                ", average_diastolic_blood_pressure='" + average_diastolic_blood_pressure + '\'' +
+                ", minimum_sodium_chloride=" + minimum_sodium_chloride +
+                ", maximum_sodium_chloride=" + maximum_sodium_chloride +
+                ", average_sodium_chloride=" + average_sodium_chloride +
+                ", alert=" + alert +
+                '}';
     }
-   /* int id,
-    String patient_name,
-    int patient_process_number,
-    int date,
-    int mensal,
-    int minimum_hr,
-    int maximum_hr,
-    int average_hr,
-    int minimum_resp,
-    int maximum_resp,
-    int average_resp,
-    String ecg_description,
-    int thoracic_fluid_content,
-    int body_fluid_content,
-    int blood_pressure,
-    int sodium_chloride,
-    int alert*/
-
 }
