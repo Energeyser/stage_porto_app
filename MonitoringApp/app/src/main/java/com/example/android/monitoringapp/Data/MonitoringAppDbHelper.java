@@ -91,18 +91,31 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
                 + DataEntry.COLUMN_PATIENT_NAME + " TEXT NOT NULL, "
                 + DataEntry.COLUMN_PATIENT_PROCESS_NUMBER + " INTEGER NOT NULL, "
                 + DataEntry.COLUMN_DATE + " STRING, "
-                + DataEntry.COLUMN_MENSAL + " INTEGER,"
                 + DataEntry.COLUMN_MIN_HR + " INTEGER,"
                 + DataEntry.COLUMN_MAX_HR + " INTEGER,"
                 + DataEntry.COLUMN_AVERAGE_HR + " INTEGER,"
                 + DataEntry.COLUMN_MIN_RESP + " INTEGER,"
                 + DataEntry.COLUMN_MAX_RESP + " INTEGER,"
                 + DataEntry.COLUMN_AVERAGE_RESP + " INTEGER,"
+                + DataEntry.COLUMN_MIN_OXY + " INTEGER,"
+                + DataEntry.COLUMN_MAX_OXY + " INTEGER,"
+                + DataEntry.COLUMN_AVERAGE_OXY + " INTEGER,"
                 + DataEntry.COLUMN_ECG_DESCRIPTION + " STRING,"
-                + DataEntry.COLUMN_THORACIC_FC + " INTEGER,"
-                + DataEntry.COLUMN_BODY_FC + " INTEGER,"
-                + DataEntry.COLUMN_BLOOD_PRESSURE + " STRING,"
-                + DataEntry.COLUMN_SODIUM + " INTEGER,"
+                + DataEntry.COLUMN_MIN_THORACIC_FC + " INTEGER,"
+                + DataEntry.COLUMN_MAX_THORACIC_FC + " INTEGER,"
+                + DataEntry.COLUMN_AVERAGE_THORACIC_FC + " INTEGER,"
+                + DataEntry.COLUMN_MIN_BODY_FC + " INTEGER,"
+                + DataEntry.COLUMN_MAX_BODY_FC + " INTEGER,"
+                + DataEntry.COLUMN_AVERAGE_BODY_FC + " INTEGER,"
+                + DataEntry.COLUMN_MIN_SYSTOLIC_BP + " INTEGER,"
+                + DataEntry.COLUMN_MAX_SYSTOLIC_BP + " INTEGER,"
+                + DataEntry.COLUMN_AVERAGE_SYSTOLIC_BP + " INTEGER,"
+                + DataEntry.COLUMN_MIN_DIASTOLIC_BP + " INTEGER,"
+                + DataEntry.COLUMN_MAX_DIASTOLIC_BP + " INTEGER,"
+                + DataEntry.COLUMN_AVERAGE_DIASTOLIC_BP + " INTEGER,"
+                + DataEntry.COLUMN_MIN_SODIUM + " INTEGER,"
+                + DataEntry.COLUMN_MAX_SODIUM + " INTEGER,"
+                + DataEntry.COLUMN_AVERAGE_SODIUM + " INTEGER,"
                 + DataEntry.COLUMN_ALERT + " INTEGER);";
 
         // Execute the SQL statement
@@ -113,41 +126,67 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         values.put(DataEntry.COLUMN_PATIENT_NAME, "Default Name");
         values.put(DataEntry.COLUMN_PATIENT_PROCESS_NUMBER, "1");
         values.put(DataEntry.COLUMN_DATE, "2017/07/28");
-        values.put(DataEntry.COLUMN_MENSAL, "1");
         values.put(DataEntry.COLUMN_MIN_HR, "55");
         values.put(DataEntry.COLUMN_MAX_HR, "105");
         values.put(DataEntry.COLUMN_AVERAGE_HR, "75");
         values.put(DataEntry.COLUMN_MIN_RESP, "13");
         values.put(DataEntry.COLUMN_MAX_RESP, "17");
         values.put(DataEntry.COLUMN_AVERAGE_RESP, "15");
+        values.put(DataEntry.COLUMN_MIN_OXY, "95");
+        values.put(DataEntry.COLUMN_MAX_OXY, "100");
+        values.put(DataEntry.COLUMN_AVERAGE_OXY, "98");
         values.put(DataEntry.COLUMN_ECG_DESCRIPTION, "ecg description");
-        values.put(DataEntry.COLUMN_THORACIC_FC, "15");
-        values.put(DataEntry.COLUMN_BODY_FC, "75");
-        values.put(DataEntry.COLUMN_BLOOD_PRESSURE, "125/82");
-        values.put(DataEntry.COLUMN_SODIUM, "40");
-        values.put(DataEntry.COLUMN_ALERT,"0");
+        values.put(DataEntry.COLUMN_MIN_THORACIC_FC, "15");
+        values.put(DataEntry.COLUMN_MAX_THORACIC_FC, "20");
+        values.put(DataEntry.COLUMN_AVERAGE_THORACIC_FC, "17");
+        values.put(DataEntry.COLUMN_MIN_BODY_FC, "75");
+        values.put(DataEntry.COLUMN_MAX_BODY_FC, "85");
+        values.put(DataEntry.COLUMN_AVERAGE_BODY_FC, "80");
+        values.put(DataEntry.COLUMN_MIN_SYSTOLIC_BP, "100");
+        values.put(DataEntry.COLUMN_MAX_SYSTOLIC_BP, "110");
+        values.put(DataEntry.COLUMN_AVERAGE_SYSTOLIC_BP, "105");
+        values.put(DataEntry.COLUMN_MIN_DIASTOLIC_BP, "65");
+        values.put(DataEntry.COLUMN_MAX_DIASTOLIC_BP, "75");
+        values.put(DataEntry.COLUMN_AVERAGE_DIASTOLIC_BP, "70");
+        values.put(DataEntry.COLUMN_MIN_SODIUM, "40");
+        values.put(DataEntry.COLUMN_MAX_SODIUM, "40");
+        values.put(DataEntry.COLUMN_AVERAGE_SODIUM, "40");
+        values.put(DataEntry.COLUMN_ALERT,"1");
         db.insert(DataEntry.TABLE_NAME,null,values);
 
         values.clear();
 
         //Creation of a ContentValues (working like a HashMap)
         values.put(DataEntry._ID,2);
-        values.put(DataEntry.COLUMN_PATIENT_NAME, "Default Name 2");
+        values.put(DataEntry.COLUMN_PATIENT_NAME, "Default Name");
         values.put(DataEntry.COLUMN_PATIENT_PROCESS_NUMBER, "2");
-        values.put(DataEntry.COLUMN_DATE, "2017/07/29");
-        values.put(DataEntry.COLUMN_MENSAL, "1");
-        values.put(DataEntry.COLUMN_MIN_HR, "50");
-        values.put(DataEntry.COLUMN_MAX_HR, "130");
+        values.put(DataEntry.COLUMN_DATE, "2017/07/30");
+        values.put(DataEntry.COLUMN_MIN_HR, "60");
+        values.put(DataEntry.COLUMN_MAX_HR, "110");
         values.put(DataEntry.COLUMN_AVERAGE_HR, "80");
         values.put(DataEntry.COLUMN_MIN_RESP, "12");
-        values.put(DataEntry.COLUMN_MAX_RESP, "16");
+        values.put(DataEntry.COLUMN_MAX_RESP, "18");
         values.put(DataEntry.COLUMN_AVERAGE_RESP, "14");
-        values.put(DataEntry.COLUMN_ECG_DESCRIPTION, "ecg description 2");
-        values.put(DataEntry.COLUMN_THORACIC_FC, "17");
-        values.put(DataEntry.COLUMN_BODY_FC, "78");
-        values.put(DataEntry.COLUMN_BLOOD_PRESSURE, "123/80");
-        values.put(DataEntry.COLUMN_SODIUM, "50");
-        values.put(DataEntry.COLUMN_ALERT,"0");
+        values.put(DataEntry.COLUMN_MIN_OXY, "96");
+        values.put(DataEntry.COLUMN_MAX_OXY, "99");
+        values.put(DataEntry.COLUMN_AVERAGE_OXY, "98");
+        values.put(DataEntry.COLUMN_ECG_DESCRIPTION, "ecg description");
+        values.put(DataEntry.COLUMN_MIN_THORACIC_FC, "15");
+        values.put(DataEntry.COLUMN_MAX_THORACIC_FC, "20");
+        values.put(DataEntry.COLUMN_AVERAGE_THORACIC_FC, "17");
+        values.put(DataEntry.COLUMN_MIN_BODY_FC, "75");
+        values.put(DataEntry.COLUMN_MAX_BODY_FC, "85");
+        values.put(DataEntry.COLUMN_AVERAGE_BODY_FC, "80");
+        values.put(DataEntry.COLUMN_MIN_SYSTOLIC_BP, "100");
+        values.put(DataEntry.COLUMN_MAX_SYSTOLIC_BP, "110");
+        values.put(DataEntry.COLUMN_AVERAGE_SYSTOLIC_BP, "105");
+        values.put(DataEntry.COLUMN_MIN_DIASTOLIC_BP, "65");
+        values.put(DataEntry.COLUMN_MAX_DIASTOLIC_BP, "75");
+        values.put(DataEntry.COLUMN_AVERAGE_DIASTOLIC_BP, "70");
+        values.put(DataEntry.COLUMN_MIN_SODIUM, "40");
+        values.put(DataEntry.COLUMN_MAX_SODIUM, "40");
+        values.put(DataEntry.COLUMN_AVERAGE_SODIUM, "40");
+        values.put(DataEntry.COLUMN_ALERT,"2");
         db.insert(DataEntry.TABLE_NAME,null,values);
     }
 

@@ -109,7 +109,6 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:layout_marginBottom="10dp">
-
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -1015,6 +1014,7 @@
                                 android:textAppearance="@style/MinMaxMeasure"/>
                         </LinearLayout>
                     </LinearLayout>
+
                 </LinearLayout>
         </ScrollView>
         <LinearLayout
