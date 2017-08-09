@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.android.monitoringapp.Data.DataContract.DataEntry;
-
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -297,6 +296,10 @@ public class DataBDD {
         String dateArray ="";
         SimpleDateFormat dateForm = new SimpleDateFormat("yyyy/MM/dd");
         Date dateAr = new Date();
+
+        String dateErr = "0000/00/00";
+        Date dateError = new Date();
+
         if(cursor != null) {
             while (cursor.moveToNext()) {
                 if (cursor.getInt(INDEX_ALERT) != 0) {
@@ -310,6 +313,19 @@ public class DataBDD {
                         System.err.println(e.getMessage());
                     }
                 }
+            }
+            if(date[0] == null){
+                System.out.println("Ca ne marche pas");
+                try {
+                    dateError = dateForm.parse(dateErr);
+                    date[0] = dateError;
+                    System.out.println("ahbh " + date[0].toString());
+                }
+                catch (Exception e) {
+                    System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+                    System.err.println(e.getMessage());
+                }
+                return date;
             }
         }
         else{

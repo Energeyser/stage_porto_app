@@ -125,7 +125,7 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         values.put(DataEntry.COLUMN_BODY_FC, "75");
         values.put(DataEntry.COLUMN_BLOOD_PRESSURE, "125/82");
         values.put(DataEntry.COLUMN_SODIUM, "40");
-        values.put(DataEntry.COLUMN_ALERT,"1");
+        values.put(DataEntry.COLUMN_ALERT,"0");
         db.insert(DataEntry.TABLE_NAME,null,values);
 
         values.clear();
@@ -147,7 +147,7 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         values.put(DataEntry.COLUMN_BODY_FC, "78");
         values.put(DataEntry.COLUMN_BLOOD_PRESSURE, "123/80");
         values.put(DataEntry.COLUMN_SODIUM, "50");
-        values.put(DataEntry.COLUMN_ALERT,"2");
+        values.put(DataEntry.COLUMN_ALERT,"0");
         db.insert(DataEntry.TABLE_NAME,null,values);
     }
 

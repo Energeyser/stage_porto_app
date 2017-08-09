@@ -7,7 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import com.example.android.monitoringapp.Data.Data;
 import com.example.android.monitoringapp.Data.DataBDD;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -77,18 +78,31 @@ public class CalendarActivity extends AppCompatActivity {
         datesAr = dataBDD.getLastMonthAlarm();
         dataBDD.close();
 
-        System.out.println("bonjour1: " + datesAr[0].toString());
-        System.out.println("bonjour2: " + datesAr[1].toString());
+        SimpleDateFormat dateForm = new SimpleDateFormat("yyyy/MM/dd");
+        String dateErr = "0000/00/00";
+        Date dateError = new Date();
 
-        ArrayList<CalendarDay> dates = new ArrayList<CalendarDay>();
-        CalendarDay CD = new CalendarDay();
-        int i=0;
-        for(i=0;i<datesAr.length;i++){
-            CD = from(datesAr[i]);
-            dates.add(CD);
-            calendar.addDecorator(new EventDecorator(Color.RED, dates));
+        try {
+            dateError = dateForm.parse(dateErr);
+        }
+        catch (Exception e) {
+            System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+            System.err.println(e.getMessage());
         }
 
+      if(datesAr[0] == dateError){
+          System.out.println("Il y a pas de valeur ou il y a un pb");
+      }
+      else{
+          ArrayList<CalendarDay> dates = new ArrayList<CalendarDay>();
+          CalendarDay CD = new CalendarDay();
+          int i=0;
+          for(i=0;i<datesAr.length;i++){
+              CD = from(datesAr[i]);
+              dates.add(CD);
+              calendar.addDecorator(new EventDecorator(Color.RED, dates));
+          }
+      }
         calendar.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
