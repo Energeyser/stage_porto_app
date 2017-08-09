@@ -30,12 +30,12 @@ public class Data {
     private int minimum_body_fluid_content;
     private int maximum_body_fluid_content;
     private int average_body_fluid_content;
-    private String minimum_systolic_blood_pressure;
-    private String maximum_systolic_blood_pressure;
-    private String average_systolic_blood_pressure;
-    private String minimum_diastolic_blood_pressure;
-    private String maximum_diastolic_blood_pressure;
-    private String average_diastolic_blood_pressure;
+    private int minimum_systolic_blood_pressure;
+    private int maximum_systolic_blood_pressure;
+    private int average_systolic_blood_pressure;
+    private int minimum_diastolic_blood_pressure;
+    private int maximum_diastolic_blood_pressure;
+    private int average_diastolic_blood_pressure;
     private int minimum_sodium_chloride;
     private int maximum_sodium_chloride;
     private int average_sodium_chloride;
@@ -43,7 +43,7 @@ public class Data {
 
     public Data(){}
 
-    public Data(int id, String patient_name, int patient_process_number, String date, int minimum_hr, int maximum_hr, int average_hr, int minimum_resp, int maximum_resp, int average_resp, int minimum_oxy, int maximum_oxy, int average_oxy, String ecg_description, int minimum_thoracic_fluid_content, int maximum_thoracic_fluid_content, int average_thoracic_fluid_content, int minimum_body_fluid_content, int maximum_body_fluid_content, int average_body_fluid_content, String minimum_systolic_blood_pressure, String maximum_systolic_blood_pressure, String average_systolic_blood_pressure, String minimum_diastolic_blood_pressure, String maximum_diastolic_blood_pressure, String average_diastolic_blood_pressure, int minimum_sodium_chloride, int maximum_sodium_chloride, int average_sodium_chloride, int alert) {
+    public Data(int id, String patient_name, int patient_process_number, String date, int minimum_hr, int maximum_hr, int average_hr, int minimum_resp, int maximum_resp, int average_resp, int minimum_oxy, int maximum_oxy, int average_oxy, String ecg_description, int minimum_thoracic_fluid_content, int maximum_thoracic_fluid_content, int average_thoracic_fluid_content, int minimum_body_fluid_content, int maximum_body_fluid_content, int average_body_fluid_content, int minimum_systolic_blood_pressure, int maximum_systolic_blood_pressure, int average_systolic_blood_pressure, int minimum_diastolic_blood_pressure, int maximum_diastolic_blood_pressure, int average_diastolic_blood_pressure, int minimum_sodium_chloride, int maximum_sodium_chloride, int average_sodium_chloride, int alert) {
         this.id = id;
         this.patient_name = patient_name;
         this.patient_process_number = patient_process_number;
@@ -236,51 +236,51 @@ public class Data {
         this.average_body_fluid_content = average_body_fluid_content;
     }
 
-    public String getMinimum_systolic_blood_pressure() {
+    public int getMinimum_systolic_blood_pressure() {
         return minimum_systolic_blood_pressure;
     }
 
-    public void setMinimum_systolic_blood_pressure(String minimum_systolic_blood_pressure) {
+    public void setMinimum_systolic_blood_pressure(int minimum_systolic_blood_pressure) {
         this.minimum_systolic_blood_pressure = minimum_systolic_blood_pressure;
     }
 
-    public String getMaximum_systolic_blood_pressure() {
+    public int getMaximum_systolic_blood_pressure() {
         return maximum_systolic_blood_pressure;
     }
 
-    public void setMaximum_systolic_blood_pressure(String maximum_systolic_blood_pressure) {
+    public void setMaximum_systolic_blood_pressure(int maximum_systolic_blood_pressure) {
         this.maximum_systolic_blood_pressure = maximum_systolic_blood_pressure;
     }
 
-    public String getAverage_systolic_blood_pressure() {
+    public int getAverage_systolic_blood_pressure() {
         return average_systolic_blood_pressure;
     }
 
-    public void setAverage_systolic_blood_pressure(String average_systolic_blood_pressure) {
+    public void setAverage_systolic_blood_pressure(int average_systolic_blood_pressure) {
         this.average_systolic_blood_pressure = average_systolic_blood_pressure;
     }
 
-    public String getMinimum_diastolic_blood_pressure() {
+    public int getMinimum_diastolic_blood_pressure() {
         return minimum_diastolic_blood_pressure;
     }
 
-    public void setMinimum_diastolic_blood_pressure(String minimum_diastolic_blood_pressure) {
+    public void setMinimum_diastolic_blood_pressure(int minimum_diastolic_blood_pressure) {
         this.minimum_diastolic_blood_pressure = minimum_diastolic_blood_pressure;
     }
 
-    public String getMaximum_diastolic_blood_pressure() {
+    public int getMaximum_diastolic_blood_pressure() {
         return maximum_diastolic_blood_pressure;
     }
 
-    public void setMaximum_diastolic_blood_pressure(String maximum_diastolic_blood_pressure) {
+    public void setMaximum_diastolic_blood_pressure(int maximum_diastolic_blood_pressure) {
         this.maximum_diastolic_blood_pressure = maximum_diastolic_blood_pressure;
     }
 
-    public String getAverage_diastolic_blood_pressure() {
+    public int getAverage_diastolic_blood_pressure() {
         return average_diastolic_blood_pressure;
     }
 
-    public void setAverage_diastolic_blood_pressure(String average_diastolic_blood_pressure) {
+    public void setAverage_diastolic_blood_pressure(int average_diastolic_blood_pressure) {
         this.average_diastolic_blood_pressure = average_diastolic_blood_pressure;
     }
 

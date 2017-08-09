@@ -113,13 +113,13 @@ public class MonthSummaryActivity extends AppCompatActivity {
         heartMean.setText(Integer.toString(dataMonth.getAverage_hr()));
 
         thoracicBloodMean =(TextView) findViewById(R.id.value_mean_blood_pressure_systolic);
-        thoracicBloodMean.setText(dataMonth.getBlood_pressure());
+        thoracicBloodMean.setText(Integer.toString(dataMonth.getAverage_systolic_blood_pressure()));
 
         waterMean =(TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content);
-        waterMean.setText(Integer.toString(dataMonth.getThoracic_fluid_content()));
+        waterMean.setText(Integer.toString(dataMonth.getAverage_thoracic_fluid_content()));
 
         salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride);
-        salinityMean.setText(Integer.toString(dataMonth.getSodium_chloride()));
+        salinityMean.setText(Integer.toString(dataMonth.getAverage_sodium_chloride()));
 
     }
 

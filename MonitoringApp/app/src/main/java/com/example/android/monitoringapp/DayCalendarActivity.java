@@ -61,13 +61,13 @@ public class DayCalendarActivity extends AppCompatActivity {
         heartMean.setText(Integer.toString(data.getAverage_hr()));
 
         systolicBloodMean =(TextView) findViewById(R.id.value_mean_blood_pressure_systolic);
-        systolicBloodMean.setText(data.getBlood_pressure());
+        systolicBloodMean.setText(Integer.toString(data.getAverage_systolic_blood_pressure()));
 
         waterMean =(TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content);
-        waterMean.setText(Integer.toString(data.getThoracic_fluid_content()));
+        waterMean.setText(Integer.toString(data.getAverage_thoracic_fluid_content()));
 
         salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride);
-        salinityMean.setText(Integer.toString(data.getSodium_chloride()));
+        salinityMean.setText(Integer.toString(data.getAverage_sodium_chloride()));
     }
 
     public void openMonthSummary(View view){

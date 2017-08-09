@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.Date;
 
 import com.example.android.monitoringapp.Data.Data;
@@ -25,7 +26,9 @@ import com.example.android.monitoringapp.Data.DataBDD;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+
 import java.text.SimpleDateFormat;
 
 public class ExportActivity extends AppCompatActivity {
@@ -71,40 +74,40 @@ public class ExportActivity extends AppCompatActivity {
         });
     }
 
-    public void openMonthSummary(View view){
+    public void openMonthSummary(View view) {
         Intent i = new Intent(this, MonthSummaryActivity.class);
         startActivity(i);
     }
 
-    public void openCalendar(View view){
+    public void openCalendar(View view) {
         Intent i = new Intent(this, CalendarActivity.class);
         startActivity(i);
     }
 
-    public void openExport(View view){
+    public void openExport(View view) {
         Intent i = new Intent(this, ExportActivity.class);
         startActivity(i);
     }
 
-    public void openDoctorInformation(View view){
+    public void openDoctorInformation(View view) {
         Intent i = new Intent(this, DoctorInformationActivity.class);
         startActivity(i);
     }
 
-    public void openExportSuccessful(View view){
+    public void openExportSuccessful(View view) {
         Intent i = new Intent(this, ExportSuccessfulActivity.class);
         startActivity(i);
     }
 
-    public void openDateFrom(View view){
+    public void openDateFrom(View view) {
         showDialog(999);
         datePickerCheck = 1;
 
     }
 
-    public void openDateTo(View view){
+    public void openDateTo(View view) {
         showDialog(999);
-        datePickerCheck = 2 ;
+        datePickerCheck = 2;
     }
 
     @Override
@@ -116,9 +119,9 @@ public class ExportActivity extends AppCompatActivity {
         return null;
     }
 
-    View.OnClickListener myhandler = new View.OnClickListener(){
+    View.OnClickListener myhandler = new View.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             Toast.makeText(getBaseContext(), " Ouais ouais le click", Toast.LENGTH_LONG).show();
             try {
                 File sdCardDir = Environment.getExternalStorageDirectory();
@@ -128,7 +131,7 @@ public class ExportActivity extends AppCompatActivity {
 
                 BufferedWriter bw = new BufferedWriter(fw);
                 dataBDD.open();
-                Cursor cursor = dataBDD.getDataExport("2017/07/25","2017/07/24");
+                Cursor cursor = dataBDD.getDataExport("2017/07/25", "2017/07/24");
 
                 int rowcount;
                 int colcount;
@@ -174,13 +177,12 @@ public class ExportActivity extends AppCompatActivity {
     };
 
 
-
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-              year = arg1;
-              month = arg2 + 1 ;
-              day = arg3 ;
+            year = arg1;
+            month = arg2 + 1;
+            day = arg3;
 
             TextView dateFrom;
             String newDateFrom;
@@ -190,10 +192,10 @@ public class ExportActivity extends AppCompatActivity {
 
             dateFrom = (TextView) findViewById(R.id.date_from_export_calendar);
             dateTo = (TextView) findViewById(R.id.date_to_export_calendar);
-            String from = (String)dateFrom.getText();
-            String to = (String)dateTo.getText();
+            String from = (String) dateFrom.getText();
+            String to = (String) dateTo.getText();
 
-            System.out.println("from: "+from+ " to: "+to);
+            System.out.println("from: " + from + " to: " + to);
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date dateF = new Date();
@@ -229,47 +231,41 @@ public class ExportActivity extends AppCompatActivity {
             }
 
 
-            if(datePickerCheck==1) {
+            if (datePickerCheck == 1) {
                 newDateFrom = putZero(day, month, year);
-                if(to == ""){
+                if (to == "") {
                     dateFrom.setText(newDateFrom);
-                }
-                else {
+                } else {
                     try {
                         newDat = dateForm.parse(newDateFrom);
                     } catch (Exception e) {
                         System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
                         System.err.println(e.getMessage());
                     }
-                    if (newDat.after(todayDay)){
+                    if (newDat.after(todayDay)) {
                         Toast.makeText(getBaseContext(), " You need to choose a date before today", Toast.LENGTH_LONG).show();
-                    }
-                    else if (newDat.after(dateT)) {
+                    } else if (newDat.after(dateT)) {
                         Toast.makeText(getBaseContext(), " The date from is after the date to, correct please", Toast.LENGTH_LONG).show();
                     } else {
                         dateFrom.setText(newDateFrom);
                     }
                 }
-            }
-            else if(datePickerCheck==2) {
+            } else if (datePickerCheck == 2) {
                 newDateTo = putZero(day, month, year);
-                if(from == ""){
+                if (from == "") {
                     dateTo.setText(newDateTo);
-                }
-                else {
+                } else {
                     try {
                         newDat = dateForm.parse(newDateTo);
                     } catch (Exception e) {
                         System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
                         System.err.println(e.getMessage());
                     }
-                    if (newDat.after(todayDay)){
+                    if (newDat.after(todayDay)) {
                         Toast.makeText(getBaseContext(), " You need to choose a date before today", Toast.LENGTH_LONG).show();
-                    }
-                    else if (newDat.before(dateF)) {
+                    } else if (newDat.before(dateF)) {
                         Toast.makeText(getBaseContext(), " The date to is before the date from, correct please", Toast.LENGTH_LONG).show();
-                    }
-                    else{
+                    } else {
                         dateTo.setText(newDateTo);
                     }
                 }
@@ -277,16 +273,15 @@ public class ExportActivity extends AppCompatActivity {
         }
     };
 
-    public String putZero(int dayOfMonth, int month, int year){
-        String DayDate ="";
+    public String putZero(int dayOfMonth, int month, int year) {
+        String DayDate = "";
         //put 0if the number is less than 10(ex:from 9to 09)
-        if(dayOfMonth< 10) {
+        if (dayOfMonth < 10) {
             if (month < 10) {
                 DayDate = year + "/" + "0" + month + "/" + "0" + dayOfMonth;
             }
             DayDate = year + "/" + month + "/" + "0" + dayOfMonth;
-        }
-        else if(month< 10) {
+        } else if (month < 10) {
             DayDate = year + "/" + "0" + month + "/" + dayOfMonth;
         }
         return DayDate;
