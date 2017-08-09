@@ -6,18 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
 import com.example.android.monitoringapp.Alert.Alert;
 import com.example.android.monitoringapp.Data.DataBDD;
 import com.example.android.monitoringapp.Data.Data;
 import com.example.android.monitoringapp.Data.Patient;
 import com.example.android.monitoringapp.Data.PatientBDD;
-
-import java.lang.reflect.Array;
-
-import static android.R.attr.data;
-import static com.example.android.monitoringapp.R.id.value_min_heart_monitor;
 
 
 public class MonthSummaryActivity extends AppCompatActivity {
@@ -90,12 +83,10 @@ public class MonthSummaryActivity extends AppCompatActivity {
         namePatientInitials = (TextView) findViewById(R.id.name_patient_initials);
         namePatientInitials.setText(tmp);
 
-        //look in the database if there is an alert
+
         dataBDD.open();
         dataMonth = dataBDD.getLastMonth();
         dataBDD.close();
-
-        System.out.println(dataMonth.toString());
 
         pbDetected = dataMonth.getAlert();
 
