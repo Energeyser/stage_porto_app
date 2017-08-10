@@ -234,19 +234,19 @@ public class DataBDD {
                 dataSum.setAverage_oxy(dataSum.getAverage_oxy() + cursor.getInt(INDEX_AVERAGE_OXY));
                 dataSum.setMinimum_thoracic_fluid_content(dataSum.getMinimum_thoracic_fluid_content() + cursor.getInt(INDEX_MINIMUM_THORACIC_FLUID_CONTENT));
                 dataSum.setMaximum_thoracic_fluid_content(dataSum.getMaximum_thoracic_fluid_content() + cursor.getInt(INDEX_MAXIMUM_THORACIC_FLUID_CONTENT));
-                dataSum.setAverage_thoracic_fluid_content(dataSum.getAverage_thoracic_fluid_content() + cursor.getInt(INDEX_MINIMUM_THORACIC_FLUID_CONTENT));
+                dataSum.setAverage_thoracic_fluid_content(dataSum.getAverage_thoracic_fluid_content() + cursor.getInt(INDEX_AVERAGE_THORACIC_FLUID_CONTENT));
                 dataSum.setMinimum_body_fluid_content(dataSum.getMinimum_body_fluid_content() + cursor.getInt(INDEX_MINIMUM_BODY_FLUID_CONTENT));
                 dataSum.setMaximum_body_fluid_content(dataSum.getMaximum_body_fluid_content() + cursor.getInt(INDEX_MAXIMUM_BODY_FLUID_CONTENT));
-                dataSum.setAverage_body_fluid_content(dataSum.getAverage_body_fluid_content() + cursor.getInt(INDEX_MINIMUM_BODY_FLUID_CONTENT));
+                dataSum.setAverage_body_fluid_content(dataSum.getAverage_body_fluid_content() + cursor.getInt(INDEX_AVERAGE_BODY_FLUID_CONTENT));
                 dataSum.setMinimum_systolic_blood_pressure(dataSum.getMinimum_systolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_SYSTOLIC_BLOOD_PRESSURE));
                 dataSum.setMaximum_systolic_blood_pressure(dataSum.getMaximum_systolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_SYSTOLIC_BLOOD_PRESSURE));
-                dataSum.setAverage_systolic_blood_pressure(dataSum.getAverage_systolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_SYSTOLIC_BLOOD_PRESSURE));
+                dataSum.setAverage_systolic_blood_pressure(dataSum.getAverage_systolic_blood_pressure() + cursor.getInt(INDEX_AVERAGE_SYSTOLIC_BLOOD_PRESSURE));
                 dataSum.setMinimum_diastolic_blood_pressure(dataSum.getMinimum_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setMaximum_diastolic_blood_pressure(dataSum.getMaximum_diastolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_DIASTOLIC_BLOOD_PRESSURE));
-                dataSum.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
+                dataSum.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() + cursor.getInt(INDEX_AVERAGE_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
                 dataSum.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() + cursor.getInt(INDEX_MAXIMUM_SODIUM_CHLORIDE));
-                dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
+                dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getInt(INDEX_AVERAGE_SODIUM_CHLORIDE));
                 if (cursor.getInt(INDEX_ALERT) != 0) {
                     dataSum.setAlert(cursor.getInt(INDEX_ALERT));
                 }
@@ -343,19 +343,19 @@ public class DataBDD {
                 dataSum.setAverage_oxy(dataSum.getAverage_oxy() + cursor.getInt(INDEX_AVERAGE_OXY));
                 dataSum.setMinimum_thoracic_fluid_content(dataSum.getMinimum_thoracic_fluid_content() + cursor.getInt(INDEX_MINIMUM_THORACIC_FLUID_CONTENT));
                 dataSum.setMaximum_thoracic_fluid_content(dataSum.getMaximum_thoracic_fluid_content() + cursor.getInt(INDEX_MAXIMUM_THORACIC_FLUID_CONTENT));
-                dataSum.setAverage_thoracic_fluid_content(dataSum.getAverage_thoracic_fluid_content() + cursor.getInt(INDEX_MINIMUM_THORACIC_FLUID_CONTENT));
+                dataSum.setAverage_thoracic_fluid_content(dataSum.getAverage_thoracic_fluid_content() + cursor.getInt(INDEX_AVERAGE_THORACIC_FLUID_CONTENT));
                 dataSum.setMinimum_body_fluid_content(dataSum.getMinimum_body_fluid_content() + cursor.getInt(INDEX_MINIMUM_BODY_FLUID_CONTENT));
                 dataSum.setMaximum_body_fluid_content(dataSum.getMaximum_body_fluid_content() + cursor.getInt(INDEX_MAXIMUM_BODY_FLUID_CONTENT));
-                dataSum.setAverage_body_fluid_content(dataSum.getAverage_body_fluid_content() + cursor.getInt(INDEX_MINIMUM_BODY_FLUID_CONTENT));
+                dataSum.setAverage_body_fluid_content(dataSum.getAverage_body_fluid_content() + cursor.getInt(INDEX_AVERAGE_BODY_FLUID_CONTENT));
                 dataSum.setMinimum_systolic_blood_pressure(dataSum.getMinimum_systolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_SYSTOLIC_BLOOD_PRESSURE));
                 dataSum.setMaximum_systolic_blood_pressure(dataSum.getMaximum_systolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_SYSTOLIC_BLOOD_PRESSURE));
-                dataSum.setAverage_systolic_blood_pressure(dataSum.getAverage_systolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_SYSTOLIC_BLOOD_PRESSURE));
+                dataSum.setAverage_systolic_blood_pressure(dataSum.getAverage_systolic_blood_pressure() + cursor.getInt(INDEX_AVERAGE_SYSTOLIC_BLOOD_PRESSURE));
                 dataSum.setMinimum_diastolic_blood_pressure(dataSum.getMinimum_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setMaximum_diastolic_blood_pressure(dataSum.getMaximum_diastolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_DIASTOLIC_BLOOD_PRESSURE));
-                dataSum.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
+                dataSum.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() + cursor.getInt(INDEX_AVERAGE_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
                 dataSum.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() + cursor.getInt(INDEX_MAXIMUM_SODIUM_CHLORIDE));
-                dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
+                dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getInt(INDEX_AVERAGE_SODIUM_CHLORIDE));
                 if (cursor.getInt(INDEX_ALERT) != 0) {
                     dataSum.setAlert(cursor.getInt(INDEX_ALERT));
                 }
