@@ -343,9 +343,9 @@ public class WeekCalendarActivity extends AppCompatActivity {
         System.out.println(dataWeek.toString());
 
         if(cptWeek == 0){
-            heartMin = (TextView) findViewById(R.id.value_min_heart_monitor);
-            heartMax =(TextView) findViewById(R.id.value_max_heart_monitor);
-            heartMean =(TextView) findViewById(R.id.value_mean_heart_monitor);
+            heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week1);
+            heartMax =(TextView) findViewById(R.id.value_max_heart_monitor_week1);
+            heartMean =(TextView) findViewById(R.id.value_mean_heart_monitor_week1);
 
             heartMin.setText(Integer.toString(dataWeek.getMinimum_hr()));
             heartMax.setText(Integer.toString(dataWeek.getMaximum_hr()));
