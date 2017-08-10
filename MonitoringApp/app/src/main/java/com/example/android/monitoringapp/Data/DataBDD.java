@@ -238,7 +238,12 @@ public class DataBDD {
                 dataSum.setMinimum_body_fluid_content(dataSum.getMinimum_body_fluid_content() + cursor.getInt(INDEX_MINIMUM_BODY_FLUID_CONTENT));
                 dataSum.setMaximum_body_fluid_content(dataSum.getMaximum_body_fluid_content() + cursor.getInt(INDEX_MAXIMUM_BODY_FLUID_CONTENT));
                 dataSum.setAverage_body_fluid_content(dataSum.getAverage_body_fluid_content() + cursor.getInt(INDEX_MINIMUM_BODY_FLUID_CONTENT));
-                // TODO : blood pressure
+                dataSum.setMinimum_systolic_blood_pressure(dataSum.getMinimum_systolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_SYSTOLIC_BLOOD_PRESSURE));
+                dataSum.setMaximum_systolic_blood_pressure(dataSum.getMaximum_systolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_SYSTOLIC_BLOOD_PRESSURE));
+                dataSum.setAverage_systolic_blood_pressure(dataSum.getAverage_systolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_SYSTOLIC_BLOOD_PRESSURE));
+                dataSum.setMinimum_diastolic_blood_pressure(dataSum.getMinimum_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
+                dataSum.setMaximum_diastolic_blood_pressure(dataSum.getMaximum_diastolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_DIASTOLIC_BLOOD_PRESSURE));
+                dataSum.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
                 dataSum.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() + cursor.getInt(INDEX_MAXIMUM_SODIUM_CHLORIDE));
                 dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
@@ -266,7 +271,12 @@ public class DataBDD {
             data.setMinimum_body_fluid_content(dataSum.getMinimum_body_fluid_content() / cursor.getCount());
             data.setMaximum_body_fluid_content(dataSum.getMaximum_body_fluid_content() / cursor.getCount());
             data.setAverage_body_fluid_content(dataSum.getAverage_body_fluid_content() / cursor.getCount());
-            // TODO : Blood pressure
+            data.setMinimum_systolic_blood_pressure(dataSum.getMinimum_systolic_blood_pressure() / cursor.getCount());
+            data.setMaximum_systolic_blood_pressure(dataSum.getMaximum_systolic_blood_pressure() / cursor.getCount());
+            data.setAverage_systolic_blood_pressure(dataSum.getAverage_systolic_blood_pressure() / cursor.getCount());
+            data.setMinimum_diastolic_blood_pressure(dataSum.getMinimum_diastolic_blood_pressure() / cursor.getCount());
+            data.setMaximum_diastolic_blood_pressure(dataSum.getMaximum_diastolic_blood_pressure() / cursor.getCount());
+            data.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() / cursor.getCount());
             data.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() / cursor.getCount());
             data.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() / cursor.getCount());
             data.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() / cursor.getCount());
@@ -290,6 +300,12 @@ public class DataBDD {
             data.setMinimum_body_fluid_content(0);
             data.setMaximum_body_fluid_content(0);
             data.setAverage_body_fluid_content(0);
+            data.setMinimum_diastolic_blood_pressure(0);
+            data.setMaximum_diastolic_blood_pressure(0);
+            data.setAverage_diastolic_blood_pressure(0);
+            data.setMinimum_systolic_blood_pressure(0);
+            data.setMaximum_systolic_blood_pressure(0);
+            data.setAverage_systolic_blood_pressure(0);
             data.setMinimum_sodium_chloride(0);
             data.setMaximum_sodium_chloride(0);
             data.setAverage_sodium_chloride(0);
@@ -331,7 +347,12 @@ public class DataBDD {
                 dataSum.setMinimum_body_fluid_content(dataSum.getMinimum_body_fluid_content() + cursor.getInt(INDEX_MINIMUM_BODY_FLUID_CONTENT));
                 dataSum.setMaximum_body_fluid_content(dataSum.getMaximum_body_fluid_content() + cursor.getInt(INDEX_MAXIMUM_BODY_FLUID_CONTENT));
                 dataSum.setAverage_body_fluid_content(dataSum.getAverage_body_fluid_content() + cursor.getInt(INDEX_MINIMUM_BODY_FLUID_CONTENT));
-                // TODO : blood pressure
+                dataSum.setMinimum_systolic_blood_pressure(dataSum.getMinimum_systolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_SYSTOLIC_BLOOD_PRESSURE));
+                dataSum.setMaximum_systolic_blood_pressure(dataSum.getMaximum_systolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_SYSTOLIC_BLOOD_PRESSURE));
+                dataSum.setAverage_systolic_blood_pressure(dataSum.getAverage_systolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_SYSTOLIC_BLOOD_PRESSURE));
+                dataSum.setMinimum_diastolic_blood_pressure(dataSum.getMinimum_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
+                dataSum.setMaximum_diastolic_blood_pressure(dataSum.getMaximum_diastolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_DIASTOLIC_BLOOD_PRESSURE));
+                dataSum.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
                 dataSum.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() + cursor.getInt(INDEX_MAXIMUM_SODIUM_CHLORIDE));
                 dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
@@ -360,7 +381,12 @@ public class DataBDD {
             data.setMinimum_body_fluid_content(dataSum.getMinimum_body_fluid_content() / cursor.getCount());
             data.setMaximum_body_fluid_content(dataSum.getMaximum_body_fluid_content() / cursor.getCount());
             data.setAverage_body_fluid_content(dataSum.getAverage_body_fluid_content() / cursor.getCount());
-            // TODO : Blood pressure
+            data.setMinimum_systolic_blood_pressure(dataSum.getMinimum_systolic_blood_pressure() / cursor.getCount());
+            data.setMaximum_systolic_blood_pressure(dataSum.getMaximum_systolic_blood_pressure() / cursor.getCount());
+            data.setAverage_systolic_blood_pressure(dataSum.getAverage_systolic_blood_pressure() / cursor.getCount());
+            data.setMinimum_diastolic_blood_pressure(dataSum.getMinimum_diastolic_blood_pressure() / cursor.getCount());
+            data.setMaximum_diastolic_blood_pressure(dataSum.getMaximum_diastolic_blood_pressure() / cursor.getCount());
+            data.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() / cursor.getCount());
             data.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() / cursor.getCount());
             data.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() / cursor.getCount());
             data.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() / cursor.getCount());
@@ -384,6 +410,12 @@ public class DataBDD {
             data.setMinimum_body_fluid_content(0);
             data.setMaximum_body_fluid_content(0);
             data.setAverage_body_fluid_content(0);
+            data.setMinimum_diastolic_blood_pressure(0);
+            data.setMaximum_diastolic_blood_pressure(0);
+            data.setAverage_diastolic_blood_pressure(0);
+            data.setMinimum_systolic_blood_pressure(0);
+            data.setMaximum_systolic_blood_pressure(0);
+            data.setAverage_systolic_blood_pressure(0);
             data.setMinimum_sodium_chloride(0);
             data.setMaximum_sodium_chloride(0);
             data.setAverage_sodium_chloride(0);
