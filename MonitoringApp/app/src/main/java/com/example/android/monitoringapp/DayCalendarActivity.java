@@ -17,14 +17,39 @@ public class DayCalendarActivity extends AppCompatActivity {
 
     Data data = new Data();
     DataBDD dataBDD = new DataBDD(this);
+
     //initialized TextView with data of the month
     TextView heartMean;
     TextView heartMin;
     TextView heartMax;
 
+    TextView respiratoryMean;
+    TextView respiratoryMin;
+    TextView respiratoryMax;
+
+    TextView intraThoracicFluidMean;
+    TextView intraThoracicFluidMin;
+    TextView intraThoracicFluidMax;
+
+    TextView wholeBodyFluidMean;
+    TextView wholeBodyFluidMin;
+    TextView wholeBodyFluidMax;
+
     TextView systolicBloodMean;
-    TextView waterMean;
+    TextView systolicBloodMin;
+    TextView systolicBloodMax;
+
+    TextView diastolicBloodMean;
+    TextView diastolicBloodMin;
+    TextView diastolicBloodMax;
+
     TextView salinityMean;
+    TextView salinityMin;
+    TextView salinityMax;
+
+    TextView oxygenMean;
+    TextView oxygenMin;
+    TextView oxygenMax;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +85,60 @@ public class DayCalendarActivity extends AppCompatActivity {
         heartMax.setText(Integer.toString(data.getMaximum_hr()));
         heartMean.setText(Integer.toString(data.getAverage_hr()));
 
+        respiratoryMin = (TextView) findViewById(R.id.value_min_respiratory_rate);
+        respiratoryMax =(TextView) findViewById(R.id.value_max_respiratory_rate);
+        respiratoryMean =(TextView) findViewById(R.id.value_mean_respiratory_rate);
+
+        respiratoryMin.setText(Integer.toString(data.getMinimum_resp()));
+        respiratoryMax.setText(Integer.toString(data.getMaximum_resp()));
+        respiratoryMean.setText(Integer.toString(data.getAverage_resp()));
+
+        oxygenMin = (TextView) findViewById(R.id.value_min_oxygen_saturation);
+        oxygenMax =(TextView) findViewById(R.id.value_max_oxygen_saturation);
+        oxygenMean =(TextView) findViewById(R.id.value_mean_oxygen_saturation);
+
+        oxygenMin.setText(Integer.toString(data.getMinimum_oxy()));
+        oxygenMax.setText(Integer.toString(data.getMaximum_oxy()));
+        oxygenMean.setText(Integer.toString(data.getAverage_oxy()));
+
+        intraThoracicFluidMin = (TextView) findViewById(R.id.value_min_intra_thoracic_fluid_content);
+        intraThoracicFluidMax =(TextView) findViewById(R.id.value_max_intra_thoracic_fluid_content);
+        intraThoracicFluidMean =(TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content);
+
+        intraThoracicFluidMin.setText(Integer.toString(data.getMinimum_thoracic_fluid_content()));
+        intraThoracicFluidMax.setText(Integer.toString(data.getMaximum_thoracic_fluid_content()));
+        intraThoracicFluidMean.setText(Integer.toString(data.getAverage_thoracic_fluid_content()));
+
+        wholeBodyFluidMin = (TextView) findViewById(R.id.value_min_whole_body_fluid_content);
+        wholeBodyFluidMax =(TextView) findViewById(R.id.value_max_whole_body_fluid_content);
+        wholeBodyFluidMean =(TextView) findViewById(R.id.value_mean_whole_body_fluid_content);
+
+        wholeBodyFluidMin.setText(Integer.toString(data.getMinimum_body_fluid_content()));
+        wholeBodyFluidMax.setText(Integer.toString(data.getMaximum_body_fluid_content()));
+        wholeBodyFluidMean.setText(Integer.toString(data.getAverage_body_fluid_content()));
+
+        systolicBloodMin =(TextView) findViewById(R.id.value_min_blood_pressure_systolic);
+        systolicBloodMax =(TextView) findViewById(R.id.value_max_blood_pressure_systolic);
         systolicBloodMean =(TextView) findViewById(R.id.value_mean_blood_pressure_systolic);
+
+        systolicBloodMin.setText(Integer.toString(data.getMinimum_systolic_blood_pressure()));
+        systolicBloodMax.setText(Integer.toString(data.getMaximum_systolic_blood_pressure()));
         systolicBloodMean.setText(Integer.toString(data.getAverage_systolic_blood_pressure()));
 
-        waterMean =(TextView) findViewById(R.id.value_mean_intra_thoracic_fluid_content);
-        waterMean.setText(Integer.toString(data.getAverage_thoracic_fluid_content()));
+        diastolicBloodMin =(TextView) findViewById(R.id.value_min_blood_pressure_diastolic);
+        diastolicBloodMax =(TextView) findViewById(R.id.value_max_blood_pressure_diastolic);
+        diastolicBloodMean =(TextView) findViewById(R.id.value_mean_blood_pressure_diastolic);
 
+        diastolicBloodMin.setText(Integer.toString(data.getMinimum_diastolic_blood_pressure()));
+        diastolicBloodMax.setText(Integer.toString(data.getMaximum_diastolic_blood_pressure()));
+        diastolicBloodMean.setText(Integer.toString(data.getAverage_diastolic_blood_pressure()));
+
+        salinityMin =(TextView) findViewById(R.id.value_min_sodium_chloride);
+        salinityMax =(TextView) findViewById(R.id.value_max_sodium_chloride);
         salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride);
+
+        salinityMin.setText(Integer.toString(data.getMinimum_sodium_chloride()));
+        salinityMax.setText(Integer.toString(data.getMaximum_sodium_chloride()));
         salinityMean.setText(Integer.toString(data.getAverage_sodium_chloride()));
     }
 
