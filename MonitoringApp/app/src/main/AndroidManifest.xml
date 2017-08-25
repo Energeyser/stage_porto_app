@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:allowBackup="true"
@@ -12,13 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LandingActivity">
+        <activity android:name=".BluetoothDataActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LandingActivity" />
         <activity android:name=".MonthSummaryActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".ExportActivity" />
@@ -30,7 +33,6 @@
         <activity android:name=".PatientInformationsActivity" />
         <activity android:name=".PatientModifyActivity" />
         <activity android:name=".IdentificationActivity" />
-        <activity android:name=".BluetoothDataActivity"></activity>
     </application>
 
 </manifest>
