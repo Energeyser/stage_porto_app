@@ -1,4 +1,7 @@
-package com.example.android.testbitalino2;
+package com.example.android.monitoringapp;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -10,15 +13,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-
+import com.example.android.monitoringapp.device.*;
 import com.bitalino.comm.BITalinoFrame;
-import com.example.android.testbitalino2.device.*;
+
+import com.example.android.monitoringapp.device.BITlog;
+import com.example.android.monitoringapp.device.BitalinoThread;
+
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class BluetoothDataActivity extends AppCompatActivity {
 
     static final String TAG = "Main Activity";
     public OutputStreamWriter fout = null;
@@ -32,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
     public StoreLooperThread looperThread;
 
-	//Log.v(TAG, "MobileBit Activity --OnCreate()--");
+    //Log.v(TAG, "MobileBit Activity --OnCreate()--");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bluetooth_data);
 
         looperThread = new StoreLooperThread();
         looperThread.start();
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     private void configureBitalino(){
         try {
 
-            bitalinoThread = new BitalinoThread(looperThread.mHandler,BITlog.MAC  );
+            bitalinoThread = new BitalinoThread(looperThread.mHandler, BITlog.MAC  );
             // Configure the devices
 
             bitalinoThread.setChannels(BITlog.channels);
@@ -234,3 +240,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
