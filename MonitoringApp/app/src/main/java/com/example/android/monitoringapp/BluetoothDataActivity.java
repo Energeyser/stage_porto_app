@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import com.example.android.monitoringapp.device.*;
 import com.bitalino.comm.BITalinoFrame;
+import android.content.Intent;
 
 import com.example.android.monitoringapp.device.BITlog;
 import com.example.android.monitoringapp.device.BitalinoThread;
@@ -238,6 +239,11 @@ public class BluetoothDataActivity extends AppCompatActivity {
 
             Looper.loop();
         }
+    }
+
+    public void openLanding(View view){
+        Intent i = new Intent(this, LandingActivity.class);
+        startActivity(i);
     }
 }
 
