@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     public StoreLooperThread looperThread;
 
+    public int[] ECG = new int[10000];
+
 	//Log.v(TAG, "MobileBit Activity --OnCreate()--");
 
     @Override
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         //createFile();
 
                         bitalinoThread.start();
+
                     }
                 });
 
@@ -146,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
         public void run() {
 
+
             Looper.prepare();
 
             mHandler = new Handler() {
@@ -182,6 +186,12 @@ public class MainActivity extends AppCompatActivity {
                         for(BITalinoFrame myBitFrame : frames){
 
                             packNum++;
+                            if(packNum == 10000){
+                               resetPackNum();
+                                RythmDetection.detect(ECG);
+                            }else{
+                                ECG[packNum-1] = myBitFrame.getAnalog(1);
+                            }
 
                             if(fout!=null){
                                 String line = Integer.valueOf(myBitFrame.getSequence()).toString();
