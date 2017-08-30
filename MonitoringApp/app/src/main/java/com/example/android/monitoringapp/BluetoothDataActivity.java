@@ -13,6 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+
+import com.example.android.monitoringapp.Analysis.RythmDetection;
+import com.example.android.monitoringapp.Data.Data;
+import com.example.android.monitoringapp.Data.DataBDD;
 import com.example.android.monitoringapp.device.*;
 import com.bitalino.comm.BITalinoFrame;
 import android.content.Intent;
@@ -23,7 +27,10 @@ import com.example.android.monitoringapp.device.BitalinoThread;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class BluetoothDataActivity extends AppCompatActivity {
 
@@ -38,6 +45,10 @@ public class BluetoothDataActivity extends AppCompatActivity {
     public Button buttonStop;
 
     public StoreLooperThread looperThread;
+
+    public int[] ECG = new int[10000];
+
+    public int BPM;
 
     //Log.v(TAG, "MobileBit Activity --OnCreate()--");
 
@@ -190,6 +201,14 @@ public class BluetoothDataActivity extends AppCompatActivity {
 
                             packNum++;
 
+                            if(packNum == 10000){
+                                resetPackNum();
+                                BPM = RythmDetection.detect(ECG);
+
+                            }else{
+                                ECG[packNum-1] = myBitFrame.getAnalog(1);
+                            }
+
                             if(fout!=null){
                                 String line = Integer.valueOf(myBitFrame.getSequence()).toString();
                                 if(BITlog.digitalOutputs){
@@ -244,6 +263,38 @@ public class BluetoothDataActivity extends AppCompatActivity {
     public void openLanding(View view){
         Intent i = new Intent(this, LandingActivity.class);
         startActivity(i);
+    }
+
+    public void updateBPM(int BPM,int index){
+
+        DataBDD dataBDD = new DataBDD(this);
+        Data data = new Data();
+
+        int maxBPM;
+        int minBPM;
+        int averageBPM;
+        int newAverageBPM;
+
+        String currentDate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
+
+        dataBDD.open();
+        data = dataBDD.getDataWithDate(currentDate);
+        dataBDD.close();
+
+        maxBPM = data.getMaximum_hr();
+        minBPM = data.getMaximum_hr();
+        averageBPM = data.getAverage_hr();
+
+        if(BPM < minBPM){
+            minBPM = BPM;
+        }else if(BPM>maxBPM){
+            maxBPM = BPM;
+        }
+
+      //TODO : average
+
+
+
     }
 }
 

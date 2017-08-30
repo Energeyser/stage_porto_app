@@ -45,9 +45,9 @@ public final class DataContract {
         public final static String COLUMN_PATIENT_PROCESS_NUMBER = "patient_process_number";
 
         /**
-         * The date.
+         * The date, format : "yyyy/MM/dd"
          *
-         * Type: INT
+         * Type: String
          */
         public final static String COLUMN_DATE = "date";
 
