@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.android.monitoringapp.Data.PatientContract.PatientEntry;
 import com.example.android.monitoringapp.Data.DoctorContract.DoctorEntry;
 import com.example.android.monitoringapp.Data.DataContract.DataEntry;
+import com.example.android.monitoringapp.Data.DataECGContract.DataECGEntry;
 
 /**
  * Database helper for the monitoring app. Manages database creation and version management.
@@ -188,6 +189,23 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         values.put(DataEntry.COLUMN_AVERAGE_SODIUM, "40");
         values.put(DataEntry.COLUMN_ALERT,"2");
         db.insert(DataEntry.TABLE_NAME,null,values);
+
+        values.clear();
+
+        // Create a String that contains the SQL statement to create the dataECG table
+        String SQL_CREATE_DATA_ECG_TABLE =  "CREATE TABLE " + DataECGEntry.TABLE_NAME + " ("
+                + DataECGEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DataECGEntry.COLUMN_VALUE_ECG + " INTEGER); ";
+
+        // Execute the SQL statement
+        db.execSQL(SQL_CREATE_DATA_ECG_TABLE);
+
+        //Creation of a ContentValues (working like a HashMap)
+        values.put(DataECGEntry._ID,1);
+        values.put(DataECGEntry.COLUMN_VALUE_ECG, "100");
+        db.insert(DataECGEntry.TABLE_NAME,null,values);
+
+        values.clear();
     }
 
     /**
