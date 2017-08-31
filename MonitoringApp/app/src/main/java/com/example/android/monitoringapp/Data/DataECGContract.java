@@ -35,5 +35,12 @@ public class DataECGContract {
          */
         public final static String COLUMN_VALUE_ECG = "value_ECG";
 
+        /**
+         * Date of the arryhtmia
+         * <p>
+         * Type:STRING
+         */
+        public final static String COLUMN_DATE_ARRYTHMIA = "date_arrhythmia";
+
     }
 }

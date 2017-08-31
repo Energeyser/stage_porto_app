@@ -14,6 +14,8 @@ public class DataECGBDD {
 
     private static final int INDEX_ID = 0;
     private static final int INDEX_VALUE_ECG = 1;
+    private static final int INDEX_DATE_ARRYTHMIA = 2;
+
 
     private SQLiteDatabase db;
     private MonitoringAppDbHelper mDbHelper;
@@ -22,7 +24,6 @@ public class DataECGBDD {
         // Creating the database and its table
         mDbHelper = new MonitoringAppDbHelper(context);
     }
-
 
     public void open() {
         //opens the db for writing
@@ -42,6 +43,7 @@ public class DataECGBDD {
         //Creation of a ContentValues (working like a HashMap)
         ContentValues values = new ContentValues();
         values.put(DataECGEntry.COLUMN_VALUE_ECG, dataECG.getValue_ECG());
+        values.put(DataECGEntry.COLUMN_DATE_ARRYTHMIA, dataECG.getDate_arrhythmia());
 
         return db.insert(TABLE_DATA_ECG, null, values);
     }
@@ -51,6 +53,7 @@ public class DataECGBDD {
         //you just need to specify the id of the data to update
         ContentValues values = new ContentValues();
         values.put(DataECGEntry.COLUMN_VALUE_ECG, dataECG.getValue_ECG());
+        values.put(DataECGEntry.COLUMN_DATE_ARRYTHMIA, dataECG.getDate_arrhythmia());
         return db.update(TABLE_DATA_ECG, values, DataECGEntry._ID + " = " + id, null);
     }
 

@@ -195,7 +195,8 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         // Create a String that contains the SQL statement to create the dataECG table
         String SQL_CREATE_DATA_ECG_TABLE =  "CREATE TABLE " + DataECGEntry.TABLE_NAME + " ("
                 + DataECGEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DataECGEntry.COLUMN_VALUE_ECG + " INTEGER); ";
+                + DataECGEntry.COLUMN_VALUE_ECG + " INTEGER, "
+                + DataECGEntry.COLUMN_DATE_ARRYTHMIA + " STRING); ";
 
         // Execute the SQL statement
         db.execSQL(SQL_CREATE_DATA_ECG_TABLE);
@@ -203,6 +204,7 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         //Creation of a ContentValues (working like a HashMap)
         values.put(DataECGEntry._ID,1);
         values.put(DataECGEntry.COLUMN_VALUE_ECG, "100");
+        values.put(DataECGEntry.COLUMN_DATE_ARRYTHMIA, "0000/00/00");
         db.insert(DataECGEntry.TABLE_NAME,null,values);
 
         values.clear();
