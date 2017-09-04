@@ -209,4 +209,10 @@ public class MonthSummaryActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void openBluetooth(View view){
+        Intent i = new Intent(this, BluetoothDataActivity.class);
+        startActivity(i);
+    }
+
+
 }
