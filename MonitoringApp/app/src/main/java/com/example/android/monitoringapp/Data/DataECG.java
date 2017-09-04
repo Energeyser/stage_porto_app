@@ -9,13 +9,15 @@ public class DataECG {
     private int id;
     private int value_ECG;
     private String date_arrhythmia;
+    private String hour_arrhythmia;
 
     public DataECG(){}
 
-    public DataECG(int id, int value_ECG, String date_arrhythmia) {
+    public DataECG(int id, int value_ECG, String date_arrhythmia, String hour_arrhythmia) {
         this.id = id;
         this.value_ECG = value_ECG;
         this.date_arrhythmia = date_arrhythmia;
+        this.hour_arrhythmia = hour_arrhythmia;
     }
 
     public int getId() {
@@ -42,12 +44,21 @@ public class DataECG {
         this.date_arrhythmia = date_arrhythmia;
     }
 
+    public String getHour_arrhythmia() {
+        return hour_arrhythmia;
+    }
+
+    public void setHour_arrhythmia(String hour_arrhythmia) {
+        this.hour_arrhythmia = hour_arrhythmia;
+    }
+
     @Override
     public String toString() {
         return "Data{" +
                 "id=" + id +
                 ", value_ECG='" + value_ECG + '\'' +
                 ", date_arrhythmia='" + date_arrhythmia + '\'' +
+                ", hour_arrhythmia='" + hour_arrhythmia + '\'' +
                 '}';
     }
 }
