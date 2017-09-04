@@ -31,10 +31,15 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.text.SimpleDateFormat;
 
+import static com.example.android.monitoringapp.R.id.date_to_export_calendar;
+
 public class ExportActivity extends AppCompatActivity {
 
     Spinner spinner;
     ArrayAdapter<CharSequence> adapter;
+
+    TextView dataFromTV;
+    TextView dataToTV;
 
     private DatePicker dpResult;
     private Button validateChangesExport;
@@ -50,11 +55,21 @@ public class ExportActivity extends AppCompatActivity {
     DataBDD dataBDD = new DataBDD(this);
     Data data = new Data();
 
+    String dataFromBase = "";
+    String dataToBase = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
+
+        dataFromTV = (TextView) findViewById(R.id.date_from_export_calendar);
+        dataFromBase = (String)dataFromTV.getText();
+        dataToTV = (TextView) findViewById(R.id.date_to_export_calendar);
+        dataToBase = (String)dataToTV.getText();
+
+
         btnexport = (Button) findViewById(R.id.button_destination_export);
         btnexport.setOnClickListener(myhandler);
         spinner = (Spinner) findViewById(R.id.spinner_destination_export);
@@ -122,7 +137,12 @@ public class ExportActivity extends AppCompatActivity {
     View.OnClickListener myhandler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(getBaseContext(), " Ouais ouais le click", Toast.LENGTH_LONG).show();
+            //took the write date
+            dataFromTV = (TextView) findViewById(R.id.date_from_export_calendar);
+            String dataFrom = (String)dataFromTV.getText();
+            dataToTV = (TextView) findViewById(R.id.date_to_export_calendar);
+            String dataTo = (String)dataToTV.getText();
+
             try {
                 File sdCardDir = Environment.getExternalStorageDirectory();
                 String filename = "MyBackUp.csv";
@@ -131,7 +151,14 @@ public class ExportActivity extends AppCompatActivity {
 
                 BufferedWriter bw = new BufferedWriter(fw);
                 dataBDD.open();
-                Cursor cursor = dataBDD.getDataExport("2017/07/25", "2017/07/24");
+
+
+                if(dataFrom == dataFromBase || dataTo== dataToBase){
+                    Toast.makeText(getBaseContext(), " You need to choose a date to export data", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Cursor cursor = dataBDD.getDataExport(dataFrom, dataTo);
 
                 int rowcount;
                 int colcount;
@@ -166,8 +193,10 @@ public class ExportActivity extends AppCompatActivity {
                     }
                     bw.flush();
                 }
+                openExportSuccessful(v);
             } catch (Exception ex) {
                 System.out.println(ex);
+                Toast.makeText(getBaseContext(), " You need to choose a date to export data", Toast.LENGTH_LONG).show();
 
             } finally {
                 dataBDD.close();
@@ -191,7 +220,7 @@ public class ExportActivity extends AppCompatActivity {
             String newDateTo;
 
             dateFrom = (TextView) findViewById(R.id.date_from_export_calendar);
-            dateTo = (TextView) findViewById(R.id.date_to_export_calendar);
+            dateTo = (TextView) findViewById(date_to_export_calendar);
             String from = (String) dateFrom.getText();
             String to = (String) dateTo.getText();
 
