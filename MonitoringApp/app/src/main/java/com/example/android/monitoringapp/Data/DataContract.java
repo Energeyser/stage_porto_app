@@ -208,21 +208,21 @@ public final class DataContract {
         /**
          * Minimum sodium chloride on the skin for the day.
          *
-         * Type: INTEGER
+         * Type: DOUBLE
          */
         public final static String COLUMN_MIN_SODIUM = "minimum_sodium_chloride";
 
         /**
          * Maximum sodium chloride on the skin for the day.
          *
-         * Type: INTEGER
+         * Type: DOUBLE
          */
         public final static String COLUMN_MAX_SODIUM = "maximum_sodium_chloride";
 
         /**
          * Average sodium chloride on the skin for the day.
          *
-         * Type: INTEGER
+         * Type: DOUBLE
          */
         public final static String COLUMN_AVERAGE_SODIUM = "average_sodium_chloride";
 

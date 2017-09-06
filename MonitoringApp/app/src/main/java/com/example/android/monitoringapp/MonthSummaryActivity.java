@@ -163,9 +163,9 @@ public class MonthSummaryActivity extends AppCompatActivity {
         salinityMax =(TextView) findViewById(R.id.value_max_sodium_chloride);
         salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride);
 
-        salinityMin.setText(Integer.toString(dataMonth.getMinimum_sodium_chloride()));
-        salinityMax.setText(Integer.toString(dataMonth.getMaximum_sodium_chloride()));
-        salinityMean.setText(Integer.toString(dataMonth.getAverage_sodium_chloride()));
+        salinityMin.setText(Double.toString(dataMonth.getMinimum_sodium_chloride()));
+        salinityMax.setText(Double.toString(dataMonth.getMaximum_sodium_chloride()));
+        salinityMean.setText(Double.toString(dataMonth.getAverage_sodium_chloride()));
 
     }
 

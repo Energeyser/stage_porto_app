@@ -403,9 +403,9 @@ public class WeekCalendarActivity extends AppCompatActivity {
             salinityMax =(TextView) findViewById(R.id.value_max_sodium_chloride_week1);
             salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride_week1);
 
-            salinityMin.setText(Integer.toString(dataWeek.getMinimum_sodium_chloride()));
-            salinityMax.setText(Integer.toString(dataWeek.getMaximum_sodium_chloride()));
-            salinityMean.setText(Integer.toString(dataWeek.getAverage_sodium_chloride()));
+            salinityMin.setText(Double.toString(dataWeek.getMinimum_sodium_chloride()));
+            salinityMax.setText(Double.toString(dataWeek.getMaximum_sodium_chloride()));
+            salinityMean.setText(Double.toString(dataWeek.getAverage_sodium_chloride()));
         }
         else if(cptWeek == 1){
             heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week2);
@@ -468,9 +468,9 @@ public class WeekCalendarActivity extends AppCompatActivity {
             salinityMax =(TextView) findViewById(R.id.value_max_sodium_chloride_week2);
             salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride_week2);
 
-            salinityMin.setText(Integer.toString(dataWeek.getMinimum_sodium_chloride()));
-            salinityMax.setText(Integer.toString(dataWeek.getMaximum_sodium_chloride()));
-            salinityMean.setText(Integer.toString(dataWeek.getAverage_sodium_chloride()));
+            salinityMin.setText(Double.toString(dataWeek.getMinimum_sodium_chloride()));
+            salinityMax.setText(Double.toString(dataWeek.getMaximum_sodium_chloride()));
+            salinityMean.setText(Double.toString(dataWeek.getAverage_sodium_chloride()));
         }
         else if (cptWeek == 2){
             heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week3);
@@ -533,9 +533,9 @@ public class WeekCalendarActivity extends AppCompatActivity {
             salinityMax =(TextView) findViewById(R.id.value_max_sodium_chloride_week3);
             salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride_week3);
 
-            salinityMin.setText(Integer.toString(dataWeek.getMinimum_sodium_chloride()));
-            salinityMax.setText(Integer.toString(dataWeek.getMaximum_sodium_chloride()));
-            salinityMean.setText(Integer.toString(dataWeek.getAverage_sodium_chloride()));
+            salinityMin.setText(Double.toString(dataWeek.getMinimum_sodium_chloride()));
+            salinityMax.setText(Double.toString(dataWeek.getMaximum_sodium_chloride()));
+            salinityMean.setText(Double.toString(dataWeek.getAverage_sodium_chloride()));
         }
         else if( cptWeek == 3){
             heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week4);
@@ -598,9 +598,9 @@ public class WeekCalendarActivity extends AppCompatActivity {
             salinityMax =(TextView) findViewById(R.id.value_max_sodium_chloride_week4);
             salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride_week4);
 
-            salinityMin.setText(Integer.toString(dataWeek.getMinimum_sodium_chloride()));
-            salinityMax.setText(Integer.toString(dataWeek.getMaximum_sodium_chloride()));
-            salinityMean.setText(Integer.toString(dataWeek.getAverage_sodium_chloride()));
+            salinityMin.setText(Double.toString(dataWeek.getMinimum_sodium_chloride()));
+            salinityMax.setText(Double.toString(dataWeek.getMaximum_sodium_chloride()));
+            salinityMean.setText(Double.toString(dataWeek.getAverage_sodium_chloride()));
         }
         else if (cptWeek==4){
             heartMin = (TextView) findViewById(R.id.value_min_heart_monitor_week5);
@@ -663,9 +663,9 @@ public class WeekCalendarActivity extends AppCompatActivity {
             salinityMax =(TextView) findViewById(R.id.value_max_sodium_chloride_week5);
             salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride_week5);
 
-            salinityMin.setText(Integer.toString(dataWeek.getMinimum_sodium_chloride()));
-            salinityMax.setText(Integer.toString(dataWeek.getMaximum_sodium_chloride()));
-            salinityMean.setText(Integer.toString(dataWeek.getAverage_sodium_chloride()));
+            salinityMin.setText(Double.toString(dataWeek.getMinimum_sodium_chloride()));
+            salinityMax.setText(Double.toString(dataWeek.getMaximum_sodium_chloride()));
+            salinityMean.setText(Double.toString(dataWeek.getAverage_sodium_chloride()));
         }
         cptWeek++;
     }

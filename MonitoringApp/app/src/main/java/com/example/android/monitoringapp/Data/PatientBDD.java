@@ -21,10 +21,11 @@ public class PatientBDD {
 
     private static final int INDEX_ID = 0;
     private static final int INDEX_NAME = 1;
-    private static final int INDEX_PHONE = 2;
-    private static final int INDEX_ADDRESS = 3;
-    private static final int INDEX_POT_NAME = 4;
-    private static final int INDEX_POT_PHONE = 5;
+    private static final int INDEX_PROCESS_NUMBER = 2;
+    private static final int INDEX_PHONE = 3;
+    private static final int INDEX_ADDRESS = 4;
+    private static final int INDEX_POT_NAME = 5;
+    private static final int INDEX_POT_PHONE = 6;
 
     private SQLiteDatabase db;
     private MonitoringAppDbHelper mDbHelper;
@@ -53,6 +54,7 @@ public class PatientBDD {
         //Creation of a ContentValues (working like a HashMap)
         ContentValues values = new ContentValues();
         values.put(PatientEntry.COLUMN_PATIENT_NAME, patient.getName());
+        values.put(PatientEntry.COLUMN_PATIENT_PROCESS_NUMBER, patient.getProcessNumber());
         values.put(PatientEntry.COLUMN_PATIENT_PHONE, patient.getPhone());
         values.put(PatientEntry.COLUMN_PATIENT_ADDRESS, patient.getAddress());
         values.put(PatientEntry.COLUMN_PATIENT_POT_NAME, patient.getPot_name());
@@ -65,6 +67,7 @@ public class PatientBDD {
         //you just need to specify the id of the patient to update
         ContentValues values = new ContentValues();
         values.put(PatientEntry.COLUMN_PATIENT_NAME, patient.getName());
+        values.put(PatientEntry.COLUMN_PATIENT_PROCESS_NUMBER, patient.getProcessNumber());
         values.put(PatientEntry.COLUMN_PATIENT_PHONE, patient.getPhone());
         values.put(PatientEntry.COLUMN_PATIENT_ADDRESS, patient.getAddress());
         values.put(PatientEntry.COLUMN_PATIENT_POT_NAME, patient.getPot_name());
@@ -79,7 +82,7 @@ public class PatientBDD {
     }
 
     public Patient getPatient(){
-        //Gets in a cursor the data of the patient (there should be only one patient in the database, so we do not need to specify and id)
+        //Gets in a cursor the data of the patient (there should be only one patient in the database, so we do not need to specify an id)
         Cursor cursor = db.query(TABLE_PATIENT, new String[] { "*" },
                 null,
                 null, null, null, null, null);
@@ -90,6 +93,7 @@ public class PatientBDD {
 
                 patient.setId(cursor.getInt(INDEX_ID));
                 patient.setName(cursor.getString(INDEX_NAME));
+                patient.setProcessNumber(cursor.getInt(INDEX_PROCESS_NUMBER));
                 patient.setPhone(cursor.getString(INDEX_PHONE));
                 patient.setAddress(cursor.getString(INDEX_ADDRESS));
                 patient.setPot_name(cursor.getString(INDEX_POT_NAME));
@@ -97,6 +101,7 @@ public class PatientBDD {
             }
         } else{
             patient.setName("Test");
+            patient.setProcessNumber(1);
             patient.setPhone("0123456789");
             patient.setAddress("Default Adress");
             patient.setPot_name("Test");
