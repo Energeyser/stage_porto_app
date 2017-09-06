@@ -1,6 +1,7 @@
 package com.example.android.monitoringapp.Analysis;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by axel- on 28/08/2017.
@@ -37,11 +38,11 @@ public class RythmDetection {
         highPassArray = highPass(ECG, ECG.length);
         lowPassArray = lowPass(highPassArray, highPassArray.length);
         qrsArray = QRS(lowPassArray, lowPassArray.length);
-        results = cfMeasure(qrsArray, ECG, results);
-        results = bpMeasure(PPG,results);
+        cfMeasure(qrsArray, ECG,results);
+        bpMeasure(PPG,results);
 
 
-        System.out.println("results : cf = "+ results.cf + ", RRMissed = "+ results.RRMissed+", arrythmia = "+results.arrythmia + ", BP = " + results.BP + ", DBP = "+results.DBP+", SBP = "+results.SBP);
+       // System.out.println("results : cf = "+ results.cf + ", RRMissed = "+ results.RRMissed+", arrythmia = "+results.arrythmia + ", BP = " + results.BP + ", DBP = "+results.DBP+", SBP = "+results.SBP);
 
         return results;
 
@@ -68,15 +69,14 @@ public class RythmDetection {
 
     public static Results cfMeasure(int qrsArray[], int[] channel2Values, Results results) {
 
-
         int RRAverage1 = 0;
         int RRAverage2 = 0;
 
         int cf = 0;
 
         int nbQrsDetection = 0;
-        int[] recentRRValuesArray = new int[8];
-        int[] acceptableRRValuesArray = new int[8];
+        int[] recentRRValuesArray = new int[4];
+        int[] acceptableRRValuesArray = new int[4];
         int RRcounter = 0;
         int limitInit = 0;
         int RRLowLimit = 0;
@@ -140,7 +140,7 @@ public class RythmDetection {
 
                             }
 
-                            if(limitInit == 1) limitInit++;	// This step is to don't calculate a second time the first limits
+                            if(limitInit == 1) limitInit++;	// This step is to not calculate a second time the first limits
                             else {
                                 limitInit = 3;
                             }
@@ -156,7 +156,7 @@ public class RythmDetection {
                                     RRLowLimit = (92*RRAverage2) / 100;
                                     RRHighLimit = (116*RRAverage2) / 100;
                                     RRMissedLimit = (166*RRAverage2) / 100;
-                                    //System.out.println("RRAverage2 = " + RRAverage2);
+                                    System.out.println("RRAverage2 = " + RRAverage2);
                                     totalAverage.add(RRAverage2);
                                     results.indexOne.add(i);
                                     results.amplitudeOne.add(i);
@@ -167,7 +167,7 @@ public class RythmDetection {
                                 }else {
 
                                     arrythmia = 1;
-                                    //System.out.println("Battement non régulier: arythmie");
+                                    System.out.println("Battement non régulier: arythmie");
 
                                 }
 
@@ -217,13 +217,128 @@ public class RythmDetection {
 
         }
 
+        System.out.println("cf = " + cf);
+
         results.cf = cf;
         results.RRMissed = RRMissed;
         results.arrythmia = arrythmia;
+
         return results;
 
     }
 
+    ////////////////////
+    // Blood Pressure //
+    ////////////////////
+
+    public static Results bpMeasure(int[] channel6Values, Results results) {
+
+        // indexOne : index of the one value we have to refer to measure PPT times
+        int ppgMaxValue = 0;
+        int indexMaxValue = 0;
+        int ppgMinValue = 0;
+        int indexMinValue = 0;
+
+        ArrayList<Integer> PPTb = new ArrayList<Integer>();
+        ArrayList<Integer> PPTt = new ArrayList<Integer>();
+
+        Integer[] indexOnes = new Integer[results.indexOne.size()];
+        results.indexOne.toArray(indexOnes);	// transform the list into an array
+
+        for(int i = 0; i<results.indexOne.size(); i++) {	// measures of different times between the ECG signal and PPG signal
+            //System.out.println(i);
+            //System.out.println(results.indexOne.size());
+
+			/*
+			for(int z = 0; z<results.channel6Values.length; z++) {
+				System.out.println(results.channel6Values[z]);
+			}*/
+
+            int detectPPTb = 0;
+
+            if(i < results.indexOne.size() - 1) {
+
+                ppgMaxValue = channel6Values[indexOnes[i]];
+
+                for(int j = indexOnes[i]; j<indexOnes[i + 1]; j++) {	// detection of the PPG wave between 2 picks
+
+                    if(channel6Values[j] > ppgMaxValue) {
+
+                        ppgMaxValue = channel6Values[j];
+                        indexMaxValue = j;
+                        //System.out.println(ppgMaxValue);
+                        //indexOnes = onesArray[i];
+                        //System.out.println(channel6Values);
+
+                    }
+
+                    //System.out.println(channel6Values[j]);
+
+                }
+
+                ppgMinValue = ppgMaxValue;
+
+                for(int k = indexMaxValue; k>indexOnes[i]; k--) {	// detection of the PPG wave between 2 picks
+
+                    if(channel6Values[k] < ppgMinValue) {
+
+                        ppgMinValue = channel6Values[k];
+                        indexMinValue = k;
+                        //System.out.println(ppgMinValue);
+
+                    }
+
+                }
+
+                //System.out.println(indexMinValue);
+
+                if((ppgMaxValue - ppgMinValue) > 0) {
+
+                    PPTb.add(indexMinValue - indexOnes[i]);
+                    PPTt.add(indexMaxValue - indexOnes[i]);
+                    //System.out.println(PPTtAvg[indexAvg]);
+
+                }
+
+                //System.out.println(PPTb);
+                //System.out.println("i = " + i);
+
+            }
+
+        }
+
+        int PPTbValueInMs = 0;
+
+        if(PPTb.size() != 0) {	// if there is some values of PPT
+
+            for (int value : PPTb) {
+                PPTbValueInMs += value;
+            }
+
+            PPTbValueInMs = PPTbValueInMs/PPTb.size();
+
+            System.out.println("PPTb = " + PPTbValueInMs);
+
+            // Correlation between PPT values and Blood Pressure thanks to those curves
+
+            double DBP = 0;	// DBP in mmHg
+            double SBP = 0;	// SBP in mmHg
+            double BP = 0; // Blood pressure average
+
+            DBP = -0.35*PPTbValueInMs + 153.68;
+            System.out.println("Blood Pressure (DBP in mmHg) = " + DBP);
+            results.DBP = (int)DBP;
+            SBP = -0.55*PPTbValueInMs + 245.1;
+            System.out.println("Blood Pressure (SBP in mmHg) = " + SBP);
+            results.SBP = (int)SBP;
+            BP = (SBP + 2*DBP) / 3;
+            //System.out.println("Blood Pressure (BP in mmHg) = " + BP);
+            results.BP = (int)BP;
+
+        }
+        return results;
+
+    }
 
     ////////////////////////////////////////////////////////////
     // Function to shift an array by the right side (1 value) //
@@ -270,12 +385,12 @@ public class RythmDetection {
     ////////////////////////////////////////
 
     public static float[] highPass(int[] sig0, int nsamp) {
-        int M = 3;	// M-point moving  average  filter
+        int M = 5;	// M-point moving  average  filter
         float[] highPass = new float[nsamp];
         float constant = (float) 1/M; // M-point moving  average  filter
 
 
-        for(int i=0; i<sig0.length; i++) {
+        for(int i=5; i<sig0.length-5; i++) {
             float y1 = 0;
             float y2 = 0;
 
@@ -343,158 +458,67 @@ public class RythmDetection {
         int[] QRS = new int[nsamp];
 
         double treshold = 0;
+        float max = 0;
 
-        for(int i=0; i<500; i++) {
+        for(int i=0; i<nsamp; i++) {
             if(lowPass[i] > treshold) {
                 treshold = lowPass[i];
+                max = lowPass[i];
             }
 
         }
 
-        int frame = 500;
+        treshold = 0.5*max;
 
-        for(int i=0; i<lowPass.length; i+=frame) {
-            float max = 0;
-            int index = 0;
-            if(i + frame > lowPass.length) {
-                index = lowPass.length;
-            }
-            else {
-                index = i + frame;
-            }
-            for(int j=i; j<index; j++) {
-                if(lowPass[j] > max) max = lowPass[j];
-            }
-            boolean added = false;
-            for(int j=i; j<index; j++) {
-                if(lowPass[j] > treshold && !added) {
-                    QRS[j] = 1;
-                    added = true;
+        ArrayList<Float> valuesOverTreshold = new ArrayList<Float>();
+        ArrayList<Integer> indexVOT = new ArrayList<Integer>();
+
+
+
+
+        boolean added = false;
+        boolean inQrs = false;
+
+        for(int i=0; i<lowPass.length; i++) {
+
+            if(lowPass[i] > treshold) {
+                valuesOverTreshold.add(lowPass[i]);
+                indexVOT.add(i);
+                inQrs = true;
+
+            }else {
+
+                if(inQrs == true) {
+
+                    inQrs = false;
+                    //System.out.println(Collections.max(valuesOverTreshold));
+                    //System.out.println(valuesOverTreshold.indexOf(Collections.max(valuesOverTreshold)));
+                    //System.out.println(valuesOverTreshold);
+                    //System.out.println(indexVOT.get(valuesOverTreshold.indexOf(Collections.max(valuesOverTreshold))));
+                    //System.out.println(indexVOT);
+                    QRS[indexVOT.get(valuesOverTreshold.indexOf(Collections.max(valuesOverTreshold)))] = 1;
+
+                }else {
+
+                    QRS[i] = 0;
+
                 }
-                else {
-                    QRS[j] = 0;
-                }
+
+                valuesOverTreshold.clear();
+                indexVOT.clear();
+
             }
-
-            double gama = (Math.random() > 0.5) ? 0.15 : 0.20;
-            double alpha = 0.01 + (Math.random() * ((0.1 - 0.01)));
-
-            treshold = alpha * gama * max + (1 - alpha) * treshold;
-            //System.out.println("treshold" + treshold);
 
         }
+
+        //double gama = (Math.random() > 0.5) ? 0.15 : 0.20;
+        //double alpha = 0.01 + (Math.random() * ((0.1 - 0.01)));
+
+        //treshold = alpha * gama * max + (1 - alpha) * treshold;
+
+        //System.out.println("treshold = " + treshold);
 
         return QRS;
-
-    }
-
-    ////////////////////
-    // Blood Pressure //
-    ////////////////////
-
-    public static Results bpMeasure(int[] channel6Values, Results results) {
-
-        // indexOne : index of the one value we have to refer to measure PPT times
-        int ppgMaxValue = 0;
-        int indexMaxValue = 0;
-        int ppgMinValue = 0;
-        int indexMinValue = 0;
-
-        ArrayList<Integer> PPTb = new ArrayList<Integer>();
-        ArrayList<Integer> PPTt = new ArrayList<Integer>();
-
-        Integer[] indexOnes = new Integer[results.indexOne.size()];
-        results.indexOne.toArray(indexOnes);	// transform the list into an array
-
-        for(int i = 0; i<results.indexOne.size(); i++) {	// measures of different times between the ECG signal and PPG signal
-            //System.out.println(i);
-            //System.out.println(results.indexOne.size());
-
-			/*
-			for(int z = 0; z<results.channel6Values.length; z++) {
-				System.out.println(results.channel6Values[z]);
-			}*/
-
-            if(i < results.indexOne.size() - 1) {
-
-                for(int j = indexOnes[i]; j<indexOnes[i + 1]; j++) {	// detection of the PPG wave between 2 picks
-
-                    if(channel6Values[j] >= ppgMaxValue) {
-
-                        ppgMaxValue = channel6Values[j];
-                        indexMaxValue = j;
-                        //System.out.println(ppgMaxValue);
-                        //indexOnes = onesArray[i];
-                        //System.out.println(channel6Values);
-
-                    }
-
-                    //System.out.println(channel6Values[j]);
-
-                }
-
-                ppgMinValue = ppgMaxValue;
-
-                for(int k = indexMaxValue; k>indexOnes[i]; k--) {	// detection of the PPG wave between 2 picks
-
-                    if(channel6Values[k] < ppgMinValue) {
-
-                        ppgMinValue = channel6Values[k];
-                        indexMinValue = k;
-                        //System.out.println(ppgMinValue);
-
-                    }
-
-                }
-
-                //System.out.println(indexMinValue);
-
-                if((ppgMaxValue - ppgMinValue) > 0) {
-
-                    PPTb.add(indexMinValue - indexOnes[i]);
-                    PPTt.add(indexMaxValue - indexOnes[i]);
-                    //System.out.println(PPTtAvg[indexAvg]);
-
-                }
-
-                //System.out.println(PPTb);
-                //System.out.println("i = " + i);
-
-            }
-
-        }
-
-        int PPTbValueInMs = 0;
-
-        if(PPTb.size() != 0) {	// if there is some values of PPT
-
-            for (int value : PPTb) {
-                PPTbValueInMs += value;
-            }
-
-            PPTbValueInMs = PPTbValueInMs/PPTb.size();
-
-            //System.out.println("PPTb = " + PPTbValueInMs);
-
-            // Correlation between PPT values and Blood Pressure thanks to those curves
-
-            double DBP = 0;	// DBP in mmHg
-            double SBP = 0;	// SBP in mmHg
-            double BP = 0; // Blood pressure average
-
-            DBP = -0.35*PPTbValueInMs + 153.68;
-            //System.out.println("Blood Pressure (DBP in mmHg) = " + DBP);
-            results.DBP = (int)DBP;
-            SBP = -0.55*PPTbValueInMs + 245.1;
-            //System.out.println("Blood Pressure (SBP in mmHg) = " + SBP);
-            results.SBP = (int)SBP;
-            BP = (SBP + 2*DBP) / 3;
-            //System.out.println("Blood Pressure (BP in mmHg) = " + BP);
-            results.BP = (int)BP;
-
-
-        }
-        return results;
 
     }
 

@@ -113,7 +113,7 @@ public class EDA {
 
         //close bluetooth connection
         //device.close();
-        return Na_Rate;
+        return R_OPT;
     }
 
 
