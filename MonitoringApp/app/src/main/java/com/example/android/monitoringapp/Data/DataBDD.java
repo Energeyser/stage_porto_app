@@ -76,6 +76,7 @@ public class DataBDD {
         return db;
     }
 
+
     public long insertData(Data data) {
         //Creation of a ContentValues (working like a HashMap)
         ContentValues values = new ContentValues();
@@ -187,9 +188,9 @@ public class DataBDD {
                 data.setMinimum_diastolic_blood_pressure(cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 data.setMaximum_diastolic_blood_pressure(cursor.getInt(INDEX_MAXIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 data.setAverage_diastolic_blood_pressure(cursor.getInt(INDEX_AVERAGE_DIASTOLIC_BLOOD_PRESSURE));
-                data.setMinimum_sodium_chloride(cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
-                data.setMaximum_sodium_chloride(cursor.getInt(INDEX_MAXIMUM_SODIUM_CHLORIDE));
-                data.setAverage_sodium_chloride(cursor.getInt(INDEX_AVERAGE_SODIUM_CHLORIDE));
+                data.setMinimum_sodium_chloride(cursor.getDouble(INDEX_MINIMUM_SODIUM_CHLORIDE));
+                data.setMaximum_sodium_chloride(cursor.getDouble(INDEX_MAXIMUM_SODIUM_CHLORIDE));
+                data.setAverage_sodium_chloride(cursor.getDouble(INDEX_AVERAGE_SODIUM_CHLORIDE));
                 data.setAlert(cursor.getInt(INDEX_ALERT));
             }
         } else {
@@ -244,9 +245,9 @@ public class DataBDD {
                 dataSum.setMinimum_diastolic_blood_pressure(dataSum.getMinimum_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setMaximum_diastolic_blood_pressure(dataSum.getMaximum_diastolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() + cursor.getInt(INDEX_AVERAGE_DIASTOLIC_BLOOD_PRESSURE));
-                dataSum.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
-                dataSum.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() + cursor.getInt(INDEX_MAXIMUM_SODIUM_CHLORIDE));
-                dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getInt(INDEX_AVERAGE_SODIUM_CHLORIDE));
+                dataSum.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() + cursor.getDouble(INDEX_MINIMUM_SODIUM_CHLORIDE));
+                dataSum.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() + cursor.getDouble(INDEX_MAXIMUM_SODIUM_CHLORIDE));
+                dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getDouble(INDEX_AVERAGE_SODIUM_CHLORIDE));
                 if (cursor.getInt(INDEX_ALERT) != 0) {
                     dataSum.setAlert(cursor.getInt(INDEX_ALERT));
                 }
@@ -353,9 +354,9 @@ public class DataBDD {
                 dataSum.setMinimum_diastolic_blood_pressure(dataSum.getMinimum_diastolic_blood_pressure() + cursor.getInt(INDEX_MINIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setMaximum_diastolic_blood_pressure(dataSum.getMaximum_diastolic_blood_pressure() + cursor.getInt(INDEX_MAXIMUM_DIASTOLIC_BLOOD_PRESSURE));
                 dataSum.setAverage_diastolic_blood_pressure(dataSum.getAverage_diastolic_blood_pressure() + cursor.getInt(INDEX_AVERAGE_DIASTOLIC_BLOOD_PRESSURE));
-                dataSum.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() + cursor.getInt(INDEX_MINIMUM_SODIUM_CHLORIDE));
-                dataSum.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() + cursor.getInt(INDEX_MAXIMUM_SODIUM_CHLORIDE));
-                dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getInt(INDEX_AVERAGE_SODIUM_CHLORIDE));
+                dataSum.setMinimum_sodium_chloride(dataSum.getMinimum_sodium_chloride() + cursor.getDouble(INDEX_MINIMUM_SODIUM_CHLORIDE));
+                dataSum.setMaximum_sodium_chloride(dataSum.getMaximum_sodium_chloride() + cursor.getDouble(INDEX_MAXIMUM_SODIUM_CHLORIDE));
+                dataSum.setAverage_sodium_chloride(dataSum.getAverage_sodium_chloride() + cursor.getDouble(INDEX_AVERAGE_SODIUM_CHLORIDE));
                 if (cursor.getInt(INDEX_ALERT) != 0) {
                     dataSum.setAlert(cursor.getInt(INDEX_ALERT));
                 }
@@ -423,8 +424,8 @@ public class DataBDD {
             cursor.close();
         }
 
-        System.out.println("aaaaaaaaaaaaaaaaaaa");
-        System.out.println("ahahaha: " + data.toString());
+        //System.out.println("aaaaaaaaaaaaaaaaaaa");
+        //System.out.println("ahahaha: " + data.toString());
         return data;
     }
 

@@ -36,14 +36,14 @@ public class Data {
     private int minimum_diastolic_blood_pressure;
     private int maximum_diastolic_blood_pressure;
     private int average_diastolic_blood_pressure;
-    private int minimum_sodium_chloride;
-    private int maximum_sodium_chloride;
-    private int average_sodium_chloride;
+    private double minimum_sodium_chloride;
+    private double maximum_sodium_chloride;
+    private double average_sodium_chloride;
     private int alert;
 
     public Data(){}
 
-    public Data(int id, String patient_name, int patient_process_number, String date, int minimum_hr, int maximum_hr, int average_hr, int minimum_resp, int maximum_resp, int average_resp, int minimum_oxy, int maximum_oxy, int average_oxy, String ecg_description, int minimum_thoracic_fluid_content, int maximum_thoracic_fluid_content, int average_thoracic_fluid_content, int minimum_body_fluid_content, int maximum_body_fluid_content, int average_body_fluid_content, int minimum_systolic_blood_pressure, int maximum_systolic_blood_pressure, int average_systolic_blood_pressure, int minimum_diastolic_blood_pressure, int maximum_diastolic_blood_pressure, int average_diastolic_blood_pressure, int minimum_sodium_chloride, int maximum_sodium_chloride, int average_sodium_chloride, int alert) {
+    public Data(int id, String patient_name, int patient_process_number, String date, int minimum_hr, int maximum_hr, int average_hr, int minimum_resp, int maximum_resp, int average_resp, int minimum_oxy, int maximum_oxy, int average_oxy, String ecg_description, int minimum_thoracic_fluid_content, int maximum_thoracic_fluid_content, int average_thoracic_fluid_content, int minimum_body_fluid_content, int maximum_body_fluid_content, int average_body_fluid_content, int minimum_systolic_blood_pressure, int maximum_systolic_blood_pressure, int average_systolic_blood_pressure, int minimum_diastolic_blood_pressure, int maximum_diastolic_blood_pressure, int average_diastolic_blood_pressure, double minimum_sodium_chloride, double maximum_sodium_chloride, double average_sodium_chloride, int alert) {
         this.id = id;
         this.patient_name = patient_name;
         this.patient_process_number = patient_process_number;
@@ -284,27 +284,27 @@ public class Data {
         this.average_diastolic_blood_pressure = average_diastolic_blood_pressure;
     }
 
-    public int getMinimum_sodium_chloride() {
+    public double getMinimum_sodium_chloride() {
         return minimum_sodium_chloride;
     }
 
-    public void setMinimum_sodium_chloride(int minimum_sodium_chloride) {
+    public void setMinimum_sodium_chloride(double minimum_sodium_chloride) {
         this.minimum_sodium_chloride = minimum_sodium_chloride;
     }
 
-    public int getMaximum_sodium_chloride() {
+    public double getMaximum_sodium_chloride() {
         return maximum_sodium_chloride;
     }
 
-    public void setMaximum_sodium_chloride(int maximum_sodium_chloride) {
+    public void setMaximum_sodium_chloride(double maximum_sodium_chloride) {
         this.maximum_sodium_chloride = maximum_sodium_chloride;
     }
 
-    public int getAverage_sodium_chloride() {
+    public double getAverage_sodium_chloride() {
         return average_sodium_chloride;
     }
 
-    public void setAverage_sodium_chloride(int average_sodium_chloride) {
+    public void setAverage_sodium_chloride(double average_sodium_chloride) {
         this.average_sodium_chloride = average_sodium_chloride;
     }
 

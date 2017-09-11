@@ -6,6 +6,7 @@ package com.example.android.monitoringapp.Data;
 
 public class Patient {
     private int id;
+    private int processNumber;
     private String name;
     private String phone;
     private String address;
@@ -14,8 +15,9 @@ public class Patient {
 
     public Patient(){}
 
-    public Patient(String name, String phone, String address,String pot_name,String pot_phone){
+    public Patient(String name,int processNumber, String phone, String address,String pot_name,String pot_phone){
         this.name = name;
+        this.processNumber = processNumber;
         this.phone = phone;
         this.address = address;
         this.pot_name = pot_name;
@@ -36,6 +38,14 @@ public class Patient {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public int getProcessNumber(){
+        return processNumber;
+    }
+
+    public void setProcessNumber(int processNumber){
+        this.processNumber = processNumber;
     }
 
     public String getPhone(){
@@ -71,7 +81,7 @@ public class Patient {
     }
 
     public String toString(){
-        return "ID : "+id+"\nName : "+name+"\nPhone : "+phone+"\nAddress : "+address+"\nPot_name : "
+        return "ID : "+id+"\nName : "+name+"\nProcess Number : "+processNumber+"\nPhone : "+phone+"\nAddress : "+address+"\nPot_name : "
                 +pot_name+"\nPot_phone : "+pot_phone;
     }
 

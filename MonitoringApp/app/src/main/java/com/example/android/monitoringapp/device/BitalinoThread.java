@@ -108,7 +108,7 @@ public class BitalinoThread extends BTDeviceThread{
 			//Blocking task
 			BITalinoFrame[] frames = new BITalinoFrame[nFrames];
 			
-			Log.i(TAG, "Monitor: Read "+(packNum++)+" :"+ System.currentTimeMillis());
+			//Log.i(TAG, "Monitor: Read "+(packNum++)+" :"+ System.currentTimeMillis());
 			//ApplicationClass.showTop();
 			
 			frames = _bitalino_dev.read(nFrames);

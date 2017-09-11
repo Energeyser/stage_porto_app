@@ -35,6 +35,13 @@ public final class PatientContract {
         public final static String COLUMN_PATIENT_NAME ="name";
 
         /**
+         * Process number of the patient.
+         *
+         * Type: INT
+         */
+        public final static String COLUMN_PATIENT_PROCESS_NUMBER ="processNumber";
+
+        /**
          * Phone of the patient.
          *
          * Type: TEXT

@@ -137,9 +137,9 @@ public class DayCalendarActivity extends AppCompatActivity {
         salinityMax =(TextView) findViewById(R.id.value_max_sodium_chloride);
         salinityMean =(TextView) findViewById(R.id.value_mean_sodium_chloride);
 
-        salinityMin.setText(Integer.toString(data.getMinimum_sodium_chloride()));
-        salinityMax.setText(Integer.toString(data.getMaximum_sodium_chloride()));
-        salinityMean.setText(Integer.toString(data.getAverage_sodium_chloride()));
+        salinityMin.setText(Double.toString(data.getMinimum_sodium_chloride()));
+        salinityMax.setText(Double.toString(data.getMaximum_sodium_chloride()));
+        salinityMean.setText(Double.toString(data.getAverage_sodium_chloride()));
     }
 
     public void openMonthSummary(View view){

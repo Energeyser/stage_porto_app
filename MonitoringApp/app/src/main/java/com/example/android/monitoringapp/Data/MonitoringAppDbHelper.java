@@ -43,6 +43,7 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         String SQL_CREATE_PATIENT_TABLE =  "CREATE TABLE " + PatientEntry.TABLE_NAME + " ("
                 + PatientEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + PatientEntry.COLUMN_PATIENT_NAME + " TEXT NOT NULL, "
+                + PatientEntry.COLUMN_PATIENT_PROCESS_NUMBER + " INTEGER NOT NULL, "
                 + PatientEntry.COLUMN_PATIENT_PHONE + " TEXT NOT NULL, "
                 + PatientEntry.COLUMN_PATIENT_ADDRESS + " TEXT, "
                 + PatientEntry.COLUMN_PATIENT_POT_NAME + " TEXT,"
@@ -55,6 +56,7 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(PatientEntry._ID,1);
         values.put(PatientEntry.COLUMN_PATIENT_NAME, "Default Name");
+        values.put(PatientEntry.COLUMN_PATIENT_PROCESS_NUMBER, "1");
         values.put(PatientEntry.COLUMN_PATIENT_PHONE, "0123456789");
         values.put(PatientEntry.COLUMN_PATIENT_ADDRESS, "Default Address");
         values.put(PatientEntry.COLUMN_PATIENT_POT_NAME, "Default Name");
@@ -114,9 +116,9 @@ public class MonitoringAppDbHelper extends SQLiteOpenHelper {
                 + DataEntry.COLUMN_MIN_DIASTOLIC_BP + " INTEGER,"
                 + DataEntry.COLUMN_MAX_DIASTOLIC_BP + " INTEGER,"
                 + DataEntry.COLUMN_AVERAGE_DIASTOLIC_BP + " INTEGER,"
-                + DataEntry.COLUMN_MIN_SODIUM + " INTEGER,"
-                + DataEntry.COLUMN_MAX_SODIUM + " INTEGER,"
-                + DataEntry.COLUMN_AVERAGE_SODIUM + " INTEGER,"
+                + DataEntry.COLUMN_MIN_SODIUM + " DOUBLE,"
+                + DataEntry.COLUMN_MAX_SODIUM + " DOUBLE,"
+                + DataEntry.COLUMN_AVERAGE_SODIUM + " DOUBLE,"
                 + DataEntry.COLUMN_ALERT + " INTEGER);";
 
         // Execute the SQL statement
