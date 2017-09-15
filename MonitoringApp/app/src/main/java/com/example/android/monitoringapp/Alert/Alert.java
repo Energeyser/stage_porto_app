@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 /**
  * Created by axel- on 31/07/2017.
+ * Class used to send a text message
  */
 
 public class Alert {

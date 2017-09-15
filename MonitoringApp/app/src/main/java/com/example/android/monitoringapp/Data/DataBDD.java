@@ -14,6 +14,7 @@ import static android.R.attr.data;
 
 /**
  * Created by axel- on 19/07/2017.
+ * This file contains the methods used to access the data in the database
  */
 
 public class DataBDD {
@@ -157,7 +158,6 @@ public class DataBDD {
 
     public Data getDataWithDate(String date) {
         //Gets in a cursor the data of the patient
-        //Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE + " = '" + date +"'", null, null, null, null);
         Cursor cursor = db.query(TABLE_DATA, new String[]{"*"}, DataEntry.COLUMN_DATE + " = \"" + date + "\"", null, null, null, null);
         Data data = new Data();
         if (cursor != null) {
@@ -201,9 +201,6 @@ public class DataBDD {
     }
 
     public Data getLastMonth() {
-        // Cursor cursor = db.query(TABLE_DATA, new String[] {"*"}, DataEntry.COLUMN_DATE +" BETWEEN datetime('now', 'localtime', 'start of month') AND datetime('now', 'localtime');", null, null, null, null);
-        //SELECT * FROM data WHERE date BETWEEN datetime('now', 'start of month') AND datetime('now', 'localtime');
-
         Calendar theEnd = Calendar.getInstance();
         Calendar theStart = (Calendar) theEnd.clone();
 
@@ -214,8 +211,6 @@ public class DataBDD {
         String end = dateFormat.format(theEnd.getTime());
 
         // Now you have date boundaries in TEXT format
-
-        //Cursor cursor = db.rawQuery("SELECT * FROM data WHERE timestamp BETWEEN "+start+" AND "+end);
         Cursor cursor = db.query(TABLE_DATA, new String[]{"*"}, DataEntry.COLUMN_DATE + " BETWEEN '" + start + "' AND '" + end + "'", null, null, null, null);
 
         Data data = new Data();
@@ -360,7 +355,7 @@ public class DataBDD {
                 if (cursor.getInt(INDEX_ALERT) != 0) {
                     dataSum.setAlert(cursor.getInt(INDEX_ALERT));
                 }
-                System.out.println("summaryyyyyyyyyy: " + dataSum.getMinimum_hr() + "   " + dataSum.getMaximum_hr() + "   " + dataSum.getAverage_hr());
+                System.out.println("summary: " + dataSum.getMinimum_hr() + "   " + dataSum.getMaximum_hr() + "   " + dataSum.getAverage_hr());
             }
         } else {
             System.out.println("Error when retrieving the data from the database");
@@ -423,9 +418,6 @@ public class DataBDD {
             data.setAlert(0);
             cursor.close();
         }
-
-        //System.out.println("aaaaaaaaaaaaaaaaaaa");
-        //System.out.println("ahahaha: " + data.toString());
         return data;
     }
 
@@ -468,11 +460,9 @@ public class DataBDD {
                 }
             }
             if(date[0] == null){
-                System.out.println("Ca ne marche pas");
                 try {
                     dateError = dateForm.parse(dateErr);
                     date[0] = dateError;
-                    System.out.println("ahbh " + date[0].toString());
                 }
                 catch (Exception e) {
                     System.err.println("Format de date invalide. Usage : dd/MM/YYYY");

@@ -338,7 +338,7 @@ public class BluetoothDataActivity extends AppCompatActivity {
             dataBDD.insertData(data);
             data = dataBDD.getDataWithDate(currentDate);
         }
-        System.out.println("Donnees actuelles   : " + data.toString());
+        System.out.println("Actual data   : " + data.toString());
         dataBDD.close();
 
         //we compare the new data to the data stored in the database and update them if necessary
@@ -389,6 +389,7 @@ public class BluetoothDataActivity extends AppCompatActivity {
         if (this.numOfSample == 1){
             data.setMinimum_diastolic_blood_pressure(results.DBP);
             data.setMaximum_diastolic_blood_pressure(results.DBP);
+            data.setAverage_diastolic_blood_pressure(results.DBP);
         }
         else if(results.DBP > 5) {
             if (results.DBP < minDBP && results.DBP > 0) {
@@ -403,6 +404,7 @@ public class BluetoothDataActivity extends AppCompatActivity {
         if (this.numOfSample == 1){
             data.setMinimum_systolic_blood_pressure(results.SBP);
             data.setMaximum_systolic_blood_pressure(results.SBP);
+            data.setAverage_systolic_blood_pressure(results.SBP);
         }
         else if(results.SBP > 5) {
             if (results.SBP < minSBP && results.SBP > 0) {
@@ -416,7 +418,7 @@ public class BluetoothDataActivity extends AppCompatActivity {
         data.setAlert(results.arrythmia);
 
         if(results.cf > 5) {
-            System.out.println("Donnees actualisées : " + data.toString());
+            System.out.println("Updated data : " + data.toString());
             dataBDD.open();
             dataBDD.updateData(data.getId(), data);
             dataBDD.close();

@@ -18,23 +18,6 @@ public class RythmDetection {
         Results results = new Results();	// Class with all the results
 
 
-        //device.start(aChannels);
-
-        //while(true) {
-
-        //int[] temp1 = null;
-        //int[] temp2 = null;
-
-
-        // get all the values of the analog channel 2 (ECG) & 6 (PPG)
-/*
-        for (int frameCounter = 0; frameCounter < dataAcquired.length; frameCounter++) {
-
-            channel2Values[frameCounter] = dataAcquired[frameCounter].getChannel2();
-            //channel6Values[frameCounter] = dataAcquired[frameCounter].getChannel6();
-
-        }*/
-
         highPassArray = highPass(ECG, ECG.length);
         lowPassArray = lowPass(highPassArray, highPassArray.length);
         qrsArray = QRS(lowPassArray, lowPassArray.length);
@@ -45,20 +28,6 @@ public class RythmDetection {
        // System.out.println("results : cf = "+ results.cf + ", RRMissed = "+ results.RRMissed+", arrythmia = "+results.arrythmia + ", BP = " + results.BP + ", DBP = "+results.DBP+", SBP = "+results.SBP);
 
         return results;
-
-        //}
-
-        // trigger digital outputs
-        //int[] digital = {0,0,1,1};	/// On %BITalino (r)evolution, the array contents are: I1 I2 O1 O2.
-        //device.trigger(digital);
-
-        // stop acquisition
-        //device.stop();
-
-        //close bluetooth connection
-        //device.close();
-
-        //}
     }
 
 
@@ -248,11 +217,6 @@ public class RythmDetection {
         for(int i = 0; i<results.indexOne.size(); i++) {	// measures of different times between the ECG signal and PPG signal
             //System.out.println(i);
             //System.out.println(results.indexOne.size());
-
-			/*
-			for(int z = 0; z<results.channel6Values.length; z++) {
-				System.out.println(results.channel6Values[z]);
-			}*/
 
             int detectPPTb = 0;
 

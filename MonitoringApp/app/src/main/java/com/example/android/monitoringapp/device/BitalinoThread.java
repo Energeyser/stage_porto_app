@@ -42,17 +42,7 @@ public class BitalinoThread extends BTDeviceThread{
 		sendMessage("OK", "Connected to BITalino device at: "+_bluetoothDev.getAddress());
 
 	}
-	
-//	public void setLed(boolean val){
-//		int led = (val) ? 1 : 0;
-//		int[] digOutputs = {0, 0, led, 0};
-//		try {
-//			_bitalino_dev.setDigitalOutput(digOutputs);
-//		} catch (BITalinoException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+
 	
 	int[] channels; 
 	public void setChannels(int[] channels){
@@ -68,48 +58,20 @@ public class BitalinoThread extends BTDeviceThread{
 
 		try {
 			_bitalino_dev = new BITalinoDevice(sample_rate, channels);
-			_bitalino_dev.open(_inStream, _outStream);		
-			
-			//String firmVersion = _bitalino_dev.version();
-			//Log.v(TAG, "Firm Version: "+firmVersion);
-			
-			//_bitalino_dev.setBattThreshold(3.8); // Only Works in LIVE MODE
-						
-//			_bitalino_dev.start(this.bitalinoMode, channels);
+			_bitalino_dev.open(_inStream, _outStream);
 			_bitalino_dev.start();
-		
-			// Led in the Bitalino Boards, blinks twice
-//			if(_bitalino_dev.getMode()==BITalinoDevice.LIVE_MODE){
-//				setLed(true);
-//				Thread.sleep(100);
-//				setLed(false);
-//				Thread.sleep(50);
-//				setLed(true);
-//				Thread.sleep(100);
-//				setLed(false);
-//			}
-					
 			
 			
 		} catch (BITalinoException e2) {
 			e2.printStackTrace();
 		}
-//		catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}   		
 	}
 
 	@Override
 	public void loop() {
 
-		try {		
-			
-			//Blocking task
+		try {
 			BITalinoFrame[] frames = new BITalinoFrame[nFrames];
-			
-			//Log.i(TAG, "Monitor: Read "+(packNum++)+" :"+ System.currentTimeMillis());
-			//ApplicationClass.showTop();
 			
 			frames = _bitalino_dev.read(nFrames);
 			
@@ -144,18 +106,10 @@ public class BitalinoThread extends BTDeviceThread{
 		if(_bitalino_dev!=null){
 			// Stop the data acquisition
 			try {
-//				if(_bitalino_dev.getMode()==BITalinoDevice.LIVE_MODE){
-//					setLed(true);				
-//					Thread.sleep(500);
-//					setLed(false); // Only works in LIVE mode
-//				}
 				_bitalino_dev.stop();
 			} catch (BITalinoException e) {
 				Log.e(TAG, "Problems closing the BITalino device");
 				e.printStackTrace();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
 			}
 		}
 		super.close();
@@ -175,11 +129,7 @@ public class BitalinoThread extends BTDeviceThread{
 
 	public void setNumFrames(int nFrames) {
 		this.nFrames = nFrames;
-	}	
-
-//	public void setMode(int Mode){
-//			this.bitalinoMode = Mode;
-//	}
+	}
 	
 	public void setDownsamplingOn(boolean downsample){
 		this.downsample = downsample;
